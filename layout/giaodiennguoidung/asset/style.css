@@ -1,0 +1,31 @@
+ul li {
+    list-style:none;
+
+}
+ul li img{
+    margin-top : 20px;
+    width:120px;
+    cursor: pointer;
+
+}
+ul, #main-image{
+    float: left;
+
+}
+
+#main-image img{
+    width:440px;
+    margin-top : 20px;
+    margin-left : 30px;
+}
+.img-box img{
+    max-width: 100%;
+}
+.slider-container .container{
+    padding: 0 15px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.card-slider{
+    padding: 50px 0;
+}
