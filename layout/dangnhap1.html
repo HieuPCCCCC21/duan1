@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>đăng ký</title>
+    <title>đăng nhập</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/css/splide.min.css">
@@ -69,7 +69,7 @@ font-family: 'Roboto Mono', monospace;
         <ul class="w-full bg-red-200 rounded-xl py-4 ">
             <li class="font-semibold text-stone-500 indent-80">
                 <a href="trangchu.html">Trang chủ / </a>
-                <a href="">Đăng ký tài khoản </a>
+                <a href="">Đăng nhập tài khoản</a>
             </li>
         </ul> 
         
@@ -89,49 +89,53 @@ font-family: 'Roboto Mono', monospace;
               </div>
               <div class="w-full lg:w-1/2 py-16 px-12">
                 <ul class="w-full bg-red-200 rounded-xl py-4 flex flex-nowrap ">
-                    <li class="font-semibold  indent-28 ">
+                    <li class="font-semibold  indent-28">
                         <a href="dangnhap1.html" title="Đăng ký">Đăng nhập  | </a>
+                        
                     </li>
                     <li class="font-semibold  indent-3">
                     <a href="dangky.html" title="Đăng nhập" class="tracking-wide">Đăng ký </a>
                     </li>
                 </ul>
-                <p class="text-sm mt-4 text-[#002D74]">
-                  Tạo tài khoản của bạn. Nó miễn phí và chỉ mất một phút
-                </p>
-                <form action="#">
-                  <div class="grid grid-cols-2 gap-5">
-                    <input type="text" placeholder="Họ" class="border border-gray-400 py-1 px-2 rounded-xl">
-                    <input type="text" placeholder="Tên" class="border border-gray-400 py-1 px-2 rounded-xl">
+              <div class="">
+                <p class="text-sm mt-4 text-[#002D74]">Nếu bạn đã là thành viên, dễ dàng đăng nhập</p>
+          
+                <form action="" class="flex flex-col gap-4">
+                  <input class="p-2 mt-8 rounded-xl border" type="email" name="email" placeholder="Email">
+                  <div class="relative">
+                    <input class="p-2 rounded-xl border w-full" type="mật khẩu" name="mật khẩu" placeholder="Mật khẩu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-eye absolute top-1/2 right-3 -translate-y-1/2" viewBox="0 0 16 16">
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                      <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                    </svg>
                   </div>
-                  <div class="mt-5">
-                    <input type="password" placeholder="Số điện thoại" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
-                  </div>
-                  <div class="mt-5">
-                    <input type="text" placeholder="Email" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
-                  </div>
-                  <div class="mt-5">
-                    <input type="password" placeholder="Mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
-                  </div>
-                  <div class="mt-5">
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
-                  </div>
-                  <div class="mt-5">
-                    <input type="checkbox" class="border border-gray-400">
-                    <span>
-                      Tôi chấp nhận <a href="#" class="text-purple-500 font-semibold">Điều khoản sử dụng</a> &  <a href="#" class="text-purple-500 font-semibold">Quyền riêng tư</a> 
-                    </span>
-                  </div>
-                  <div class="mt-5">
-                    <button class="w-full bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-100" >Đăng ký ngay</button>
-                  </div>
+                  <button class="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">Đăng nhập</button>
                 </form>
+                <div class="mt-3 border-[#002D74] py-4 text-[#002D74]">
+                    <a href="#">Quên mật khẩu?</a>
+                  </div>
+                <div class="mt-5 grid grid-cols-3 items-center text-gray-400">
+                  <hr class="border-gray-400">
+                  <p class="text-center text-sm">Hoặc</p>
+                  <hr class="border-gray-400">
+                </div>
+                <div>
+                    <button class="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+                        <div class="mr-3"> <img src="image/anh4.jpg" alt="" width="25px"></div>
+                         Đăng nhập bằng Facebook
+                       </button>
+                  <button class="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+                   <div class="mr-3"> <img src="image/anh3.jpg" alt="" width="25px"></div>
+                    Đăng nhập bằng Facebook
+                  </button>
+                 </div> 
+                </div>
               </div>
-            </div>
           </div>
         </div>
+    </section>
         
-
+            
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
          var swiper = new Swiper(".card-slider", {
