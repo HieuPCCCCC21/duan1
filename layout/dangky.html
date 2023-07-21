@@ -8,26 +8,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/css/splide.min.css">
-    <link rel="stylesheet" href="trangchu.css">
-    <script src="https://kit.fontawesome.com/7af42783d2.js" crossorigin="anonymous"></script>
     
+    <script src="https://kit.fontawesome.com/7af42783d2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="asset/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter&family=Kanit:wght@400;700&family=Play:wght@700&family=Roboto+Mono&display=swap"
         rel="stylesheet">
         <style>
-            .img-box img{
-                max-width: 100%;
-            }
-            .slider-container .container{
-                padding: 0 15px;
-                max-width: 1280px;
-                margin: 0 auto;
-            }
-            .card-slider{
-                padding: 50px 0;
-            }
+            
         </style>
 </head>
 
@@ -66,7 +56,7 @@ font-family: 'Roboto Mono', monospace;
         </div>       
         </div>
 
-        <ul class="w-full bg-red-200 rounded-xl py-4 ">
+        <ul class="w-full bg-gray-100 rounded-xl py-4 ">
             <li class="font-semibold text-stone-500 indent-80">
                 <a href="trangchu.html">Trang chủ / </a>
                 <a href="">Đăng ký tài khoản </a>
@@ -77,53 +67,55 @@ font-family: 'Roboto Mono', monospace;
           <!-- login container -->
           <div class="container mx-auto">
              <!-- form -->
-            <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-gray-100 rounded-2xl mx-auto shadow-lg overflow-hidden">
+            <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white mx-auto shadow-lg overflow-hidden">
               <!-- image -->
               <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center rounded-2xl" style="background-image: url('image/anh2.jpg');">
-                <h1 class="text-white text-3xl mb-3">QUYỀN LỢI THÀNH VIÊN</h1>
-                <div>
-                  <p class="text-white">Mua hàng khắp thế giới cực dễ dàng, nhanh chóng
-                    Theo dõi chi tiết đơn hàng, địa chỉ thanh toán dễ dàng
-                    Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</a></p>
+                <img src="images/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg" alt="">
+                
+                <div class="bg-gray-100 ">
+                    <p class="text-blue text-xl mb-3 ">QUYỀN LỢI THÀNH VIÊN</p>
+                  <p class="text-blue text-sm pt-5">-Mua hàng khắp thế giới cực dễ dàng, nhanh chóng</p>
+                    <p class="text-blue text-sm pt-5">-Theo dõi chi tiết đơn hàng, địa chỉ thanh toán dễ dàng</p>
+                    <p class="text-blue text-sm pt-5">-Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</p>
                 </div>
               </div>
               <div class="w-full lg:w-1/2 py-16 px-12">
-                <ul class="w-full bg-red-200 rounded-xl py-4 flex flex-nowrap ">
-                    <li class="font-semibold  indent-28 ">
-                        <a href="dangnhap1.html" title="Đăng ký">Đăng nhập  | </a>
-                    </li>
-                    <li class="font-semibold  indent-3">
-                    <a href="dangky.html" title="Đăng nhập" class="tracking-wide">Đăng ký </a>
-                    </li>
-                </ul>
-                <p class="text-sm mt-4 text-[#002D74]">
-                  Tạo tài khoản của bạn. Nó miễn phí và chỉ mất một phút
-                </p>
+                <div class="flex justify-around pb-3 cursor-pointer border-b-2  ">
+                    <a href="dangnhap.html" class="hover:text-red-500 ">Đăng Nhập</a>
+                <h2  class="font-bold text-lg text-[#002D74] border-b-2 border-[#F10000]">Đăng ký</h2>
+            </div>
+               
                 <form action="#">
-                  <div class="grid grid-cols-2 gap-5">
-                    <input type="text" placeholder="Họ" class="border border-gray-400 py-1 px-2 rounded-xl">
-                    <input type="text" placeholder="Tên" class="border border-gray-400 py-1 px-2 rounded-xl">
+                  <div class="  mt-5">
+                    <p>Họ Và Tên <span class="text-red-500">*</span> </p>
+                    <input type="text" placeholder="Nhập Họ và Tên" name="fullname" class="border border-gray-400 py-1 px-2 h-[40px] rounded-md h-[40px] w-full">
+                    
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Số điện thoại" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>SỐ ĐIỆN THOẠI <span class="text-red-500">*</span> </p>
+                    <input type="number" placeholder="Nhập Số điện thoại" name="phone" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="text" placeholder="Email" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>  Email <span class="text-red-500">*</span> </p>
+                    <input type="email" placeholder="Nhập Email" name="email" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>Mật khẩu<span class="text-red-500">*</span> </p>
+                    <input type="password" placeholder="Mật khẩu" name="password" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>Xác nhận lại mật khẩu<span class="text-red-500">*</span> </p>
+                    <input type="password" placeholder="Xác nhận mật khẩu" name="password1" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
+                  
                     <input type="checkbox" class="border border-gray-400">
                     <span>
                       Tôi chấp nhận <a href="#" class="text-purple-500 font-semibold">Điều khoản sử dụng</a> &  <a href="#" class="text-purple-500 font-semibold">Quyền riêng tư</a> 
                     </span>
                   </div>
                   <div class="mt-5">
-                    <button class="w-full bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-100" >Đăng ký ngay</button>
+                    <button class="w-full bg-red-600  rounded-md h-[40px] text-white py-2 hover:scale-105 duration-100" >Tạo Tài Khoản</button>
                   </div>
                 </form>
               </div>
