@@ -1,4 +1,4 @@
-
+<?php require_once "views/header.php"?>
       <style>
             .img-box img{
                 max-width: 100%;
@@ -30,7 +30,7 @@
                 <div>
                   <p class="text-white">Mua hàng khắp thế giới cực dễ dàng, nhanh chóng
                     Theo dõi chi tiết đơn hàng, địa chỉ thanh toán dễ dàng
-                    Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</a></p>
+                    Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</a></p>l.lo;lo.lô9o
                 </div>
               </div>
               <div class="w-full lg:w-1/2 py-16 px-12">
@@ -94,23 +94,7 @@
             </div>
           </div>
         </div>
-        
+<?php include_once "views/footer.php"?>    
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script>
-         var swiper = new Swiper(".card-slider", {
-            
-      slidesPerView: 4,
-      speed:1000,
-      spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-    </script>
+   
            

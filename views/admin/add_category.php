@@ -1,4 +1,4 @@
-<?php include_once "views\admin\header_admin.php" ?>
+<?php include_once "header_admin.php" ?>
 <!-- Header -->
 <main id="main" class="main">
     <div class="pagetitle">
@@ -10,14 +10,14 @@
                 <div class="card-body">
                     <h5 class="card-title">Thêm danh mục sản phẩm </h5>
                     <!-- Vertical Form -->
-                        <form action="index.php?act=adddm" method="post">
+                        <form action="?act=save_add_category" method="post" enctype="multipart/form-data">
                             <div class="col-12">
                                 <label for="iddm" class="form-label">Id</label>
                                 <input type="text" disabled class="form-control" id="iddm" placeholder="auto increment">
                             </div>
                             <div class="col-12">
                                 <label for="tendm" class="form-label py-3">Tên danh mục</label>
-                                <input type="text" class="form-control" id="tendm" name ="tendm" placeholder="Giày nam..">
+                                <input type="text" class="form-control" id="tendm" name ="tendm" placeholder="Nhập tên danh mục">
                             </div>
                             <div class="text-center mt-4">
                                 <input type="submit" class="btn btn-success" name="add" value="Thêm">
@@ -36,4 +36,5 @@
     </section>
 
 </main><!-- End #main -->
-<?php include_once "views\admin\footer_admin.php" ?>
+
+<?php include_once "footer_admin.php" ?>

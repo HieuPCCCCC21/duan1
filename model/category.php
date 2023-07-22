@@ -4,10 +4,8 @@ function all_category(){
     $result = pdo_query($sql);
     return $result;
 }
-function insert_category($data=[]){
-    $sql = "INSERT INTO category(name) values('?')";
-    $connect = pdo_get_connection();
-    $stmt= $connect->prepare($sql);
-    $stmt->execute($data);
+function insert_danhmuc($tendm){
+    $sql = "INSERT INTO category(name) values('$tendm')";
+    pdo_execute($sql);
 }
 ?>

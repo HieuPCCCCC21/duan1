@@ -160,6 +160,23 @@
             menuhidden2.classList.add('hidden');
         };
     </script>
+     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+         var swiper = new Swiper(".card-slider", {
+            
+      slidesPerView: 4,
+      speed:1000,
+      spaceBetween: 30,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+    </script>
 </body>
 
 </html>
