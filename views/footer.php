@@ -111,7 +111,7 @@
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
                         <a class="hover:text-red-800" href="?act=register">ĐĂNG KÝ</a>/
-                        <a class="hover:text-red-800" href="dangky.php">ĐĂNG NHẬP</a>
+                        <a class="hover:text-red-800" href="?act=login">ĐĂNG NHẬP</a>
                     </li>
                 </ul>
                 <div class="">

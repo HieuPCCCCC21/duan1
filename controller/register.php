@@ -1,5 +1,4 @@
 <?php
-
 function register()
 {
     render("register");
@@ -20,15 +19,16 @@ function register_user_ctr()
         } else {
             $email = $_POST['email'];
         }
-        if (empty($_POST['phone'])) {
-            $error['phone'] = "sdt không được để chống";
-        } else {
-            $phone = $_POST['phone'];
-        }
+        // if (empty($_POST['phone'])) {
+        //     $error['phone'] = "phone không được để chống";
+        // } else {
+           
+        // }
         if (!preg_match($result, $_POST['phone'])) {
             $error['phone'] = "kiểm tra lại số điện thoại";
         } else {
-            $error['phone'] = "";
+
+            $phone = $_POST['phone'];
         }
         if (empty($_POST['password'])) {
             $error['password'] = "mật khẩu không được để chống";
@@ -40,7 +40,9 @@ function register_user_ctr()
         }
         if (empty($error)) {
             inser_register($fullname, $email, $phone, $password);
+            header('location:?act=login');
         }
     }
     render("register", ['error' => $error]);
+
 }

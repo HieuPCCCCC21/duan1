@@ -94,7 +94,9 @@ h6 {
   background: #6776f4;
   color: #fff;
 }
-
+.w_250{
+  width: 250px;
+}
 .back-to-top.active {
   visibility: visible;
   opacity: 1;

@@ -11,4 +11,10 @@ function inser_register($fullname,$email,$phone,$password){
 //   $stmt = $conn->prepare($sql);
 //   $stmt->execute($data);
 // }
+function check_email($email,$password){
+    $sql="SELECT * FROM `user` where `email`='".$email."' AND `password`='".$password."'";
+    $login=pdo_query_one($sql);
+    // echo $sql;
+    return $login;
+}
 ?>

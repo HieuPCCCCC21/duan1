@@ -11,83 +11,68 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Danh sách sản phẩm</h5>
+            <form action="?act=show_product_admin" class="forms-sample" method="post" enctype="multipart/form-data">
+            <div class="d-flex align-items-center">
+                <div class="col-md-4 mb-3 me-2">
+                    <label for="inputState" class="form-label">Danh mục</label>
+                    <select id="inputState" name="id_cate" class="form-select">
+                        <option value=""  >Tất cả</option>
+                        <?php foreach ($all_category as $cate) {                          
+                            echo '<option value='.$cate['id'].'>'.$cate['name'].'</option>';
+                        }?>
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-primary mt-3" name="listok" value="show">
+            </div>
+            </form>
               <!-- Table with stripped rows -->
-              <table id="example" class="table  table-hover" style="width:100%">
-                <thead>
-                    <tr class="table-danger">
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Ảnh</th>
-                        <th>Phân loại</th>
-                        <th>Số lượng</th>
-                        <th>Giá</th>
-                        <th>Ngày thêm</th>
-                        <th>Ngày cập nhật</th>
-                        <th>Mô tả</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td><img src="views/admin/assets/img/news-3.jpg" style="width: 100px; height: 100px;" alt=""></td>
-                        <td>2011-04-25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011-07-25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009-01-12</td>
-                        <td>$86,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012-03-29</td>
-                        <td>$433,060</td>
-                    </tr>
-                    <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008-11-28</td>
-                        <td>$162,700</td>
-                    </tr>
-                    <tr>
-                        <td>Brielle Williamson</td>
-                        <td>Integration Specialist</td>
-                        <td>New York</td>
-                        <td>61</td>
-                        <td>2012-12-02</td>
-                        <td>$372,000</td>
-                    </tr>
-                    <tr>
-                        <td>Herrod Chandler</td>
-                        <td>Sales Assistant</td>
-                        <td>San Francisco</td>
-                        <td>59</td>
-                        <td>2012-08-06</td>
-                        <td>$137,500</td>
-                    </tr>
-                </tbody>
-               
-            </table>
+              <table id="example" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr class="table-danger">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Ảnh</th>
+            <th>Phân loại</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Ngày tạo</th>
+            <th>Ngày cập nhật</th>
+            <th>Mô tả</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($all_product as $product) {
+            $edit_pr = "index.php?act=delete_product&id=" . $product['id'];
+            $delete_pr = "index.php?act=delete_product&id=" . $product['id'];
+            $target_dir = "layout/images/products/";
+            $thumbnail_path = $target_dir . $product['thumbnail']; // Đường dẫn đúng đến ảnh sản phẩm
+
+            // Kiểm tra xem ảnh có tồn tại hay không
+            if (file_exists($thumbnail_path)) {
+                $thumbnail = "<img src='" . $thumbnail_path . "' height='80' width='65' class='img-thumbnail'>";
+            } else {
+                $thumbnail = "error img";
+            }
+            echo '<tr>
+                <td>' . $product['id'] . '</td>
+                <td>' . $product['title'] . '</td>
+                <td>' . $thumbnail . '</td>
+                <td>' . $product['classify'] . '</td>
+                <td>' . $product['quantity'] . '</td>
+                <td>' . $product['price'] . '</td>
+                <td>' . $product['created_at'] . '</td>
+                <td>' . $product['updated_at'] . '</td>
+                <td>' . $product['desciption'] . '</td>
+                <td>
+                     <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+                     <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
+                </td>
+            </tr>';
+        }?>
+    </tbody>
+    </table>
+
               <!-- End Table with stripped rows -->
  
             </div>
