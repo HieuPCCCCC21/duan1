@@ -14,17 +14,12 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter&family=Kanit:wght@400;700&family=Play:wght@700&family=Roboto+Mono&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4?styles=18006,18005,18004,18003" rel="stylesheet">
+                
     
 </head>
 
-<body style="font-family: 'DM Sans', sans-serif;
-font-family: 'Inter', sans-serif;
-font-family: 'Kanit', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Roboto Mono', monospace;
+<body style="font-family: 'Segoe UI', sans-serif;                                  
 ">
     <div class="container w-[1280px] m-auto">
         <!--header-->

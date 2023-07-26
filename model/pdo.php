@@ -111,3 +111,15 @@ function pdo_query_value($sql){
         unset($conn);
     }
 }
+// Hàm trả về ID của bản ghi vừa được thêm mới vào cơ sở dữ liệu
+function pdo_lastInsertId() {
+    global $pdo; // Biến $pdo là biến kết nối đến cơ sở dữ liệu, bạn cần đảm bảo biến này đã được khởi tạo trước khi gọi hàm pdo_lastInsertId()
+
+    try {
+        $lastInsertId = $pdo->lastInsertId();
+        return $lastInsertId;
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+

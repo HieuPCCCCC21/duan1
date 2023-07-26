@@ -48,8 +48,9 @@ function update_category (){
         // Lấy ID danh mục từ tham số truy vấn
         $category_id = $_GET['id'];
         $category = categories_one($category_id);
-        render('admin/edit_category',['category'=>$category,]);
+        
     }
+    render('admin/edit_category',['category'=>$category,]);
 }
 
 ?>

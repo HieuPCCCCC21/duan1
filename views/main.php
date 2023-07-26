@@ -97,7 +97,7 @@
                     Thao Store</p>
             </div>
             <!--silde show-->
-            <div class="container mx-auto">
+            <div class="container">
                 <div class="splide">
                     <div class="splide__arrows">
                         <button class="bg-gray-900 shadow splide__arrow splide__arrow--prev">
@@ -211,29 +211,13 @@
                     </a>
 
                 </div>
-            </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
-            <script>
-                var splide = new Splide('.splide', {
-                    type: 'loop',
-                    speed:1000,
-                    autoplay: true,
-                });
-
-                splide.mount();
-            </script>
-            <!-- END HÀNG MỚI VỀ-->
-            
-
-            <!--TOP SẢN PHẨM CHẠY-->
-            <div class=" text-center">
+                <div class=" text-center">
                 <p class="text-2xl underline capitalize mt-10"><b>TOP SẢN PHẨM CHẠY</b></p>
             </div>
-            <section class="slider-container">
-        <div class="container">
+        <section class="slider-container">
+            <div class="container mx-auto">
             <div class="swiper card-slider">
-                <div class="swiper-wrapper">
+                <div class="swiper-wrapper w-[980px]">
                     <div class="swiper-slide">
                         <div class="img-box ">
                             <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/8147025c-7c57-4bb9-be8d-006fe3d63a01-jpeg.jpg?v=1686125334000" alt="">
@@ -287,7 +271,7 @@
                  <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
-            <div class="my-10 ml-[500px]">
+            <div class="my-10 ">
                 <a href="">
                     <button
                         class="bg-red-800 text-white hover:bg-white hover:text-red-800 hover:border hover:border-red-800 hover:translate-all  hover:ease-in-out hover:duration-700 w-[250px] h-[50px] ">
@@ -295,7 +279,24 @@
                 </a>
             </div>
         </div>
-    </section>
+       </section>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/js/splide.min.js"></script>
+            <script>
+                var splide = new Splide('.splide', {
+                    type: 'loop',
+                    speed:1000,
+                    autoplay: true,
+                });
+
+                splide.mount();
+            </script>
+            <!-- END HÀNG MỚI VỀ-->
+            
+
+            <!--TOP SẢN PHẨM CHẠY-->
+            
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
          var swiper = new Swiper(".card-slider", {

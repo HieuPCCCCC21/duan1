@@ -16,7 +16,7 @@ function add_product_ctr(){
     render('admin/add_product',['all_categories'=>$all_categories]);
 }
 
-function insert_product_ctr(){
+function insert_product_ctr() {
     if (isset($_POST['add']) && ($_POST['add'])) {
         $id_cate = $_POST['id_cate'];
         $tensp = $_POST['name'];
@@ -24,15 +24,45 @@ function insert_product_ctr(){
         $mota = $_POST['mota'];
         $quantity = $_POST['quantity'];
         $classify = $_POST['classify'];
+        $sizes = array(); // Khởi tạo mảng để lưu thông tin về size
+
+        // Xử lý thông tin về size
+        if (isset($_POST['sizes'])) {
+            $selected_sizes = explode(',', $_POST['sizes']);
+            foreach ($selected_sizes as $size) {
+                // Tách tên và số lượng size
+                $size_parts = explode('-', $size);
+                if (count($size_parts) === 2) {
+                    $size_name = $size_parts[0];
+                    $size_quantity = $size_parts[1];
+
+                    // Kiểm tra xem size đã tồn tại trong bảng `sizes` chưa
+                    $sql_check_size = "SELECT id FROM sizes WHERE name = '$size_name'";
+                    $size_id = pdo_query_value($sql_check_size);
+
+                    // Nếu size chưa tồn tại, thêm thông tin về size vào bảng `sizes`
+                    if (!$size_id) {
+                        $size_id = insert_size($size_name);
+                    }
+
+                    // Thêm thông tin về size vào mảng $sizes
+                    $sizes[] = array('id' => $size_id, 'quantity' => $size_quantity);
+                }
+            }
+        }
+
+        // Xử lý hình ảnh
         $target_dir = "layout/images/products/";
-        $target_file= $target_dir.basename($_FILES['img']['name']);
+        $target_file = $target_dir . basename($_FILES['img']['name']);
         $hinh = $_FILES['img']['name'];
         move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-        insert_product($tensp, $giasp, $hinh, $mota, $id_cate,$quantity,$classify);
+
+        // Gọi hàm insert_product và truyền thông tin về size vào hàm này
+        insert_product($tensp, $giasp, $hinh, $mota, $id_cate, $classify, $sizes,$quantity);
     } 
     header("location:?act=show_product_admin");    
-    
 }
+
 function delete_product_ctr(){
     // Kiểm tra xem người dùng đã gửi yêu cầu xóa sản phẩm hay chưa
 if (isset($_GET['act']) && $_GET['act'] === 'delete_product' && isset($_GET['id'])) {
