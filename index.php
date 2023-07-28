@@ -40,7 +40,6 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'add_product':
             add_product_ctr();
-            $list_category = all_category();
             break;
         case 'save_add_product':
             insert_product_ctr();

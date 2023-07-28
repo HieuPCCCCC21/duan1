@@ -25,10 +25,10 @@
                                         <label for="exampleInputName1">Tên sản phẩm</label>
                                         <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <label for="exampleInputPassword4">Phân loại</label>
                                         <input type="text" class="form-control" id="exampleInputPassword4" placeholder="" name="classify">
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputName1">Số lượng</label>
                                         <input type="text" class="form-control" id="exampleInputName1" name="quantity">
@@ -172,7 +172,24 @@
         const sizeDiv = document.createElement('div');
         sizeDiv.classList.add('col-sm-2', 'selected-size');
         sizeDiv.dataset.value = selectedSize;
-        sizeDiv.textContent = selectedSize;
+
+        // Chuyển đổi giá trị size từ mã viết thường sang viết hoa
+        switch (selectedSize) {
+            case 'size_s':
+                sizeDiv.textContent = 'Size S';
+                break;
+            case 'size_m':
+                sizeDiv.textContent = 'Size M';
+                break;
+            case 'size_l':
+                sizeDiv.textContent = 'Size L';
+                break;
+            case 'size_xl':
+                sizeDiv.textContent = 'Size XL';
+                break;
+            default:
+                break;
+        }
 
         // Button để xóa size
         const deleteButton = document.createElement('button');
@@ -195,13 +212,31 @@
         const selectedSizesInput = document.getElementById('selected-sizes-input');
         const selectedSizesValues = [];
 
+        // Chuyển đổi giá trị size từ mã viết thường sang viết hoa
         for (const size of selectedSizes) {
-            selectedSizesValues.push(size.dataset.value);
+            switch (size.dataset.value) {
+                case 'size_s':
+                    selectedSizesValues.push('Size S');
+                    break;
+                case 'size_m':
+                    selectedSizesValues.push('Size M');
+                    break;
+                case 'size_l':
+                    selectedSizesValues.push('Size L');
+                    break;
+                case 'size_xl':
+                    selectedSizesValues.push('Size XL');
+                    break;
+                default:
+                    break;
+            }
         }
 
         selectedSizesInput.value = selectedSizesValues.join(',');
     }
 </script>
+
+
 
 </body>
 

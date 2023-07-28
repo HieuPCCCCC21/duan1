@@ -3,42 +3,48 @@
  * Mở kết nối đến CSDL sử dụng PDO
  */
 function pdo_get_connection(){
-    $dburl = "mysql:host=localhost;dbname=du_an_1;charset=utf8";
+    $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8";
     $username = 'root';
     $password = '';
+
     $conn = new PDO($dburl, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
 }
+
 /**
  * Thực thi câu lệnh sql thao tác dữ liệu (INSERT, UPDATE, DELETE)
  * @param string $sql câu lệnh sql
  * @param array $args mảng giá trị cung cấp cho các tham số của $sql
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_execute($sql, $sql_args = []) {
+function pdo_execute($sql, $params = []) {
     try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
+        $stmt->execute($params); // Pass the array of parameters to execute
     } catch (PDOException $e) {
         throw $e;
     } finally {
         unset($conn);
     }
 }
-function pdo_execute_return_lastInsertId($sql){
+
+function pdo_execute_return_lastInsertId($sql) {
     $sql_args = array_slice(func_get_args(), 1);
-    try{
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
-        return $conn->lastInsertId();
-    }
-    catch(PDOException $e){
+
+        // Get the product ID from the result
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $product_id = isset($result['id']) ? $result['id'] : null;
+
+        return $product_id;
+    } catch (PDOException $e) {
         throw $e;
-    }
-    finally{
+    } finally {
         unset($conn);
     }
 }
@@ -95,31 +101,24 @@ function pdo_query_one($sql){
  * @return giá trị
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_query_value($sql){
+function pdo_query_value($sql) {
     $sql_args = array_slice(func_get_args(), 1);
-    try{
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return array_values($row)[0];
-    }
-    catch(PDOException $e){
+
+        // Kiểm tra xem có bản ghi nào được trả về hay không
+        if ($stmt->rowCount() > 0) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            return array_values($row)[0];
+        } else {
+            // Trả về giá trị mặc định hoặc thông báo lỗi tùy theo trường hợp
+            return null;
+        }
+    } catch (PDOException $e) {
         throw $e;
-    }
-    finally{
+    } finally {
         unset($conn);
     }
 }
-// Hàm trả về ID của bản ghi vừa được thêm mới vào cơ sở dữ liệu
-function pdo_lastInsertId() {
-    global $pdo; // Biến $pdo là biến kết nối đến cơ sở dữ liệu, bạn cần đảm bảo biến này đã được khởi tạo trước khi gọi hàm pdo_lastInsertId()
-
-    try {
-        $lastInsertId = $pdo->lastInsertId();
-        return $lastInsertId;
-    } catch (PDOException $e) {
-        throw $e;
-    }
-}
-

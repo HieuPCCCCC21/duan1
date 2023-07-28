@@ -17,55 +17,73 @@ function add_product_ctr(){
 }
 
 function insert_product_ctr() {
-    if (isset($_POST['add']) && ($_POST['add'])) {
-        $id_cate = $_POST['id_cate'];
-        $tensp = $_POST['name'];
-        $giasp = $_POST['price'];
-        $mota = $_POST['mota'];
-        $quantity = $_POST['quantity'];
-        $classify = $_POST['classify'];
-        $sizes = array(); // Khởi tạo mảng để lưu thông tin về size
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
+        $category_id = $_POST["id_cate"];
+        $title = $_POST["name"];
+        $description = $_POST["mota"];
+        $quantity = $_POST["quantity"];
+        $price = $_POST["price"];
+        $sizes = $_POST["sizes"];
+        if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+            $target_dir = "layout/images/products/";
+            $target_file = $target_dir . basename($_FILES['img']['name']);
+            $thumbnail = $_FILES['img']['name'];
+            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+        } else {
+            // Xử lý nếu không có hình ảnh được tải lên
+            $thumbnail = '';
+        }
+        try {
+            $product_id = insert_product($category_id, $title, $thumbnail, $description, $quantity, $price, $sizes);
+            header("location:?act=show_product_admin"); 
+            // ...
 
-        // Xử lý thông tin về size
-        if (isset($_POST['sizes'])) {
-            $selected_sizes = explode(',', $_POST['sizes']);
-            foreach ($selected_sizes as $size) {
-                // Tách tên và số lượng size
-                $size_parts = explode('-', $size);
-                if (count($size_parts) === 2) {
-                    $size_name = $size_parts[0];
-                    $size_quantity = $size_parts[1];
+        } catch (PDOException $e) {
+            // Xử lý thông báo lỗi
+            // ...
+        }
+    }
+}
+function update_product_ctr(){
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
+        // Get the product ID from the form
+        $product_id = $_POST["product_id"];
+        $category_id = $_POST["id_cate"];
+        $title = $_POST["name"];
+        $description = $_POST["mota"];
+        $quantity = $_POST["quantity"];
+        $price = $_POST["price"];
+        $sizes = $_POST["sizes"];
 
-                    // Kiểm tra xem size đã tồn tại trong bảng `sizes` chưa
-                    $sql_check_size = "SELECT id FROM sizes WHERE name = '$size_name'";
-                    $size_id = pdo_query_value($sql_check_size);
-
-                    // Nếu size chưa tồn tại, thêm thông tin về size vào bảng `sizes`
-                    if (!$size_id) {
-                        $size_id = insert_size($size_name);
-                    }
-
-                    // Thêm thông tin về size vào mảng $sizes
-                    $sizes[] = array('id' => $size_id, 'quantity' => $size_quantity);
-                }
-            }
+        // Check if a new thumbnail image is uploaded
+        if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+            $target_dir = "layout/images/products/";
+            $target_file = $target_dir . basename($_FILES['img']['name']);
+            $thumbnail = $_FILES['img']['name'];
+            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+        } else {
+            // If no new thumbnail is uploaded, keep the existing thumbnail
+            $thumbnail = $_POST["old_thumbnail"];
         }
 
-        // Xử lý hình ảnh
-        $target_dir = "layout/images/products/";
-        $target_file = $target_dir . basename($_FILES['img']['name']);
-        $hinh = $_FILES['img']['name'];
-        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+        try {
+            // Call the edit_product() function to update the product
+            edit_product($product_id, $category_id, $title, $thumbnail, $description, $quantity, $price, $sizes);
 
-        // Gọi hàm insert_product và truyền thông tin về size vào hàm này
-        insert_product($tensp, $giasp, $hinh, $mota, $id_cate, $classify, $sizes,$quantity);
-    } 
-    header("location:?act=show_product_admin");    
+            // Redirect the user to the product listing page after successful update
+            header("Location: index.php?act=show_product_admin");
+            exit();
+        } catch (PDOException $e) {
+            // Handle the error if necessary
+            echo "Error: " . $e->getMessage();
+        }
+    }
 }
+
 
 function delete_product_ctr(){
     // Kiểm tra xem người dùng đã gửi yêu cầu xóa sản phẩm hay chưa
-if (isset($_GET['act']) && $_GET['act'] === 'delete_product' && isset($_GET['id'])) {
+    if (isset($_GET['act']) && $_GET['act'] === 'delete_product' && isset($_GET['id'])) {
     // Lấy ID sản phẩm từ tham số truy vấn
     $product_id = $_GET['id'];
 

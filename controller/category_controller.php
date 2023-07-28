@@ -50,7 +50,7 @@ function update_category (){
         $category = categories_one($category_id);
         
     }
-    render('admin/edit_category',['category'=>$category,]);
+    render('admin/edit_category',['category'=>$category]);
 }
 
 ?>

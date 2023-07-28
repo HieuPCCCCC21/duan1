@@ -32,7 +32,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Ảnh</th>
-            <th>Phân loại</th>
+            <th>Size</th>
             <th>Số lượng</th>
             <th>Giá</th>
             <th>Ngày tạo</th>
@@ -42,34 +42,36 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($all_product as $product) {
-            $edit_pr = "index.php?act=delete_product&id=" . $product['id'];
-            $delete_pr = "index.php?act=delete_product&id=" . $product['id'];
-            $target_dir = "layout/images/products/";
-            $thumbnail_path = $target_dir . $product['thumbnail']; // Đường dẫn đúng đến ảnh sản phẩm
+    <?php foreach ($all_product as $product) {
+    $edit_pr = "index.php?act=edit_product&id=" . $product['id'];
+    $delete_pr = "index.php?act=delete_product&id=" . $product['id'];
+    $target_dir = "layout/images/products/";
+    $thumbnail_path = $target_dir . $product['thumbnail']; // Đường dẫn đúng đến ảnh sản phẩm
 
-            // Kiểm tra xem ảnh có tồn tại hay không
-            if (file_exists($thumbnail_path)) {
-                $thumbnail = "<img src='" . $thumbnail_path . "' height='80' width='65' class='img-thumbnail'>";
-            } else {
-                $thumbnail = "error img";
-            }
-            echo '<tr>
-                <td>' . $product['id'] . '</td>
-                <td>' . $product['title'] . '</td>
-                <td>' . $thumbnail . '</td>
-                <td>' . $product['classify'] . '</td>
-                <td>' . $product['quantity'] . '</td>
-                <td>' . $product['price'] . '</td>
-                <td>' . $product['created_at'] . '</td>
-                <td>' . $product['updated_at'] . '</td>
-                <td>' . $product['desciption'] . '</td>
-                <td>
-                     <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
-                     <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
-                </td>
-            </tr>';
-        }?>
+    // Kiểm tra xem ảnh có tồn tại hay không
+    if (file_exists($thumbnail_path)) {
+        $thumbnail = "<img src='" . $thumbnail_path . "' height='80' width='65' class='img-thumbnail'>";
+    } else {
+        $thumbnail = "error img";
+    }
+
+    echo '<tr>
+        <td>' . $product['id'] . '</td>
+        <td>' . $product['title'] . '</td>
+        <td>' . $thumbnail . '</td>
+        <td>' . $product['sizes'] . '</td>
+        <td>' . $product['quantity'] . '</td>
+        <td>' . $product['price'] . '</td>
+        <td>' . $product['created_at'] . '</td>
+        <td>' . $product['updated_at'] . '</td>
+        <td>' . $product['desciption'] . '</td>
+         <!-- Display the sizes for the product -->
+        <td>
+             <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+             <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
+        </td>
+    </tr>';
+    }?>
     </tbody>
     </table>
 
