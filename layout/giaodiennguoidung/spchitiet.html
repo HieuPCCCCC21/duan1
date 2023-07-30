@@ -9,18 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.2/dist/css/splide.min.css">
     <script src="https://kit.fontawesome.com/7af42783d2.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="trangchu.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter&family=Kanit:wght@400;700&family=Play:wght@700&family=Roboto+Mono&display=swap"
-        rel="stylesheet">
+    <link rel="stylesheet" href="asset/style.css">
+    
 </head>
-<body style="font-family: 'DM Sans', sans-serif;
-font-family: 'Inter', sans-serif;
-font-family: 'Kanit', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Roboto Mono', monospace;
+<body style="font-family: 'Segoe UI', sans-serif;
 ">
     <script>
         function changImage(id){
@@ -56,10 +48,13 @@ font-family: 'Roboto Mono', monospace;
                         <i class="fa-solid fa-magnifying-glass fa-2xl mr-5"></i>
                     </div>
 
-                    <div onclick="opengioHang()">
+                    <div class="" onclick="opengioHang()">
                         <i class="fa-solid fa-bag-shopping fa-2xl"></i>
+                        <span class="cart"></span>
                     </div>
-
+                    <div class="list">
+          
+                    </div>
                 </div>
 
             </div>
@@ -79,17 +74,38 @@ font-family: 'Roboto Mono', monospace;
             </div>
                 </div>
                 
-                <div class="float-left mt-5 my-3">
+                <div class="float-left mt-5 my-3 cart-field ">
                     <p class="font-medium text-xl my-3">Adidas</p>
                     <p class="my-1">Áo Khoác Thời Trang Thể Thao Unisex Nam Nữ Adidas Firebird Track - ED6070</p>
                     <p class="font-bold text-lg my-1">550.000₫</p>
                     <p class="my-1">Phân loại</p>
                     <button class="border my-1 border-red-600 w-[60px] rounded-sm text-red-600 ">Lẻ Áo</button>
                     <p class="my-1">Kích cỡ</p>
-                    <div class="flex gap-1 my-3">
-                        <button class="border border-red-600 w-[40px] rounded-sm text-red-600 my-2">S</button>
-                        <button class="border border-red-600 w-[40px] rounded-sm text-red-600 my-2">M</button>
-                        <button class="border border-red-600 w-[40px] rounded-sm text-red-600 my-2">L</button>
+                    <div class="flex gap-1 my-3 radio-tile-group">
+                       
+                        <div class="input-container">
+                            <input id="walk" type="radio" name="radio">
+                            <div class="radio-tile w-20%">
+                                <i class="fa-solid fa-s fa-2xs"></i>
+                              
+                            </div>
+                          </div>
+                  
+                          <div class="input-container">
+                            <input id="bike" type="radio" name="radio">
+                            <div class="radio-tile">
+                                <i class="fa-solid fa-m fa-xl"></i>
+                              
+                            </div>
+                          </div>
+                  
+                          <div class="input-container">
+                            <input id="car" type="radio" name="radio">
+                            <div class="radio-tile">
+                                <i class="fa-solid fa-l fa-xl"></i>
+                              
+                            </div>
+                          </div>
                     </div>
                     <div class="flex gap-5">
                         <div class="buy-amount flex ">
@@ -103,9 +119,15 @@ font-family: 'Roboto Mono', monospace;
                               </svg>
                               </button>
                         </div>
-                        <div>
-                            <button class="border bg-black hover:bg-red-600  uppercase font-semibold  w-[240px] h-[40px] rounded-sm text-white">thêm vào giỏ</button>
-                    </div>
+                        
+                            <button  class="addd border bg-black hover:bg-red-600  uppercase font-semibold  w-[240px] h-[40px] rounded-sm text-white">thêm vào giỏ</button>
+                            <div class="btns">
+                                <Button onclick="Toggle1()" id="btnh1" class="btn"><i class="fas fa-heart"></i></Button>
+                             
+                            </div>
+                           
+                        
+                    
                         </div>
                         <p class=" my-3">Thông tin sản phẩm</p>
                 </div>
@@ -380,16 +402,18 @@ prevEl: ".swiper-button-prev",
 
 
         </footer>
-        <div class="fixed top-0 left-0 bottom-0 right-0 justify-end hidden gio-hang">
-            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100 ">
-                <ul class="text-black h-[50px]">
+        <div class="fixed z-index top-0 left-0 bottom-0 right-0 justify-end hidden gio-hang">
+            <div class="flex  justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100 ">
+                <div class="card">
                     <p class="uppercase text-2xl">Giỏ Hàng</p>
-                    <!-- <div class="mt-10 gap-0">
-                    
-                        <input class="border h-[60px] w-[400px] pl-5 text-xl" type="text" name="" id="">
-                        <button class="bg-red-700 hover:bg-red-600 h-[60px] w-[80px]" type="submit "><i class="fa-solid fa-magnifying-glass fa-2xl " ></i></button>
-                </div> -->
-                </ul>
+                    <ul class="listCard">
+                    </ul>
+                    <div class="checkOut">
+                        <div class="total">0</div>
+                        
+                    </div>
+                </div>
+                
                 <div class="">
                     <button onclick="closegioHang() ">
                         <i class="fa-solid fa-xmark fa-2xl" style="color: #27282b;"></i>
@@ -415,13 +439,13 @@ prevEl: ".swiper-button-prev",
                 </div>
             </div>
         </div>
-        <div class="fixed top-0 left-0 bottom-0 right-0 justify-start hidden nav-bar">
+        <div class="fixed  z-index top-0 left-0 bottom-0 right-0 justify-start hidden nav-bar">
             <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-black ">
                 <ul class="text-white h-[50px]">
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="text-red-800 border-b-1" href="">TRANG CHỦ</a>
+                        <a class="text-red-800 border-b-1" href="trangchu.html">TRANG CHỦ</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
@@ -446,7 +470,7 @@ prevEl: ".swiper-button-prev",
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">ĐĂNG NHẬP/ĐĂNG KÝ</a>
+                        <a class="hover:text-red-800" href="dangnhap.html">ĐĂNG NHẬP/ĐĂNG KÝ</a>
                     </li>
                 </ul>
                 <div class="">
@@ -514,7 +538,31 @@ prevEl: ".swiper-button-prev",
         console.log(amount);
 
     });
+// yêu thích
+var btnvar1 = document.getElementById('btnh1');
+                        
+                        function Toggle1(){
+                                 if (btnvar1.style.color =="red") {
+                                     btnvar1.style.color = "grey"
+                                 }
+                                 else{
+                                     btnvar1.style.color = "red"
+                                 }
+                        };
+    //cônjg số lượng
+    let cart = document.querySelector('.cart');
+    let cartfield = document.querySelector('.cart-field');
+    let add = document.getElementsByClassName('addd');
+    for (let but of add) {
+        but.onclick = e=>{
+            let item = Number(cart.getAttribute('data-count') || 0);
+            cart.setAttribute('data-count', item + 1);
+            cart.classList.add('on');
+        }
+        
+    }
 
+    
     </script>
 </body>
 </html>
