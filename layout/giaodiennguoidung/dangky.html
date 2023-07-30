@@ -11,21 +11,13 @@
     
     <script src="https://kit.fontawesome.com/7af42783d2.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="asset/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter&family=Kanit:wght@400;700&family=Play:wght@700&family=Roboto+Mono&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4?styles=18006,18005,18004,18003" rel="stylesheet">
         <style>
             
         </style>
 </head>
 
-<body style="font-family: 'DM Sans', sans-serif;
-font-family: 'Inter', sans-serif;
-font-family: 'Kanit', sans-serif;
-font-family: 'Play', sans-serif;
-font-family: 'Roboto Mono', monospace;
+<body style="font-family: 'Segoe UI', sans-serif;
 ">
     <div class="container w-[1280px] m-auto">
         <!--header-->
@@ -56,7 +48,7 @@ font-family: 'Roboto Mono', monospace;
         </div>       
         </div>
 
-        <ul class="w-full bg-red-200 rounded-xl py-4 ">
+        <ul class="w-full bg-gray-100 rounded-xl py-4 ">
             <li class="font-semibold text-stone-500 indent-80">
                 <a href="trangchu.html">Trang chủ / </a>
                 <a href="">Đăng ký tài khoản </a>
@@ -67,46 +59,55 @@ font-family: 'Roboto Mono', monospace;
           <!-- login container -->
           <div class="container mx-auto">
              <!-- form -->
-            <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-gray-100 rounded-2xl mx-auto shadow-lg overflow-hidden">
+            <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white mx-auto shadow-lg overflow-hidden">
               <!-- image -->
               <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center rounded-2xl" style="background-image: url('image/anh2.jpg');">
-                <h1 class="text-white text-3xl mb-3">QUYỀN LỢI THÀNH VIÊN</h1>
-                <div>
-                  <p class="text-white">Mua hàng khắp thế giới cực dễ dàng, nhanh chóng
-                    Theo dõi chi tiết đơn hàng, địa chỉ thanh toán dễ dàng
-                    Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</a></p>
+                <img src="image/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg" alt="">
+                
+                <div class="bg-gray-100 ">
+                    <p class="text-blue text-xl mb-3 ">QUYỀN LỢI THÀNH VIÊN</p>
+                  <p class="text-blue text-sm pt-5">-Mua hàng khắp thế giới cực dễ dàng, nhanh chóng</p>
+                    <p class="text-blue text-sm pt-5">-Theo dõi chi tiết đơn hàng, địa chỉ thanh toán dễ dàng</p>
+                    <p class="text-blue text-sm pt-5">-Nhận nhiều chương trình ưu đãi hấp dẫn từ chúng tôi !</p>
                 </div>
               </div>
               <div class="w-full lg:w-1/2 py-16 px-12">
-                <h2  class="font-bold text-2xl text-[#002D74] ">Đăng ký</h2>
-                <p class="text-lg mt-6 text-[#002D74]">
-                  Tạo tài khoản của bạn. Nó miễn phí và chỉ mất một phút
-                </p>
+                <div class="flex justify-around pb-3 cursor-pointer border-b-2  ">
+                    <a href="dangnhap.html" class="hover:text-red-500 ">Đăng Nhập</a>
+                <h2  class="font-bold text-lg text-[#002D74] border-b-2 border-[#F10000]">Đăng ký</h2>
+            </div>
+               
                 <form action="#">
-                  <div class="grid grid-cols-2 gap-5">
-                    <input type="text" placeholder="Họ" class="border border-gray-400 py-1 px-2 rounded-xl">
-                    <input type="text" placeholder="Tên" class="border border-gray-400 py-1 px-2 rounded-xl">
+                  <div class="  mt-5">
+                    <p>Họ Và Tên <span class="text-red-500">*</span> </p>
+                    <input type="text" placeholder="Nhập Họ và Tên" name="fullname" class="border border-gray-400 py-1 px-2 h-[40px] rounded-md h-[40px] w-full">
+                    
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Số điện thoại" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>SỐ ĐIỆN THOẠI <span class="text-red-500">*</span> </p>
+                    <input type="number" placeholder="Nhập Số điện thoại" name="phone" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="text" placeholder="Email" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>  Email <span class="text-red-500">*</span> </p>
+                    <input type="email" placeholder="Nhập Email" name="email" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>Mật khẩu<span class="text-red-500">*</span> </p>
+                    <input type="password" placeholder="Mật khẩu" name="password" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
-                    <input type="password" placeholder="Xác nhận mật khẩu" class="border border-gray-400 py-1 px-2 rounded-xl w-full">
+                    <p>Xác nhận lại mật khẩu<span class="text-red-500">*</span> </p>
+                    <input type="password" placeholder="Xác nhận mật khẩu" name="password1" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
                   <div class="mt-5">
+                  
                     <input type="checkbox" class="border border-gray-400">
                     <span>
                       Tôi chấp nhận <a href="#" class="text-purple-500 font-semibold">Điều khoản sử dụng</a> &  <a href="#" class="text-purple-500 font-semibold">Quyền riêng tư</a> 
                     </span>
                   </div>
                   <div class="mt-5">
-                    <button class="w-full bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-100" >Đăng ký ngay</button>
+                    <button class="w-full bg-red-600  rounded-md h-[40px] text-white py-2 hover:scale-105 duration-100" >Tạo Tài Khoản</button>
                   </div>
                 </form>
               </div>
@@ -227,7 +228,7 @@ font-family: 'Roboto Mono', monospace;
                     <p class="uppercase text-2xl">Tìm kiếm sản phẩm</p>
                     <div class="mt-10 gap-0">
 
-                        <input class="border h-[60px] w-[400px] pl-5 text-xl" type="text" name="" id="">
+                        <input class="border h-[60px] w-[300px] pl-5 text-xl" type="text" name="" id="">
                         <button class="bg-red-700 hover:bg-red-600 h-[60px] w-[80px]" type="submit "><i
                                 class="fa-solid fa-magnifying-glass fa-2xl "></i></button>
                     </div>
@@ -262,20 +263,11 @@ font-family: 'Roboto Mono', monospace;
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
                         <a class="hover:text-red-800" href="">LIÊN HỆ</a>
                     </li>
-                    <li
-                        class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
-                after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">CỘNG TÁC VIÊN</a>
-                    </li>
-                    <li
-                        class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
-                after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="dangnhap.html">ĐĂNG NHẬP</a>
-                    </li>
+                    
                     <li
                     class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
             after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                    <a class="hover:text-red-800" href="dangky.html">ĐĂNG KÝ</a>
+                    <a class="hover:text-red-800" href="dangky.html">ĐĂNG KÝ/ĐĂNG NHẬP</a>
                 </li>
                 </ul>
                 <div class="">
