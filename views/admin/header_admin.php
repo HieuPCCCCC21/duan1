@@ -1,5 +1,4 @@
-<?php session_start();
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +51,8 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo1.jpg" alt="">
+      <a href="?act=home_admin" class="logo d-flex align-items-center">
+        <img src="views/admin/assets/img/logo1.jpg" alt="">
         <span class="d-none d-lg-block">Admin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -283,7 +282,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="?act=home_admin">
           <i class="bi bi-grid"></i>
           <span>Tổng Quan</span>
         </a>
@@ -306,12 +305,12 @@
         </a>
         <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="form_add_product.html">
+            <a href="?act=add_product">
               <i class="bi bi-circle"></i><span>Thêm sản phẩm</span>
             </a>
           </li>
           <li>
-            <a href="list_product.html">
+            <a href="?act=show_product_admin">
               <i class="bi bi-circle"></i><span>Danh sách sản phẩm</span>
             </a>
           </li>
@@ -323,12 +322,12 @@
         </a>
         <ul id="products-dm-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="index.php?act=adddm">
+            <a href="?act=add_category">
               <i class="bi bi-circle"></i><span>Thêm danh mục</span>
             </a>
           </li>
           <li>
-            <a href="list_category.html">
+            <a href="?act=show_category_admin">
               <i class="bi bi-circle"></i><span>Danh sách danh mục</span>
             </a>
           </li>
@@ -352,8 +351,13 @@
         </a>
         <ul id="user" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Danh sách tài khoản</span>
+            <a href="?act=show_user_admin">
+              <i class="bi bi-circle"></i><span>Danh sách tài khoản khách hàng</span>
+            </a>
+          </li>
+          <li>
+            <a href="?act=show_staffs_admin">
+              <i class="bi bi-circle"></i><span>Danh sách tài khoản quản trị</span>
             </a>
           </li>
         </ul>

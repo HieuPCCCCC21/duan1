@@ -1,5 +1,5 @@
 <?php 
-function home(){
-    render("home");
+function home_admin(){
+    render("admin/index");
 }
 ?>

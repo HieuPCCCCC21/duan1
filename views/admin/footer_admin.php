@@ -36,6 +36,32 @@
         });
     });
   </script>
+  <script>
+    // Function to handle the "Upload new profile image" button
+    document.getElementById("uploadImageBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("profileImage").click();
+    });
+
+    // Function to handle the image preview when selected for upload
+    document.getElementById("profileImage").addEventListener("change", function (event) {
+        const fileInput = event.target;
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("previewImage").src = e.target.result;
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    });
+
+    // Function to handle the "Remove my profile image" button
+    document.getElementById("removeImageBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+        document.getElementById("profileImage").value = ""; // Clear the selected image
+        document.getElementById("previewImage").src = "views/admin/assets/img/profile-img.jpg"; // Reset to default image
+    });
+</script>
 
 </body>
 

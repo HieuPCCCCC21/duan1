@@ -1,80 +1,51 @@
 <?php include_once 'header_admin.php'?>
 <main id="main" class="main">
-    
     <div class="pagetitle">
-      <h1>Quản lý sản phẩm</h1>
+      <h1>Quản lý tài khoản</h1>
     </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-            <form action="?act=show_product_admin" class="forms-sample" method="post" enctype="multipart/form-data">
-            <div class="d-flex align-items-center">
-                <div class="col-md-4 mb-3 me-2">
-                    <label for="inputState" class="form-label">Danh mục</label>
-                    <select id="inputState" name="id_cate" class="form-select">
-                        <option value=""  >Tất cả</option>
-                        <?php foreach ($all_category as $cate) {                          
-                            echo '<option value='.$cate['id'].'>'.$cate['name'].'</option>';
-                        }?>
-                    </select>
-                </div>
-                <input type="submit" class="btn btn-primary mt-3" name="listok" value="show">
-            </div>
-            </form>
               <!-- Table with stripped rows -->
               <table id="example" class="table table-bordered table-striped" style="width:100%">
-    <thead>
+          <thead>
         <tr class="table-danger">
             <th>Id</th>
-            <th>Name</th>
-            <th>Ảnh</th>
-            <th>Size</th>
-            <th>Số lượng</th>
-            <th>Giá</th>
+            <th>Họ Và Tên </th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Địa chỉ</th>
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
-            <th>Mô tả</th>
             <th>Thao tác</th>
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($all_product as $product) {
-    $edit_pr = "index.php?act=update_product&id=" . $product['id'];
-    $delete_pr = "index.php?act=delete_product&id=" . $product['id'];
-    $target_dir = "layout/images/products/";
-    $thumbnail_path = $target_dir . $product['thumbnail']; // Đường dẫn đúng đến ảnh sản phẩm
-    // Kiểm tra xem ảnh có tồn tại hay không
-    if (file_exists($thumbnail_path)) {
-        $thumbnail = "<img src='" . $thumbnail_path . "' height='80' width='65' class='img-thumbnail'>";
-    } else {
-        $thumbnail = "error img";
-    }
-    echo '<tr>
-        <td>' . $product['id'] . '</td>
-        <td>' . $product['title'] . '</td>
-        <td>' . $thumbnail . '</td>
-        <td>' . $product['sizes'] . '</td>
-        <td>' . $product['quantity'] . '</td>
-        <td>' . $product['price'] . '</td>
-        <td>' . $product['created_at'] . '</td>
-        <td>' . $product['updated_at'] . '</td>
-        <td>' . $product['desciption'] . '</td>
-         <!-- Display the sizes for the product -->
-        <td>
-             <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
-             <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
-        </td>
-    </tr>';
+    <?php foreach ($all_staffs as $staffs) {
+        $edit_staff = "index.php?act=update_staff&id_user=" . $staffs['id'];
+        $delete_staff = "index.php?act=delete_staff&id_user=" . $staffs['id'];
+        echo '<tr>
+                <td>' . $staffs['id'] . '</td>
+                <td>' . $staffs['fullname'] . '</td>
+                <td>' . $staffs['email'] . '</td>
+                <td>' . $staffs['phone'] . '</td>
+                <td>' . $staffs['address'] . '</td>
+                <td>' . $staffs['created_at'] . '</td>
+                <td>' . $staffs['updated_at'] . '</td>
+                <td>
+                    <a href="'.$edit_staff.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+                    <a href="'.$delete_staff.'" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')"><i class="bi bi-trash3"></i></a>
+                </td>
+            </tr>';
     }?>
-    </tbody>
+</tbody>
     </table>
 
               <!-- End Table with stripped rows -->
- 
+
             </div>
           </div>
        

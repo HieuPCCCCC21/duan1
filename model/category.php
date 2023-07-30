@@ -27,4 +27,12 @@ function categories_one($category_id) {
         throw $e;
     }
 }
+function categories_edit($category_id, $category_name) {
+    $sql = "UPDATE category SET name = :category_name WHERE id = :category_id";
+    try {
+        pdo_execute($sql, [':category_id' => $category_id, ':category_name' => $category_name]);
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
 ?>

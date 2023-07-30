@@ -16,7 +16,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter&family=Kanit:wght@400;700&family=Play:wght@700&family=Roboto+Mono&display=swap"
         rel="stylesheet">
-    
+        <style>
+            /* Add CSS transitions for smoother effect */
+            #searchInput {
+              transition: opacity 0.3s ease-in-out;
+            }
+          </style>
 </head>
 
 <body style="font-family: 'DM Sans', sans-serif;
@@ -456,23 +461,20 @@ font-family: 'Roboto Mono', monospace;
                 </div>
             </div>
         </div>
-        </script>
         <div class="fixed top-0 left-0 bottom-0 right-0 justify-end hidden tim-kiem">
-            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100 ">
-                <ul class="text-black h-[50px]">
-                    <p class="uppercase text-2xl">Tìm kiếm sản phẩm</p>
-                    <div class="mt-10 gap-0">
-
-                        <input class="border h-[60px] w-[300px] pl-5 text-xl" type="text" name="" id="">
-                        <button class="bg-red-700 hover:bg-red-600 h-[60px] w-[80px]" type="submit "><i
-                                class="fa-solid fa-magnifying-glass fa-2xl "></i></button>
-                    </div>
-                </ul>
-                <div class="">
-                    <button onclick="closeTimkiem() ">
-                        <i class="fa-solid fa-xmark fa-2xl" style="color: #27282b;"></i>
-                    </button>
+            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100">
+              <ul class="text-black h-[50px]">
+                <p class="uppercase text-[15px]">Tìm kiếm sản phẩm</p>
+                <div class="mt-10 gap-0">
+                  <input class="border mt-[10px] h-[36px] w-[250px] pl-2 text-[13px]" placeholder="" type="text" name="" id="searchInput">
+                  <button class="bg-red-700 hover:bg-red-600 h-[40px] w-[62px]" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+              </ul>
+              <div class="">
+                <button onclick="closeTimkiem()">
+                  <i class="fa-solid fa-xmark fa-2xl" style="color: #27282b;"></i>
+                </button>
+              </div>
             </div>
         </div>
         <div class="fixed top-0 left-0 bottom-0 right-0 justify-start hidden nav-bar">
@@ -555,6 +557,47 @@ font-family: 'Roboto Mono', monospace;
             menuhidden2.classList.add('hidden');
         };
     </script>
+    
+    <script>
+        // JavaScript code to continuously change the placeholder text with slower effect
+        document.addEventListener('DOMContentLoaded', function() {
+          const inputElement = document.getElementById('searchInput');
+      
+          const placeholderTexts = [
+            "Nhập tên sản phẩm ...",
+            "Áo khoác ",
+            "Áo thun",
+            "Quần ",
+            "Bộ đồ nam"
+          ];
+      
+          let currentPlaceholderIndex = 0;
+          let currentPlaceholderChar = 0;
+          let isRetracting = false;
+      
+          function animatePlaceholder() {
+            const targetPlaceholder = placeholderTexts[currentPlaceholderIndex];
+      
+            if (!isRetracting && currentPlaceholderChar < targetPlaceholder.length) {
+              inputElement.placeholder = targetPlaceholder.slice(0, currentPlaceholderChar + 1);
+              currentPlaceholderChar++;
+            } else if (isRetracting && currentPlaceholderChar > 0) {
+              inputElement.placeholder = targetPlaceholder.slice(0, currentPlaceholderChar);
+              currentPlaceholderChar--;
+            } else {
+              isRetracting = !isRetracting;
+              if (!isRetracting) {
+                currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholderTexts.length;
+              }
+            }
+            const delay = isRetracting ? 50 : 80; // Adjust the delay here (500ms for appearance, 1500ms for retraction)
+            setTimeout(animatePlaceholder, delay);
+          }
+      
+          // Call animatePlaceholder function initially
+          animatePlaceholder();
+        });
+      </script>
 </body>
 
 </html>

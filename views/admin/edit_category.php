@@ -13,14 +13,15 @@
                         <form action="?act=edit_category" method="post" enctype="multipart/form-data">
                             <div class="col-12">
                                 <label for="iddm" class="form-label">Id</label>
-                                <input type="text" disabled class="form-control" id="iddm" placeholder="auto increment">
+                                <input type="hidden" name="id_cate" value="<?= $category['id'] ?>">
+                                <input type="text" disabled class="form-control" id="iddm" name="iddm" placeholder="auto increment">
                             </div>
                             <div class="col-12">
                                 <label for="tendm" class="form-label py-3">Tên danh mục</label>
                                 <input type="text" class="form-control" id="tendm" name ="tendm" placeholder="Nhập tên danh mục" value="<?= $category['name']?>">
                             </div>
                             <div class="text-center mt-4">
-                                <input type="submit" class="btn btn-success" name="add" value="Thêm">
+                                <input type="submit" class="btn btn-success" name="add" value="Sửa">
                                 <input type="reset" class="btn btn-secondary" value="Reset">
                             </div>
                         </form><!-- Vertical Form -->

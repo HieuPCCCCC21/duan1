@@ -1,3 +1,4 @@
+<?php include_once 'header_admin.php'?>
 <main id="main" class="main">
 
 <div class="pagetitle">
@@ -375,3 +376,4 @@
 </section>
 
 </main><!-- End #main -->
+<?php include_once 'footer_admin.php'?>

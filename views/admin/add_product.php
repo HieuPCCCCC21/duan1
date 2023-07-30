@@ -70,7 +70,6 @@
                                     <div class="form-group row" id="selected-sizes">
                                         <!-- Các size thêm vào sẽ được hiển thị ở đây -->
                                     </div>
-
                                     <!-- Input ẩn để lưu các size đã chọn -->
                                     <input type="hidden" name="sizes" id="selected-sizes-input" value="">
                                     <input type="submit" class="btn btn-gradient-primary me-2" name="add" value="Thêm">

@@ -11,7 +11,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-description"></p>
-                                <form action="?act=save_add_product" class="forms-sample" method="post" enctype="multipart/form-data">
+                                <form action="?act=edit_product" class="forms-sample" method="post" enctype="multipart/form-data">
                                     <div class="col-md-4 mb-3">
                                         <label for="inputState" class="form-label">Danh mục</label>
                                         <select id="inputState" name="id_cate" class="form-select">
@@ -22,8 +22,10 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
+                                        <input type="hidden" name="old_thumbnail" value="<?=$product['thumbnail']?>">
+                                        <input type="hidden" name="id_product" value="<?=$product['id']?>">
                                         <label for="exampleInputName1">Tên sản phẩm</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name" value="<?=$product['title']?>">
                                     </div>
                                     <!-- <div class="form-group">
                                         <label for="exampleInputPassword4">Phân loại</label>
@@ -31,11 +33,11 @@
                                     </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputName1">Số lượng</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" name="quantity">
+                                        <input type="text" class="form-control" id="exampleInputName1" name="quantity" value="<?=$product['quantity']?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Giá</label>
-                                        <input type="number" class="form-control" id="exampleInputName1" name="price">
+                                        <input type="number" class="form-control" id="exampleInputName1" name="price" value="<?=$product['price']?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
@@ -49,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleTextarea1">Mô tả</label>
-                                        <textarea class="form-control" id="exampleTextarea1" name="mota" rows="4"></textarea>
+                                        <textarea class="form-control" id="exampleTextarea1" name="mota" rows="4"><?=$product['desciption']?></textarea>
                                     </div>
 
                                     <div class="form-group row" id="size-container">
@@ -73,7 +75,7 @@
 
                                     <!-- Input ẩn để lưu các size đã chọn -->
                                     <input type="hidden" name="sizes" id="selected-sizes-input" value="">
-                                    <input type="submit" class="btn btn-gradient-primary me-2" name="add" value="Thêm">
+                                    <input type="submit" class="btn btn-gradient-primary me-2" name="add" value="Sửa">
                                     <button type="reset" class="btn btn-gradient-primary me-2">Reset</button>
                                     <button class="btn btn-secondary">Quay lại</button>
                                 </form>

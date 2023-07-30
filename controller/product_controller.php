@@ -44,18 +44,17 @@ function insert_product_ctr() {
         }
     }
 }
-function update_product_ctr(){
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
-        // Get the product ID from the form
-        $product_id = $_POST["product_id"];
+function edit_product_ctr() {
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add"])) {
         $category_id = $_POST["id_cate"];
+        $product_id = $_POST["id_product"];
         $title = $_POST["name"];
         $description = $_POST["mota"];
         $quantity = $_POST["quantity"];
         $price = $_POST["price"];
         $sizes = $_POST["sizes"];
 
-        // Check if a new thumbnail image is uploaded
+        // Check if an image is uploaded and handle accordingly
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $target_dir = "layout/images/products/";
             $target_file = $target_dir . basename($_FILES['img']['name']);
@@ -67,20 +66,26 @@ function update_product_ctr(){
         }
 
         try {
-            // Call the edit_product() function to update the product
+            // Call the edit_product function to update the product
             edit_product($product_id, $category_id, $title, $thumbnail, $description, $quantity, $price, $sizes);
+            header("location:?act=show_product_admin"); 
+            // Redirect to the product list page or show a success message
+            // ...
 
-            // Redirect the user to the product listing page after successful update
-            header("Location: index.php?act=show_product_admin");
-            exit();
         } catch (PDOException $e) {
             // Handle the error if necessary
-            echo "Error: " . $e->getMessage();
+            // ...
+            throw $e;
         }
     }
 }
 
-
+function update_product_ctr(){
+    $all_categories = all_category();
+    $product_id = $_GET['id'];
+    $product = product_one($product_id);
+    render("admin/edit_product",["product"=>$product,'all_categories'=>$all_categories]);
+}
 function delete_product_ctr(){
     // Kiểm tra xem người dùng đã gửi yêu cầu xóa sản phẩm hay chưa
     if (isset($_GET['act']) && $_GET['act'] === 'delete_product' && isset($_GET['id'])) {
@@ -98,7 +103,6 @@ function delete_product_ctr(){
     // exit();
     // Hoặc thông báo thành công:
     // echo "Xóa sản phẩm thành công!";
-}
-
+    }
 }
 ?>

@@ -11,13 +11,15 @@ function all_product($selected_category = null) {
             FROM products p
             LEFT JOIN product_sizes ps ON p.id = ps.product_id
             LEFT JOIN sizes s ON ps.size_id = s.id
-            WHERE p.deleted = 0 $category_condition
+            JOIN category c ON p.category_id = c.id
+            WHERE p.deleted = 0 AND c.deleted = 0 $category_condition
             GROUP BY p.id
             ORDER BY p.id DESC";
-
     $result = pdo_query($sql);
     return $result;
 }
+
+
 
 function insert_product($category_id, $title, $thumbnail, $description, $quantity, $price, $sizes) {
     try {
@@ -66,48 +68,61 @@ function edit_product($product_id, $category_id, $title, $thumbnail, $descriptio
     try {
         $conn = pdo_get_connection();
 
-        // Update data in the products table
-        $sql = "UPDATE products SET category_id = ?, title = ?, thumbnail = ?, desciption = ?, quantity = ?, price = ?, updated_at = NOW() WHERE id = ?";
+        // Update the product data in the 'products' table
+        $sql = "UPDATE products SET category_id = ?, title = ?, thumbnail = ?, desciption = ?, quantity = ?, price = ?, updated_at =NOW() WHERE id = ?";
         pdo_execute($sql, [$category_id, $title, $thumbnail, $description, $quantity, $price, $product_id]);
 
-        // Update or add new sizes for the product
+        // Process the sizes data and update the 'product_sizes' table
         $size_ids = [];
         $size_names = explode(',', $sizes);
         foreach ($size_names as $size_name) {
-            // Check if size already exists in the sizes table
+            // Check if the size already exists in the 'sizes' table
             $sql = "SELECT id FROM sizes WHERE name_size = ?";
             $size_id = pdo_query_value($sql, $size_name);
 
-            // If size does not exist, add it to the sizes table
+            // If the size doesn't exist, insert it into the 'sizes' table
             if ($size_id === null) {
                 $sql = "INSERT INTO sizes (name_size) VALUES (?)";
-                pdo_execute($sql, [$size_name]);
-                $size_id =$conn->lastInsertId(); // Get the last inserted ID
+                pdo_execute($sql, $size_name);
+                $size_id = $conn->lastInsertId();
             }
 
-            // Add the size ID to the list
+            // Add the size ID to the list of size IDs
             $size_ids[] = $size_id;
         }
 
-        // Update product_sizes table with the new size associations
-        // First, delete all existing size associations for the product
+        // Delete all existing size records for the product from the 'product_sizes' table
         $sql = "DELETE FROM product_sizes WHERE product_id = ?";
-        pdo_execute($sql, [$product_id]);
+        pdo_execute($sql, $product_id);
 
-        // Now, insert the new size associations for the product
+        // Insert new size records for the product into the 'product_sizes' table
         $sql = "INSERT INTO product_sizes (product_id, size_id) VALUES (?, ?)";
         foreach ($size_ids as $size_id) {
-            pdo_execute($sql, [$product_id, $size_id]);
+            pdo_execute($sql,[$product_id, $size_id]);
         }
 
         unset($conn);
-        return true; // Return true to indicate successful product update
+        return true; // Return true to indicate success
     } catch (PDOException $e) {
-        // Handle the error if necessary
+        // If there's an error, you can log it or throw an exception
         throw $e;
     }
 }
+function product_one($product_id) {
+    $sql = "SELECT p.*, GROUP_CONCAT(s.name_size) AS sizes
+            FROM products p
+            LEFT JOIN product_sizes ps ON p.id = ps.product_id
+            LEFT JOIN sizes s ON ps.size_id = s.id
+            WHERE p.id = :product_id AND p.deleted = 0
+            GROUP BY p.id";
+    
+    try {
+        return pdo_query_one($sql, [':product_id' => $product_id]);
+    } catch (PDOException $e) {
+        throw $e;
+    }
 
+}
 
 function delete_product($product_id) {
     $sql = "UPDATE products SET deleted = 1 WHERE id = :product_id";

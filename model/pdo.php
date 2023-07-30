@@ -18,11 +18,19 @@ function pdo_get_connection(){
  * @param array $args mảng giá trị cung cấp cho các tham số của $sql
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_execute($sql, $params = []) {
+function pdo_execute($sql, $params = null) {
     try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($params); // Pass the array of parameters to execute
+
+        if ($params !== null) {
+            if (!is_array($params)) {
+                $params = [$params];
+            }
+            $stmt->execute($params);
+        } else {
+            $stmt->execute();
+        }
     } catch (PDOException $e) {
         throw $e;
     } finally {
@@ -36,11 +44,9 @@ function pdo_execute_return_lastInsertId($sql) {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
-
         // Get the product ID from the result
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $product_id = isset($result['id']) ? $result['id'] : null;
-
         return $product_id;
     } catch (PDOException $e) {
         throw $e;
@@ -71,6 +77,7 @@ function pdo_query($sql){
         unset($conn);
     }
 }
+
 /**
  * Thực thi câu lệnh sql truy vấn một bản ghi
  * @param string $sql câu lệnh sql
@@ -78,22 +85,19 @@ function pdo_query($sql){
  * @return array mảng chứa bản ghi
  * @throws PDOException lỗi thực thi câu lệnh
  */
-function pdo_query_one($sql){
-    $sql_args = array_slice(func_get_args(), 1);
-    try{
+function pdo_query_one($sql, $params = []) {
+    try {
         $conn = pdo_get_connection();
         $stmt = $conn->prepare($sql);
-        $stmt->execute($sql_args);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $row;
-    }
-    catch(PDOException $e){
+        $stmt->execute($params);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        unset($conn);
+        return $result ? $result : false;
+    } catch (PDOException $e) {
         throw $e;
     }
-    finally{
-        unset($conn);
-    }
 }
+
 /**
  * Thực thi câu lệnh sql truy vấn một giá trị
  * @param string $sql câu lệnh sql

@@ -43,14 +43,33 @@ function delete_category_ctr() {
             exit();
         }
 }
-function update_category (){
-    if (isset($_GET['act']) && $_GET['act'] === 'edit_category' && isset($_GET['id'])) {
-        // Lấy ID danh mục từ tham số truy vấn
-        $category_id = $_GET['id'];
-        $category = categories_one($category_id);
+function update_category_ctr(){
+    // if (isset($_GET['act']) && $_GET['act'] === 'edit_category' && isset($_GET['id'])) {
+    //     // Lấy ID danh mục từ tham số truy vấn
+    $category_id = $_GET['id'];
+    $category = categories_one($category_id);
         
-    }
+    // }
     render('admin/edit_category',['category'=>$category]);
+}
+function edit_category_ctr() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {
+        $category_id = $_POST["id_cate"];
+        $category_name = $_POST["tendm"];
+
+        try {
+            // Call the categories_edit() function to update the category in the database
+            categories_edit($category_id, $category_name);
+            header("location: index.php?act=show_category_admin");
+            // Redirect to the page showing all categories after successful update
+            
+            exit();
+        } catch (PDOException $e) {
+            // Handle the error if necessary
+            echo "Error: " . $e->getMessage();
+            // You can also redirect to an error page or show an error message to the user.
+        }
+    }
 }
 
 ?>

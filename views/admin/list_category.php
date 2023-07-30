@@ -35,7 +35,7 @@
                     <tbody>
                         <?php
                         foreach ($all_categories as $category) {            
-                            $edit = "index.php?act=edit_category&id=".$category['id'];
+                            $edit = "index.php?act=update_category&id=".$category['id'];
                             $delete = "index.php?act=delete_category&id=".$category['id'];
                             echo '
                                 <tr>

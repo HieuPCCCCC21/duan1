@@ -3,6 +3,9 @@ function register()
 {
     render("register");
 }
+function register_admin(){
+    render("admin/register_admin");
+}
 function register_user_ctr()
 {
     $error = [];
@@ -45,4 +48,29 @@ function register_user_ctr()
     }
     render("register", ['error' => $error]);
 
+}
+function register_user_admin_ctr() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["name"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["terms"])) {
+        $name = $_POST["name"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        // Validate the input data if necessary
+
+        try {
+            insert_user_admin($name, $username, $password);
+            // Redirect to a success page or perform other actions upon successful registration
+            // For example:
+            // header("Location: registration_success.php");
+            // exit();
+        } catch (PDOException $e) {
+            // Handle errors during registration, e.g., display an error message
+            // For example:
+            // echo "Registration failed. Please try again later.";
+            // or you can redirect to an error page
+            // header("Location: registration_error.php");
+            // exit();
+            throw $e;
+        }
+    }
 }

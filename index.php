@@ -5,6 +5,7 @@ require_once "model/taikhoan.php";
 require_once "model/category.php";
 require_once "model/product.php";
 // Controller
+require_once "controller/account_controller.php";
 require_once "controller/404_controler.php";
 require_once "controller/register.php"; 
 require_once "controller/login.php"; 
@@ -20,8 +21,32 @@ if(!isset($_SESSION['email'])){
 $act = isset($_GET['act']) ? $_GET['act'] : '/';
     switch ($act) {
         case "/":
+        case 'home_admin':
+            home_admin();
+            break;
+        case 'register_admin':
+            register_admin();
+            break;
+        case 'register_admin_account':
+            register_user_admin_ctr();
+            break;
         case 'register':
             register();
+            break;
+        case 'login_admin':
+            # code...
+            break;
+        case 'delete_staff':
+            delete_staff_ctr();
+            break;
+        case 'delete_user':
+            delete_user_ctr();
+            break;
+        case 'show_staffs_admin':
+            show_staffs_ctr();
+            break;
+        case 'show_user_admin':
+            show_customers_ctr();
             break;
         case 'login':
             login();
@@ -31,9 +56,6 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'register_account':
             register_user_ctr();
-            break;
-        case 'home':
-            home();
             break;
         case 'delete_product':
             delete_product_ctr();
@@ -50,8 +72,23 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_category_admin':
             category_ctr();
             break;
+        case 'edit_staff':
+            edit_staff_ctr();
+            break;
+        case 'edit_product':
+            edit_product_ctr();
+            break;
+        case 'update_staff':
+            update_staff_ctr();
+            break;
+        case 'update_product':
+            update_product_ctr();
+            break;
         case 'update_category':
-            update_category();
+            update_category_ctr();
+            break;
+        case 'edit_category':
+            edit_category_ctr();
             break;
         case 'add_category':
             add_category_ctr();
