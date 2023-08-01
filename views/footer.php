@@ -36,7 +36,7 @@
                 <div class="pr-[300px]">
                     <form class="border rounded-md" action="">
                         <input class="text-xl pl-5 h-[50px] max-w-[300px]" type="text" placeholder="Địa Chỉ Email">
-                        <button class="text-white ">Đăng ký</button>
+                        <button class="text-white w-[115px]">Đăng ký</button>
                     </form>
                 </div>
             </div>
@@ -62,61 +62,68 @@
         </div>
         </script>
         <div class="fixed top-0 left-0 bottom-0 right-0 justify-end hidden tim-kiem">
-            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100 ">
-                <ul class="text-black h-[50px]">
-                    <p class="uppercase text-2xl">Tìm kiếm sản phẩm</p>
-                    <div class="mt-10 gap-0">
-
-                        <input class="border h-[60px] w-[300px] pl-5 text-xl" type="text" name="" id="">
-                        <button class="bg-red-700 hover:bg-red-600 h-[60px] w-[80px]" type="submit "><i
-                                class="fa-solid fa-magnifying-glass fa-2xl "></i></button>
-                    </div>
-                </ul>
-                <div class="">
-                    <button onclick="closeTimkiem() ">
-                        <i class="fa-solid fa-xmark fa-2xl" style="color: #27282b;"></i>
-                    </button>
+            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100">
+              <ul class="text-black h-[50px]">
+                <p class="uppercase text-[15px]">Tìm kiếm sản phẩm</p>
+                <div class="mt-10 gap-0">
+                  <input class="border mt-[10px] h-[36px] w-[250px] pl-2 text-[13px]" placeholder="" type="text" name="" id="searchInput">
+                  <button class="bg-red-700 hover:bg-red-600 h-[40px] w-[62px]" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
+              </ul>
+              <div class="">
+                <button onclick="closeTimkiem()">
+                        <div class="icon-container" onmouseenter="addHoverClass()" onmouseleave="removeHoverClass()">
+                            <i class="fa-solid fa-xmark text-[20px]" style="color: #333;" id="animated-icon"></i>
+                        </div>
+                </button>
+              </div>
             </div>
         </div>
         <div class="fixed top-0 left-0 bottom-0 right-0 justify-start hidden nav-bar">
-            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-black ">
-                <ul class="text-white h-[50px]">
+            <div class="flex justify-between w-[310px] h-full px-4 uppercase pt-5 bg-black ">
+                <ul class="text-white h-[50px] ">
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="text-red-800 border-b-1" href="?act=index">TRANG CHỦ</a>
+                        <a class="text-red-800 text-[13px] border-b-1" href="?act=main">TRANG CHỦ</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">GIỚI THIỆU</a>
+                        <a class="hover:text-red-800 text-[13px]"  href="">GIỚI THIỆU</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">SẢN PHẨM</a>
+                        <a class="hover:text-red-800 text-[13px]" href="">SẢN PHẨM</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">LIÊN HỆ</a>
+                        <a class="hover:text-red-800 text-[13px]" href="">LIÊN HỆ</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="">CỘNG TÁC VIÊN</a>
+                        <a class="hover:text-red-800 text-[13px]" href="">CỘNG TÁC VIÊN</a>
                     </li>
                     <li
                         class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-                        <a class="hover:text-red-800" href="?act=register">ĐĂNG KÝ</a>/
-                        <a class="hover:text-red-800" href="?act=login">ĐĂNG NHẬP</a>
+                        <a class="hover:text-red-800 text-[13px]" href="?act=register">ĐĂNG KÝ</a>/
+                        <a class="hover:text-red-800 text-[13px]" href="?act=login">ĐĂNG NHẬP</a>
+                    </li>
+                    <li
+                        class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
+                after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
+                        <a class="hover:text-red-800 text-[13px]" href="">YÊU THÍCH</a>
                     </li>
                 </ul>
                 <div class="">
                     <button onclick="closeMenu()">
-                        <i class="fa-solid fa-xmark fa-2xl " style="color: #ecf3fd;"></i>
+                        <div class="icon-container" onmouseenter="addHoverClass()" onmouseleave="removeHoverClass()">
+                            <i class="fa-solid fa-xmark text-[20px]" style="color: #ecf3fd;" id="animated-icon"></i>
+                        </div>
                     </button>
                 </div>
             </div>
@@ -128,8 +135,7 @@
         <!--End footer-->
     </div>
 
-    <script>
-        const menuhidden = document.querySelector('.gio-hang');
+    <script>const menuhidden = document.querySelector('.gio-hang');
         const menuhidden2 = document.querySelector('.tim-kiem');
         const menuhidden1 = document.querySelector('.nav-bar');
 
@@ -159,23 +165,120 @@
             menuhidden2.classList.remove('flex');
             menuhidden2.classList.add('hidden');
         };
+        let amountElement = document.getElementById('amount');
+        let amount = amountElement.value;
+        // console.log(amount);
+        let render = (amount) => {
+            amountElement.value = amount
+        }
+        //Xử lý tăng
+        let handlePlus = () => {
+            console.log(amount);
+            amount++
+            render(amount);
+        }
+        //Xử lý trừ
+        let handleMinus = () => {
+            if (amount > 1) {
+                amount--;
+            }
+            render(amount);
+        }
+        amountElement.addEventListener('input', () => {
+            amount = amountElement.value;
+            amount = parseInt(amount);
+            amount = (isNaN(amount) || amount == 0) ? 1 : amount;
+            render(amount);
+            console.log(amount);
+
+        });
+        // yêu thích
+        var btnvar1 = document.getElementById('btnh1');
+
+        function Toggle1() {
+            if (btnvar1.style.color == "red") {
+                btnvar1.style.color = "grey"
+            }
+            else {
+                btnvar1.style.color = "red"
+            }
+        };
+        //cônjg số lượng
+        let cart = document.querySelector('.cart');
+        let cartfield = document.querySelector('.cart-field');
+        let add = document.getElementsByClassName('addd');
+        for (let but of add) {
+            but.onclick = e => {
+                let item = Number(cart.getAttribute('data-count') || 0);
+                cart.setAttribute('data-count', item + 1);
+                cart.classList.add('on');
+            }
+
+        }
+        function addHoverClass() {
+        document.getElementById("animated-icon").classList.add("hovered");
+        }
+
+        function removeHoverClass() {
+        document.getElementById("animated-icon").classList.remove("hovered");
+        }
     </script>
-     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
-         var swiper = new Swiper(".card-slider", {
-            
-      slidesPerView: 4,
-      speed:1000,
-      spaceBetween: 30,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
+        // JavaScript code to continuously change the placeholder text with slower effect
+        document.addEventListener('DOMContentLoaded', function() {
+          const inputElement = document.getElementById('searchInput');
+      
+          const placeholderTexts = [
+            "Nhập tên sản phẩm ...",
+            "Áo khoác ",
+            "Áo thun",
+            "Quần ",
+            "Bộ đồ nam"
+          ];
+      
+          let currentPlaceholderIndex = 0;
+          let currentPlaceholderChar = 0;
+          let isRetracting = false;
+      
+          function animatePlaceholder() {
+            const targetPlaceholder = placeholderTexts[currentPlaceholderIndex];
+      
+            if (!isRetracting && currentPlaceholderChar < targetPlaceholder.length) {
+              inputElement.placeholder = targetPlaceholder.slice(0, currentPlaceholderChar + 1);
+              currentPlaceholderChar++;
+            } else if (isRetracting && currentPlaceholderChar > 0) {
+              inputElement.placeholder = targetPlaceholder.slice(0, currentPlaceholderChar);
+              currentPlaceholderChar--;
+            } else {
+              isRetracting = !isRetracting;
+              if (!isRetracting) {
+                currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholderTexts.length;
+              }
+            }
+            const delay = isRetracting ? 60 : 80; // Adjust the delay here (500ms for appearance, 1500ms for retraction)
+            setTimeout(animatePlaceholder, delay);
+          }
+      
+          // Call animatePlaceholder function initially
+          animatePlaceholder();
+        });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".card-slider", {
+
+            slidesPerView: 4,
+            speed: 1000,
+            spaceBetween: 30,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     </script>
 </body>
 

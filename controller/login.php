@@ -18,7 +18,7 @@ function login__user_ctr()
             if (is_array($check_email)) {
                 $_SESSION['email'] = $check_email;
                 $thongbao = "tài khoản đăng nhập thành công";
-                header('location:?act=home');
+                header('location:?act=main');
             }
         }
     }

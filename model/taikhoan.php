@@ -18,6 +18,7 @@ function check_email($email,$password){
     return $login;
 }
 
+
 function insert_user_admin($name, $username, $password) {
     try {
         $conn = pdo_get_connection();
@@ -82,7 +83,7 @@ function user_one($user_id) {
     }
 }
 function update_staff($staff_id, $fullName, $address, $phone, $email, $thumbnail) {
-    $sql = "UPDATE user SET fullname=?, address=?, phone=?, email=?, avatar=? WHERE id=?";
+    $sql = "UPDATE user SET fullname=?, address=?, phone=?, email=?, avatar=?,updated_at=NOW() WHERE id=?";
     $conn = pdo_get_connection();
     $stmt = $conn->prepare($sql);
     $stmt->execute([$fullName, $address, $phone, $email, $thumbnail, $staff_id]);

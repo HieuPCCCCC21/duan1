@@ -6,7 +6,6 @@ function pdo_get_connection(){
     $dburl = "mysql:host=localhost;dbname=duan1;charset=utf8";
     $username = 'root';
     $password = '';
-
     $conn = new PDO($dburl, $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $conn;
@@ -77,7 +76,28 @@ function pdo_query($sql){
         unset($conn);
     }
 }
+function pdo_query1($sql, $params = array()) {
+    try {
+        $conn = pdo_get_connection();
+        $stmt = $conn->prepare($sql);
+        
+        // Execute the statement with the parameters if provided
+        if (!empty($params)) {
+            $stmt->execute($params);
+        } else {
+            $stmt->execute();
+        }
 
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        unset($conn);
+        
+        return $result;
+    } catch (PDOException $e) {
+        // Handle the error if necessary
+        throw $e;
+    }
+}
 /**
  * Thực thi câu lệnh sql truy vấn một bản ghi
  * @param string $sql câu lệnh sql
@@ -97,6 +117,7 @@ function pdo_query_one($sql, $params = []) {
         throw $e;
     }
 }
+
 
 /**
  * Thực thi câu lệnh sql truy vấn một giá trị

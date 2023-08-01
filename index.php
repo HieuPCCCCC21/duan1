@@ -14,6 +14,11 @@ require_once "controller/product_controller.php";
 require_once "controller/controller.php";
 require_once "controller/register.php";
 require_once "controller/category_controller.php";
+require_once "controller/main.php";
+require_once "controller/sanpham_ct.php";
+require_once "controller/list_nam.php";
+require_once "controller/list_nu.php";
+require_once "controller/yeuthich.php";
 //Controller
 if(!isset($_SESSION['email'])){
     $_SESSION['email']=[];
@@ -21,6 +26,36 @@ if(!isset($_SESSION['email'])){
 $act = isset($_GET['act']) ? $_GET['act'] : '/';
     switch ($act) {
         case "/":
+        case 'main':
+        main();
+        break;
+        case 'sanpham_ct':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                new_sanphamct($id);
+            }
+            break;
+        case 'list_nam':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                list_nam($id);
+            }
+            break;
+        case 'list_nu':
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                list_nam($id);
+            }
+            break;
+        case 'yeuthich':
+            yeuthich();
+            break;
+        case 'yeu_thich_del':
+            yeu_thich_del();
+            break;
+        case 'show_yt':
+            show_yt();
+            break;
         case 'home_admin':
             home_admin();
             break;

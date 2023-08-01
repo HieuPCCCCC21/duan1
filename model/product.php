@@ -132,6 +132,73 @@ function delete_product($product_id) {
         throw $e;
     }
 }
+function loadall_spct($id)
+{
+    $sql = "SELECT * FROM `products`
+    JOIN `category` ON `products`.`category_id` = `category`.`id`
+    JOIN `product_sizes` ON `products`.`id`=`product_sizes`.`product_id` where `products`.`id`=" . $id;
+    $loadall_spct = pdo_query_one($sql);
+    return $loadall_spct;
+}
+function loadall_size($id)
+{
+    $sql = "SELECT sizes.id, sizes.name_size FROM sizes
+    JOIN product_sizes ON sizes.id = product_sizes.size_id
+    WHERE product_sizes.product_id =" . $id;
+    $list_size = pdo_query($sql);
+    return $list_size;
+}
+
+function loadall_nam($category_id)
+{
+    try {
+        $conn = pdo_get_connection();
+        $sql = "SELECT p.*, GROUP_CONCAT(s.name_size) AS sizes
+                FROM products p
+                LEFT JOIN product_sizes ps ON p.id = ps.product_id
+                LEFT JOIN sizes s ON ps.size_id = s.id
+                WHERE p.deleted = 0 AND p.category_id = :category_id
+                GROUP BY p.id
+                ORDER BY p.id DESC";
+        $params = array(':category_id' => $category_id);
+        $result = pdo_query1($sql, $params);
+
+        unset($conn);
+
+        return $result;
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+function loadall_nu($category_id)
+{
+    try {
+        $conn = pdo_get_connection();
+        $sql = "SELECT p.*, GROUP_CONCAT(s.name_size) AS sizes
+                FROM products p
+                LEFT JOIN product_sizes ps ON p.id = ps.product_id
+                LEFT JOIN sizes s ON ps.size_id = s.id
+                WHERE p.deleted = 0 AND p.category_id = :category_id
+                GROUP BY p.id
+                ORDER BY p.id DESC";
+        $params = array(':category_id' => $category_id);
+        $result = pdo_query1($sql, $params);
+
+        unset($conn);
+
+        return $result;
+    } catch (PDOException $e) {
+        throw $e;
+    }
+}
+function load_yeuthich($id){
+    $sql="SELECT * FROM `products`
+    JOIN `category` ON `products`.`category_id` = `category`.`id`
+    JOIN `product_sizes` ON `products`.`id`=`product_sizes`.`product_id` where `products`.`id`=".$id;
+    echo $sql;
+    $yeuthich = pdo_query($sql);
+    return $yeuthich;
+}
 
 
 ?>

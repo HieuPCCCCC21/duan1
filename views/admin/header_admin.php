@@ -301,7 +301,7 @@
       </li><!-- End đơn hàng Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#products-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Products</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-journal-text"></i><span>Quản lý sản phẩm </span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="products-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>

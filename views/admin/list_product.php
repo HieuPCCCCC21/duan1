@@ -26,23 +26,25 @@
             </div>
             </form>
               <!-- Table with stripped rows -->
-              <table id="example" class="table table-bordered table-striped" style="width:100%">
-    <thead>
+        <table id="example" class="table table-bordered table-striped" style="width:100%">
+        <thead>
         <tr class="table-danger">
             <th>Id</th>
-            <th>Name</th>
+            <th >Name</th>
             <th>Ảnh</th>
             <th>Size</th>
             <th>Số lượng</th>
             <th>Giá</th>
             <th>Ngày tạo</th>
             <th>Ngày cập nhật</th>
-            <th>Mô tả</th>
+            <th >Mô tả</th>
             <th>Thao tác</th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($all_product as $product) {
+    $name = strlen($product['title']) > 20 ? substr($product['title'], 0, 20) . '...' : $product['title'];
+    $description = strlen($product['desciption']) > 20 ? substr($product['desciption'], 0, 20) . '...' : $product['desciption'];
     $edit_pr = "index.php?act=update_product&id=" . $product['id'];
     $delete_pr = "index.php?act=delete_product&id=" . $product['id'];
     $target_dir = "layout/images/products/";
@@ -53,16 +55,17 @@
     } else {
         $thumbnail = "error img";
     }
+    $formatted_price = number_format($product['price'], 0, ',');
     echo '<tr>
         <td>' . $product['id'] . '</td>
-        <td>' . $product['title'] . '</td>
+        <td>' . $name. '</td>
         <td>' . $thumbnail . '</td>
         <td>' . $product['sizes'] . '</td>
         <td>' . $product['quantity'] . '</td>
-        <td>' . $product['price'] . '</td>
+        <td>' .  $formatted_price. '</td>
         <td>' . $product['created_at'] . '</td>
         <td>' . $product['updated_at'] . '</td>
-        <td>' . $product['desciption'] . '</td>
+        <td>' . $description . '</td>
          <!-- Display the sizes for the product -->
         <td>
              <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
