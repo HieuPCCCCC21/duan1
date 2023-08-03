@@ -58,10 +58,10 @@
                                         <label for="size-select" class="col-sm-2 col-form-label">Size</label>
                                         <div class="col-sm-6">
                                             <select class="form-control" id="size-select">
-                                                <option value="size_s">Size S</option>
-                                                <option value="size_m">Size M</option>
-                                                <option value="size_l">Size L</option>
-                                                <option value="size_xl">Size XL</option>
+                                                <option value="s">Size S</option>
+                                                <option value="m">Size M</option>
+                                                <option value="l">Size L</option>
+                                                <option value="xl">Size XL</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
@@ -177,17 +177,17 @@
 
         // Chuyển đổi giá trị size từ mã viết thường sang viết hoa
         switch (selectedSize) {
-            case 'size_s':
-                sizeDiv.textContent = 'Size S';
+            case 's':
+                sizeDiv.textContent = 'S';
                 break;
-            case 'size_m':
-                sizeDiv.textContent = 'Size M';
+            case 'm':
+                sizeDiv.textContent = 'M';
                 break;
-            case 'size_l':
-                sizeDiv.textContent = 'Size L';
+            case 'l':
+                sizeDiv.textContent = 'L';
                 break;
-            case 'size_xl':
-                sizeDiv.textContent = 'Size XL';
+            case 'xl':
+                sizeDiv.textContent = 'XL';
                 break;
             default:
                 break;
@@ -217,17 +217,17 @@
         // Chuyển đổi giá trị size từ mã viết thường sang viết hoa
         for (const size of selectedSizes) {
             switch (size.dataset.value) {
-                case 'size_s':
-                    selectedSizesValues.push('Size S');
+                case 's':
+                    selectedSizesValues.push('S');
                     break;
-                case 'size_m':
-                    selectedSizesValues.push('Size M');
+                case 'm':
+                    selectedSizesValues.push('M');
                     break;
-                case 'size_l':
-                    selectedSizesValues.push('Size L');
+                case 'l':
+                    selectedSizesValues.push('L');
                     break;
-                case 'size_xl':
-                    selectedSizesValues.push('Size XL');
+                case 'xl':
+                    selectedSizesValues.push('XL');
                     break;
                 default:
                     break;

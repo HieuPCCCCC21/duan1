@@ -478,20 +478,32 @@
         <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100">
             <ul class="text-black h-[50px]">
                 <p class="uppercase text-[15px]">Tìm kiếm sản phẩm</p>
-                <div class="mt-10 gap-0">
-                    <input class="border mt-[10px] h-[36px] w-[250px] pl-2 text-[13px]" placeholder="" type="text"
-                        name="" id="searchInput">
-                    <button class="bg-red-700 hover:bg-red-600 h-[40px] w-[62px]" type="submit"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="mt-10 gap-0 flex items-center">
+                    <input class="border h-[36px] w-[250px] pl-2 text-[13px]" placeholder="Search..." type="text" name="results"
+                        id="searchInput">
+                    <button class="bg-red-700 hover:bg-red-600 h-[36px] w-[36px] flex items-center justify-center"
+                        type="submit">
+                        <i class="fa-solid fa-magnifying-glass text-white"></i>
+                    </button>
+                </div>
+                <div class="flex">
+                    <div class="flex items-center space-x-4 mt-4 px-4">
+                        <img class="w-[70px] h-[70px] rounded" src="./image/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg"
+                            alt="Product Image">
+                        <div>
+                            <a href="" class="text-black font-medium">Bộ quần áo thể thao nam</a>
+                            <p class="text-red-700 font-bold">560.000 đ</p>
+                        </div>
+                    </div>
                 </div>
             </ul>
             <div class="">
-                <button onclick="closeTimkiem()">
+                <button onclick="closeTimkiem()" class="flex items-center justify-center h-[36px] w-[36px]">
                     <i class="fa-solid fa-xmark fa-2xl" style="color: #27282b;"></i>
                 </button>
             </div>
         </div>
-    </div>
+    </div>    
     <div class="fixed top-0 left-0 bottom-0 right-0 justify-start hidden nav-bar">
         <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-black ">
             <ul class="text-white h-[50px]">

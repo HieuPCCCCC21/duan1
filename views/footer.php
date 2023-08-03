@@ -29,19 +29,17 @@
                         alt="">
                 </div>
             </div>
-            <div class=" bg-red-800 my-10 h-[100px] flex justify-between items-center  ">
+            <div class=" bg-red-800 mt-10 h-[100px] flex justify-between items-center  ">
                 <div>
-                    <p class="text-white pl-[300px] text-base">Nhận thông tin khuyến mãi mới nhất từ Thể Thao Store</p>
+                    <p class="text-white pl-[100px] text-base">Nhận thông tin khuyến mãi mới nhất từ Thể Thao Store</p>
                 </div>
-                <div class="pr-[300px]">
+                <div class="pr-[100px]">
                     <form class="border rounded-md" action="">
                         <input class="text-xl pl-5 h-[50px] max-w-[300px]" type="text" placeholder="Địa Chỉ Email">
                         <button class="text-white w-[115px]">Đăng ký</button>
                     </form>
                 </div>
             </div>
-
-
         </footer>
         <div class="fixed top-0 left-0 bottom-0 right-0 justify-end hidden gio-hang">
             <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100 ">
@@ -60,16 +58,34 @@
                 </div>
             </div>
         </div>
-        </script>
-        <div class="fixed top-0 left-0 bottom-0 right-0 justify-end hidden tim-kiem">
-            <div class="flex justify-between w-1/4 h-full px-4 uppercase pt-5 bg-slate-100">
-              <ul class="text-black h-[50px]">
-                <p class="uppercase text-[15px]">Tìm kiếm sản phẩm</p>
-                <div class="mt-10 gap-0">
-                  <input class="border mt-[10px] h-[36px] w-[250px] pl-2 text-[13px]" placeholder="" type="text" name="" id="searchInput">
-                  <button class="bg-red-700 hover:bg-red-600 h-[40px] w-[62px]" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-              </ul>
+        <div class="fixed z-10 top-0 left-0 bottom-0 right-0 justify-end hidden tim-kiem">
+            <div class="flex justify-between w-[340px] h-full px-4 pt-5 bg-slate-100">
+              <form action="?act=result_search_products" method="post" class="text-black h-[50px]">
+                    <p class="uppercase text-[15px] font-[500]">Tìm kiếm sản phẩm</p>
+                    <div class="mt-10 mb-5 gap-0 flex items-center">
+                            <input class="border font-[400] h-[36px] w-[250px] pl-2 text-[13px]" placeholder="Search..." type="text" name="results"
+                            id="searchInput">
+                            <button class="bg-red-700 hover:bg-red-600 h-[36px] w-[36px] flex items-center justify-center"
+                            type="button" id="searchButton" onclick="searchProduct()">
+                            <i class="fa-solid fa-magnifying-glass text-white"></i>
+                        </button>
+                    </div >
+                    <div  id="searchResults">
+                        <!-- <div class="flex items-center ">
+                            <div class="flex items-center space-x-4 mt-4 px-4">
+                                <img class="w-[70px] h-[70px] rounded" src="layout/giaodiennguoidung/image/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg"
+                                alt="Product Image">
+                            </div>
+                            <div class="">
+                                <a href="" class="text-black font-medium">Bộ quần áo thể thao nam</a>
+                                <p class="text-red-700 font-bold">560.000 đ</p>
+                            </div>
+                        </div> 
+                        <div class="text-c">
+                            <a href="#">Xem tất cả</a>
+                        </div>           -->
+                    </div>
+                </form>
               <div class="">
                 <button onclick="closeTimkiem()">
                         <div class="icon-container" onmouseenter="addHoverClass()" onmouseleave="removeHoverClass()">
@@ -128,11 +144,7 @@
                 </div>
             </div>
         </div>
-
-
-
-
-        <!--End footer-->
+               <!--End footer-->
     </div>
 
     <script>const menuhidden = document.querySelector('.gio-hang');
@@ -222,6 +234,21 @@
         function removeHoverClass() {
         document.getElementById("animated-icon").classList.remove("hovered");
         }
+        // chi tiết sản phẩm
+        document.addEventListener("DOMContentLoaded", function () {
+        const boxes = document.querySelectorAll(".box");
+
+        boxes.forEach(box => {
+            const button = box.querySelector(".flex");
+            const description = box.querySelector(".des");
+
+            button.addEventListener("click", function () {
+            description.classList.toggle("visible");
+            button.querySelector("i").classList.toggle("fa-chevron-down");
+            button.querySelector("i").classList.toggle("fa-chevron-up");
+            });
+        });
+        });
     </script>
     <script>
         // JavaScript code to continuously change the placeholder text with slower effect
@@ -279,6 +306,34 @@
                 prevEl: ".swiper-button-prev",
             },
         });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // JavaScript function to handle the search
+    function searchProduct() {
+    // Get the search query from the input field
+    var searchQuery = document.getElementById("searchInput").value;
+    localStorage.setItem("searchQuery", searchQuery);
+    // Create a new XMLHttpRequest object
+    var xhttp = new XMLHttpRequest();
+
+    // Configure the AJAX request
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // On successful response, update the search results
+            document.getElementById("searchResults").innerHTML = this.responseText;
+        }
+    };
+
+    // Open the AJAX request
+    xhttp.open("POST","model/search_product.php", true);
+
+    // Set the request header
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    // Send the AJAX request with the search query as data
+    xhttp.send("query=" + encodeURIComponent(searchQuery));
+    }
     </script>
 </body>
 

@@ -157,7 +157,17 @@ display:none;
 z-index:2;
 }
 
+.des {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
 
+.des.visible {
+  max-height: 200px; /* Set the desired max height */
+  opacity: 1;
+}
 .card h1{
 color: #E8BC0E;
 font-weight: 100;

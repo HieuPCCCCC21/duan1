@@ -29,7 +29,7 @@
         <table id="example" class="table table-bordered table-striped" style="width:100%">
         <thead>
         <tr class="table-danger">
-            <th>Id</th>
+            <th>STT</th>
             <th >Name</th>
             <th>Ảnh</th>
             <th>Size</th>
@@ -42,7 +42,9 @@
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($all_product as $product) {
+    <?php 
+    $ordinalNumber = 1;
+    foreach ($all_product as $product) {
     $name = strlen($product['title']) > 20 ? substr($product['title'], 0, 20) . '...' : $product['title'];
     $description = strlen($product['desciption']) > 20 ? substr($product['desciption'], 0, 20) . '...' : $product['desciption'];
     $edit_pr = "index.php?act=update_product&id=" . $product['id'];
@@ -57,7 +59,7 @@
     }
     $formatted_price = number_format($product['price'], 0, ',');
     echo '<tr>
-        <td>' . $product['id'] . '</td>
+        <td>' . $ordinalNumber. '</td>
         <td>' . $name. '</td>
         <td>' . $thumbnail . '</td>
         <td>' . $product['sizes'] . '</td>
@@ -72,6 +74,7 @@
              <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
         </td>
     </tr>';
+    $ordinalNumber++;
     }?>
     </tbody>
     </table>

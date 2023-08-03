@@ -19,7 +19,6 @@ require_once "controller/sanpham_ct.php";
 require_once "controller/list_nam.php";
 require_once "controller/list_nu.php";
 require_once "controller/yeuthich.php";
-//Controller
 if(!isset($_SESSION['email'])){
     $_SESSION['email']=[];
 }
@@ -58,6 +57,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'home_admin':
             home_admin();
+            break;
+        case 'result_search_products':
+            results_search();
             break;
         case 'register_admin':
             register_admin();

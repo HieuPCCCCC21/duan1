@@ -18,28 +18,26 @@
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
-            <th>Ngày tạo</th>
-            <th>Ngày cập nhật</th>
             <th>Thao tác</th>
         </tr>
     </thead>
     <tbody>
     <?php foreach ($all_staffs as $staffs) {
+        $stt = 1;
         $edit_staff = "index.php?act=update_staff&id_user=" . $staffs['id'];
         $delete_staff = "index.php?act=delete_staff&id_user=" . $staffs['id'];
         echo '<tr>
-                <td>' . $staffs['id'] . '</td>
+                <td>' . $stt . '</td>
                 <td>' . $staffs['fullname'] . '</td>
                 <td>' . $staffs['email'] . '</td>
                 <td>' . $staffs['phone'] . '</td>
                 <td>' . $staffs['address'] . '</td>
-                <td>' . $staffs['created_at'] . '</td>
-                <td>' . $staffs['updated_at'] . '</td>
                 <td>
                     <a href="'.$edit_staff.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
                     <a href="'.$delete_staff.'" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')"><i class="bi bi-trash3"></i></a>
                 </td>
             </tr>';
+        $stt++;
     }?>
 </tbody>
     </table>

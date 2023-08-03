@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="">
-        <p>.</p>
+        <p>Trang chủ / Danh mục đồ nam </p>
         <div class="flex justify-between bg-slate-100">
             <ul class=" bg-gray-100 rounded-xl py-4 ">
                 <li class="font-semibold flex text-stone-500 ">

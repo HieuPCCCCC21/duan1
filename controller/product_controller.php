@@ -44,6 +44,11 @@ function insert_product_ctr() {
         }
     }
 }
+function results_search(){
+        $searchQuery = $_POST['results'];
+        $results = searchProduct($searchQuery);
+        render('show_search_product', ['results' => $results]);
+}
 function edit_product_ctr() {
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["add"])) {
         $category_id = $_POST["id_cate"];

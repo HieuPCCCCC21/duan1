@@ -71,7 +71,30 @@
                   <button onclick="Toggle1()" id="btnh1" class="btn" type="submit" name="button_yt"><i class="fas fa-heart"></i></button>
             </form>
         </div>
-        <p class="text-[13px] italic my-3"><?= $listspct['desciption'] ?></p>
+        <div id="boxs">
+            <div class="box">
+                <button class="flex font-[600] text-[14px] items-center">
+                    <div class="show my-3  ">Xem Thêm Thông Tin Sản Phẩm</div>
+                    <div class="pl-[420px]">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </button>
+                <div class="des">
+                <p class="text-[13px] italic my-3"><?= $listspct['desciption'] ?></p>
+                </div>
+            </div>
+        </div>
+        <!-- <div id="boxs">
+                <div class="box">
+                    <div>
+                      <button class=" show my-3 text-[14px] font-[600]">Xem Thêm Thông Tin Sản Phẩm</button>
+                      <p class="text-[20px]"><i class="bi bi-chevron-down"></i></p>
+                    </div> 
+                    <div class="chitiet ahihi">
+                        <p class="text-[13px] italic my-3"><?= $listspct['desciption'] ?></p>
+                    </div>
+                </div>                 
+        </div> -->
     </div>
 </div>
 <div class="">
@@ -95,79 +118,21 @@
         </div>
         <div class="splide__track  grid grid-cols-4">
             <div class="splide__list gap-x-2">
+            <?php
+            foreach ($all_product_same as $pr) :
+            $formatted_price = number_format($pr['price'], 0, ',');
+            ?>
                 <div class="w-full  p-4 shadow splide__slide lg:max-w-lg">
                     <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/c6016700-2a47-48f2-8cf2-506a7c42fab3-jpeg.jpg?v=1686122778000" alt="">
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
+                        <img src="layout/images/products/<?=$pr['thumbnail']?>" alt="">
+                        <p class = "text-[14px] font-[600] text-red-500"><?=$formatted_price ?> đ</p>
+                        <a class="hover:text-red-500 text-[13px] font-[500]" href="?act=sanpham_ct&id=<?=$pr['id']?>"><?=$pr['title']?></a>
                     </div>
                 </div>
-
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/c1ee41bd-f783-4d1d-999e-a1a3232828fc-jpeg.jpg?v=1686123412453" alt="">
-
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/2b78154d04bfcffa2b61ce04c24855b1-1676986570212.jpg?v=1676986575410" alt="">
-
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/912d4386f116ba23fc5ae5ee93488003-1666064193355.jpg?v=1673322816243" alt="">
-
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/sg-11134201-23010-5gktq2p70xlv27-1678845268202.jpg?v=1678845272907" alt="">
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/sg-11134201-23010-wwmzgn1raylvd3-1678845287927.jpg?v=1678845291760" alt="">
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/sg-11134201-22120-n1b4q11agukva2-1678845331782.jpg?v=1678845346113" alt="">
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
-                <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/428/250/products/sg-11134201-22120-x41nznl5gvkve4-1678845629584.jpg?v=1678845633000" alt="">
-                        <p>560.000đ</p>
-                        <a class="hover:text-red-500" href="">Bộ Quần Áo Thể Thao Nam Uniqlo Tennis Kei
-                            Nishikori</a>
-                    </div>
-                </div>
+            <?php
+            endforeach;
+            ?>      
             </div>
-
         </div>
     </div>
 </div>

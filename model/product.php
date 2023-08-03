@@ -8,19 +8,16 @@ function all_product($selected_category = null) {
 
     // Query to get the product data along with sizes
     $sql = "SELECT p.*, GROUP_CONCAT(s.name_size) AS sizes
-            FROM products p
-            LEFT JOIN product_sizes ps ON p.id = ps.product_id
-            LEFT JOIN sizes s ON ps.size_id = s.id
-            JOIN category c ON p.category_id = c.id
-            WHERE p.deleted = 0 AND c.deleted = 0 $category_condition
-            GROUP BY p.id
-            ORDER BY p.id DESC";
+    FROM products p
+    LEFT JOIN product_sizes ps ON p.id = ps.product_id
+    LEFT JOIN sizes s ON ps.size_id = s.id
+    JOIN category c ON p.category_id = c.id
+    WHERE p.deleted = 0 $category_condition
+    GROUP BY p.id
+    ORDER BY p.id DESC";
     $result = pdo_query($sql);
     return $result;
 }
-
-
-
 function insert_product($category_id, $title, $thumbnail, $description, $quantity, $price, $sizes) {
     try {
         $conn = pdo_get_connection();
@@ -63,6 +60,24 @@ function insert_product($category_id, $title, $thumbnail, $description, $quantit
         echo "Error: " . $e->getMessage();
         throw $e;
     }
+}
+function products_same_category($product_id)
+{
+    $conn = pdo_get_connection();
+    $sql = "SELECT * FROM products WHERE category_id = (SELECT category_id FROM products WHERE id = :product_id)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
+function searchProduct($searchQuery) {
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare("SELECT * FROM products WHERE title LIKE :searchQuery");
+    $stmt->bindValue(':searchQuery', '%' . $searchQuery . '%', PDO::PARAM_STR);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
 }
 function edit_product($product_id, $category_id, $title, $thumbnail, $description, $quantity, $price, $sizes) {
     try {

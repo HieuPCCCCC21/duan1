@@ -114,10 +114,10 @@
                         $formatted_price = number_format($sp['price'], 0, '.');
                     ?>
                         <div class="w-full p-4 shadow splide__slide lg:max-w-lg">
-                            <div class="space-y-2">
+                            <div class="space-y-2 text-left">
                                 <img src="layout/images/products/<?= $sp['thumbnail'] ?>" alt="">
-                                <p class="text-sm font-[600] leading-6"><?= $formatted_price?> đ</p>
-                                <a class="hover:text-red-500 leading-4   font-medium text-base" href="?act=sanpham_ct&id=<?= $sp['id'] ?>"><?= $sp['title'] ?></a>
+                                <p class="text-sm font-[600] leading-6 text-red-500"><?= $formatted_price?> đ</p>
+                                <a class="hover:text-red-500 leading-4 text-[14px]  font-medium " href="?act=sanpham_ct&id=<?= $sp['id'] ?>"><?= $sp['title'] ?></a>
                             </div>
                         </div>
                     <?php
@@ -134,7 +134,6 @@
             <button class="bg-red-800 text-white hover:bg-white hover:text-red-800 hover:border hover:border-red-800 hover:translate-all  hover:ease-in-out hover:duration-700 w-[250px] h-[50px] ">
                 XEM THÊM <?= count($list) ?> SẢN PHẨM</button>
         </a>
-
     </div>
     <section class=" flex justify-center gap-4 my-6 mx-auto">
         <div class=" ">
@@ -278,7 +277,7 @@
     <div class="text-center">
         <p class="text-2xl underline  mt-10"><b>THƯƠNG HIỆU NỔI BẬT</p>
     </div>
-    <div class="flex   justify-around">
+    <div class="flex justify-around">
         <div><img class="w-[100px] h-[100px]" src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/partner_1.jpg?1681911001649" alt=""></div>
         <div><img class="w-[100px] h-[100px]" src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/partner_2.jpg?1681911001649" alt=""></div>
         <div><img class="w-[100px] h-[100px]" src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/partner_4.jpg?1681911001649" alt=""></div>

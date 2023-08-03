@@ -13,31 +13,30 @@
               <table id="example" class="table table-bordered table-striped" style="width:100%">
           <thead>
         <tr class="table-danger">
-            <th>Id</th>
+            <th>STT</th>
             <th>Họ Và Tên </th>
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Địa chỉ</th>
-            <th>Ngày tạo</th>
-            <th>Ngày cập nhật</th>
             <th>Thao tác</th>
         </tr>
     </thead>
     <tbody>
-    <?php foreach ($all_customers as $customers) {
+    <?php 
+    $stt = 1;
+    foreach ($all_customers as $customers) {       
         $delete_pr = "index.php?act=delete_user&id=" . $customers['id'];
         echo '<tr>
-                <td>' . $customers['id'] . '</td>
+                <td>' .$stt. '</td>
                 <td>' . $customers['fullname'] . '</td>
                 <td>' . $customers['email'] . '</td>
                 <td>' . $customers['phone'] . '</td>
                 <td>' . $customers['address'] . '</td>
-                <td>' . $customers['created_at'] . '</td>
-                <td>' . $customers['updated_at'] . '</td>
                 <td>
                 <a href="'.$delete_pr.'" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')"><i class="bi bi-trash3"></i></a>
                 </td>
             </tr>';
+        $stt++;
     }?>
 </tbody>
     </table>
