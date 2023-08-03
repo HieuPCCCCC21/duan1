@@ -136,7 +136,7 @@
         </a>
     </div>
     <section class=" flex justify-center gap-4 my-6 mx-auto">
-        <div class=" ">
+        <div class="w-full">
             <div class="w-[550px] h-[326px]">
                 <a href="" class="">
                   <img class="w-[450px] mx-5 transform hover:scale-105 transition duration-300" src="layout/giaodiennguoidung/image/img1.png" alt="">
@@ -152,7 +152,7 @@
             </div>
 
         </div>
-        <div>
+        <div class="w-full">
             <div class="w-[550px] h-[224px] py-2">
                 <h3 class="font-[700] text-[25px] leading-[35px] hover:text-red-800 text-left py-3">Trang phục cho tập luyện</h3>
                 <p class="text-[14px] leading-[24px] text-left mb-5">Việc tập luyện ngày này đã trở thành một điều thiết yếu mang lại nhiều lợi ích cho sức khoẻ cũng như
