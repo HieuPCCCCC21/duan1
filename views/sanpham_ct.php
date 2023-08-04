@@ -43,23 +43,25 @@
             ?>
         </div>
         <div class="flex gap-5">
-            <div class="buy-amount flex ">
-                <button class="cursor-pointer minus-btn " onclick="handleMinus()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <div class="buy-amount flex">
+                <button class="cursor-pointer minus-btn" onclick="handleMinus()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
                     </svg>
                 </button>
-                <input class="w-[50px] text-center border " type="text" name="amount" id="amount" value="1">
-                <button class="cursor-pointer plus-btn " onclick="handlePlus()"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <input class="w-[50px] text-center border" type="number" name="amount" id="amount" min="1" max="<?= $listspct['quantity'] ?>" oninput="handleInputChange()" value="1">
+                <button class="cursor-pointer plus-btn" onclick="handlePlus()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
                 </button>
             </div>
-            <form action="" method="POST">
-                <div class="flex">
-                    <button class="addd border bg-black hover:bg-red-600  uppercase font-semibold  w-[240px] h-[40px] rounded-sm text-white">thêm
+
+           
+                    <button class="addd border bg-black hover:bg-red-600  uppercase font-semibold  w-[240px] h-[40px] rounded-sm text-white" onclick="addToCart()">thêm
                         vào giỏ</button>
-                </div>
-            </form>
+        
+           
             <form action="?act=show_yt" method="POST">
                 <div>
                     <input type="hidden" value="<?= $_GET['id'] ?>" name="id_ythich">
@@ -67,8 +69,8 @@
                     <input type="hidden" value="<?= $listspct['price'] ?>" name="price_yt">
                     <input type="hidden" value="<?= $listspct['title'] ?>" name="title_yt">
                     <input type="hidden" value="<?= $listspct['thumbnail'] ?>" name="thumbnail_yt">
-                </div>   
-                  <button onclick="Toggle1()" id="btnh1" class="btn" type="submit" name="button_yt"><i class="fas fa-heart"></i></button>
+                </div>
+                <button onclick="Toggle1()" id="btnh1" class="btn" type="submit" name="button_yt"><i class="fas fa-heart"></i></button>
             </form>
         </div>
         <div id="boxs">
@@ -80,7 +82,7 @@
                     </div>
                 </button>
                 <div class="des">
-                <p class="text-[13px] italic my-3"><?= $listspct['desciption'] ?></p>
+                    <p class="text-[13px]  italic my-3"><?= $listspct['desciption'] ?></p>
                 </div>
             </div>
         </div>
@@ -91,7 +93,7 @@
                       <p class="text-[20px]"><i class="bi bi-chevron-down"></i></p>
                     </div> 
                     <div class="chitiet ahihi">
-                        <p class="text-[13px] italic my-3"><?= $listspct['desciption'] ?></p>
+                       
                     </div>
                 </div>                 
         </div> -->
@@ -118,20 +120,20 @@
         </div>
         <div class="splide__track  grid grid-cols-4">
             <div class="splide__list gap-x-2">
-            <?php
-            foreach ($all_product_same as $pr) :
-            $formatted_price = number_format($pr['price'], 0, ',');
-            ?>
-                <div class="w-full  p-4 shadow splide__slide lg:max-w-lg">
-                    <div class="space-y-2">
-                        <img src="layout/images/products/<?=$pr['thumbnail']?>" alt="">
-                        <p class = "text-[14px] font-[600] text-red-500"><?=$formatted_price ?> đ</p>
-                        <a class="hover:text-red-500 text-[13px] font-[500]" href="?act=sanpham_ct&id=<?=$pr['id']?>"><?=$pr['title']?></a>
+                <?php
+                foreach ($all_product_same as $pr) :
+                    $formatted_price = number_format($pr['price'], 0, ',');
+                ?>
+                    <div class="w-full  p-4 shadow splide__slide lg:max-w-lg">
+                        <div class="space-y-2">
+                            <img src="layout/images/products/<?= $pr['thumbnail'] ?>" alt="">
+                            <p class="text-[14px] font-[600] text-red-500"><?= $formatted_price ?> đ</p>
+                            <a class="hover:text-red-500 text-[13px] font-[500]" href="?act=sanpham_ct&id=<?= $pr['id'] ?>"><?= $pr['title'] ?></a>
+                        </div>
                     </div>
-                </div>
-            <?php
-            endforeach;
-            ?>      
+                <?php
+                endforeach;
+                ?>
             </div>
         </div>
     </div>
@@ -210,4 +212,4 @@
 
     </div>
 </section>
-<?php include_once 'footer.php'?>
+<?php include_once 'footer.php' ?>

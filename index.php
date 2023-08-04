@@ -1,5 +1,6 @@
 <?php 
 // Model 
+// session_start();
 require_once "model/pdo.php";
 require_once "model/taikhoan.php";
 require_once "model/category.php";
@@ -90,6 +91,10 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'login_account':
             login__user_ctr();
+            break;
+        case '1':
+            unset($_SESSION['email']);
+            header("Location: index.php?act=main");
             break;
         case 'register_account':
             register_user_ctr();
