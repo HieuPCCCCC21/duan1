@@ -151,7 +151,6 @@
             </li>
             <li class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
-
                 <?php
                 if (!empty($_SESSION['email'])) {
                     echo '<a class="hover:text-red-800 text-[13px]" href="?act=1">THOÁT</a>';
@@ -398,98 +397,6 @@ let handleMinuss = () => {
         // Send the AJAX request with the search query as data
         xhttp.send("query=" + encodeURIComponent(searchQuery));
     }
-</script>
-<script>
-    // JavaScript variable to store cart items
-let cartItems = [];
-
-// Function to handle adding a product to the cart
-function addToCart() {
-    // Get product details from the form
-    const productId = <?= $_GET['id'] ?>;
-    const productName = 'Bộ quần áo thể thao nam'; // Replace with actual product name
-    const productPrice = 560000; // Replace with actual product price
-    const productThumbnail = 'layout/giaodiennguoidung/image/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg'; // Replace with actual product thumbnail URL
-    const quantityInput = document.getElementById('quantity');
-    const productQuantity = parseInt(quantityInput.value);
-
-    // Create an object for the product
-    const product = {
-        id: productId,
-        name: productName,
-        price: productPrice,
-        thumbnail: productThumbnail,
-        quantity: productQuantity
-    };
-
-    // Add the product to the cartItems array
-    cartItems.push(product);
-
-    // Update the cart section with the product details
-    updateCartSection();
-
-    // Optionally, you can save the cartItems to local storage or send it to the server for further processing.
-}
-
-// Function to update the cart section with the product details
-function updateCartSection() {
-    const cartSection = document.querySelector('.gio-hang');
-    cartSection.classList.remove('hidden');
-
-    const cartContent = document.querySelector('.gio-hang .cart-content');
-    cartContent.innerHTML = '';
-
-    // Loop through cartItems and add product details to the cart
-    cartItems.forEach((product) => {
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('flex', 'items-center', 'space-x-4', 'mt-4', 'px-4');
-
-        const productImage = document.createElement('img');
-        productImage.classList.add('w-[70px]', 'h-[70px]', 'rounded');
-        productImage.src = product.thumbnail;
-        productImage.alt = product.name;
-
-        const productInfo = document.createElement('div');
-        const productNameElement = document.createElement('a');
-        productNameElement.classList.add('text-black', 'font-medium');
-        productNameElement.href = ''; // Replace with actual product URL
-        productNameElement.textContent = product.name;
-        productInfo.appendChild(productNameElement);
-
-        const removeButton = document.createElement('button');
-        removeButton.classList.add('text-[11px]', 'text-red:500', 'font-bold', 'rounded');
-        removeButton.textContent = 'Bỏ sản phẩm';
-        removeButton.onclick = () => removeProduct(product.id); // Replace removeProduct with your function to remove the product from the cart
-        productInfo.appendChild(removeButton);
-
-        productDiv.appendChild(productImage);
-        productDiv.appendChild(productInfo);
-
-        cartContent.appendChild(productDiv);
-    });
-
-    // Calculate the total amount and update the Total section (assuming you have a separate element with class 'total-amount')
-    const totalAmount = cartItems.reduce((total, product) => total + (product.price * product.quantity), 0);
-    const totalAmountElement = document.querySelector('.total-amount');
-    totalAmountElement.textContent = `${totalAmount} đ`; // Replace with your actual currency formatting
-}
-
-// Call this function to hide the cart initially (assuming you have a button with class 'close-cart')
-function closegioHang() {
-    const cartSection = document.querySelector('.gio-hang');
-    cartSection.classList.add('hidden');
-}
-
-// Call this function when the page loads to set up event listeners and other necessary initialization
-document.addEventListener('DOMContentLoaded', () => {
-    // Set
-    setupCartEventListeners();
-
-    // Optionally, you can load cartItems from local storage or the server here if you want to persist the cart data between page reloads.
-
-    // Update the cart section with the initial product details (if there are any products in the cartItems array)
-    updateCartSection();
-});
 </script>
 </body>
 

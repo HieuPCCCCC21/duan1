@@ -62,7 +62,62 @@
         document.getElementById("previewImage").src = "views/admin/assets/img/profile-img.jpg"; // Reset to default image
     });
 </script>
+<script>
+    document.getElementById("passwordChangeForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+      let pass_old = "<?=$_SESSION['user']['password']?>"; 
+      // Lấy giá trị từ các trường input
+      const currentPassword = document.getElementById("currentPassword").value;
+      const newPassword = document.getElementById("newPassword").value;
+      const renewPassword = document.getElementById("renewPassword").value;
+      
+      // Kiểm tra nếu các trường đã được điền đầy đủ
+      if (currentPassword === '' || newPassword === '' || renewPassword === '') {
+        showErrorMessage("Vui lòng điền đầy đủ thông tin.");
+        return;
+      }
+      
+      // Kiểm tra nếu mật khẩu mới và xác nhận mật khẩu mới khớp nhau
+      if (newPassword !== renewPassword) {
+        showErrorMessage("Mật khẩu mới và xác nhận mật khẩu mới không khớp nhau.");
+        return;
+      }
+      if (currentPassword !== pass_old) {                                         
+      showErrorMessage("Mật khẩu cũ không đúng");
+      return;
+    }  
+      // Thực hiện các xử lý thay đổi mật khẩu tại đây.
+      // Ví dụ: gửi dữ liệu thông qua Ajax hoặc chuyển hướng trang.
+      
+      // Hiển thị thành công và reset form
+      showSuccessMessage("Đổi mật khẩu thành công!");
+      document.getElementById("passwordChangeForm").reset();
+    });
 
+    function showErrorMessage(message) {
+      const errorMessageElement = document.createElement("div");
+      errorMessageElement.textContent = message;
+      errorMessageElement.classList.add("error-message", "animate__animated", "animate__shakeX");
+      const form = document.getElementById("passwordChangeForm");
+      form.appendChild(errorMessageElement);
+
+      setTimeout(function () {
+        errorMessageElement.remove();
+      }, 3000);
+    }
+
+    function showSuccessMessage(message) {
+      const successMessageElement = document.createElement("div");
+      successMessageElement.textContent = message;
+      successMessageElement.classList.add("success-message", "animate__animated", "animate__fadeInDown");
+      const form = document.getElementById("passwordChangeForm");
+      form.appendChild(successMessageElement);
+
+      setTimeout(function () {
+        successMessageElement.remove();
+      }, 3000);
+    }
+</script>
 
 </body>
 

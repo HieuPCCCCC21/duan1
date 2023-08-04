@@ -3,7 +3,7 @@
 </div>
 <ul class="w-full bg-gray-100 rounded-xl py-4 ">
             <li class="font-semibold text-stone-500 indent-80">
-                <a href="trangchu.html">Trang chủ / </a>
+                <a href="#">Trang chủ / </a>
                 <a href="">Đăng Nhập tài khoản </a>
             </li>
         </ul> 

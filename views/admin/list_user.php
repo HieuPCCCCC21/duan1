@@ -24,8 +24,9 @@
     <tbody>
     <?php 
     $stt = 1;
-    foreach ($all_customers as $customers) {       
-        $delete_pr = "index.php?act=delete_user&id=" . $customers['id'];
+    foreach ($all_customers as $customers) {      
+        $edit_customer = "index.php?act=update_customer&id_user=" . $customers['id']; 
+        $delete_customer = "index.php?act=delete_user&id_user=" . $customers['id'];
         echo '<tr>
                 <td>' .$stt. '</td>
                 <td>' . $customers['fullname'] . '</td>
@@ -33,7 +34,8 @@
                 <td>' . $customers['phone'] . '</td>
                 <td>' . $customers['address'] . '</td>
                 <td>
-                <a href="'.$delete_pr.'" class="delete" title="Delete" data-toggle="tooltip" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')"><i class="bi bi-trash3"></i></a>
+                  <a href="'.$edit_customer.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
+                  <a href="'.$delete_customer.'" class="delete" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
                 </td>
             </tr>';
         $stt++;

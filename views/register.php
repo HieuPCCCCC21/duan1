@@ -32,7 +32,7 @@
                   </div>
                   <?php 
                       if(!empty($error['fullname']))
-                      echo "<p class='error'>{$error['fullname']}</p>"
+                      echo "<p class='error text-rose-600'>{$error['fullname']}</p>"
                     ?>
                   <div class="mt-5">
                     <p>SỐ ĐIỆN THOẠI <span class="text-red-500">*</span> </p>
@@ -42,7 +42,7 @@
                   </div>
                   <?php 
                       if(!empty($error['phone']))
-                      echo "<p class='error'>{$error['phone']}</p>"
+                      echo "<p class='error text-rose-600'>{$error['phone']}</p>"
                     ?>
                   <div class="mt-5">
                     <p>  Email <span class="text-red-500">*</span> </p>
@@ -52,7 +52,7 @@
                   </div>
                   <?php 
                       if(!empty($error['email']))
-                      echo "<p class='error'>{$error['email']}</p>"
+                      echo "<p class='error text-rose-600'>{$error['email']}</p>"
                     ?>
                   <div class="mt-5">
                     <p>Mật khẩu<span class="text-red-500">*</span> </p>
@@ -62,7 +62,7 @@
                   </div>
                   <?php 
                       if(!empty($error['password']))
-                      echo "<p class='error'>{$error['password']}</p>"
+                      echo "<p class='error text-rose-600'>{$error['password']}</p>"
                     ?>
                   <div class="mt-5">
                     <p>Xác nhận lại mật khẩu<span class="text-red-500">*</span> </p>
@@ -71,7 +71,7 @@
                   </div>
                   <?php 
                       if(!empty($error['password1']))
-                      echo "<p class='error'>{$error['password1']}</p>"
+                      echo "<p class='error text-rose-600'>{$error['password1']}</p>"
                     ?>
                   <div class="mt-5">
                   

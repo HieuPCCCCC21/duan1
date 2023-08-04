@@ -1,5 +1,10 @@
 <?php 
 function home_admin(){
-    render("admin/index");
+    if (isset($_SESSION['user'])) { 
+        render("admin/index");
+    }else{
+        render("admin/404");
+    }
+    
 }
 ?>

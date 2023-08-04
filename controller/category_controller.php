@@ -2,10 +2,18 @@
 function category_ctr(){
     $all_categories = all_category();
     $count_categories = all_category();
-    render('admin/list_category',['all_categories'=>$all_categories,'count_categories'=>$count_categories]);
+    if (isset($_SESSION['user'])) {
+        render('admin/list_category',['all_categories'=>$all_categories,'count_categories'=>$count_categories]);
+    }else{
+        render('admin/404');
+    }
 }
 function add_category_ctr(){
-    render('admin/add_category');
+    if (isset($_SESSION['user'])) {
+        render('admin/add_category');
+    }else{
+        render('admin/404');
+    }
 }
 function insert_category_ctr(){
     if (isset($_POST['add']) && ($_POST['add'])) {
@@ -44,13 +52,13 @@ function delete_category_ctr() {
         }
 }
 function update_category_ctr(){
-    // if (isset($_GET['act']) && $_GET['act'] === 'edit_category' && isset($_GET['id'])) {
-    //     // Lấy ID danh mục từ tham số truy vấn
     $category_id = $_GET['id'];
     $category = categories_one($category_id);
-        
-    // }
-    render('admin/edit_category',['category'=>$category]);
+    if (isset($_SESSION['user'])) {
+        render('admin/edit_category',['category'=>$category]);
+    }else{
+        render('admin/404');
+    }   
 }
 function edit_category_ctr() {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["add"])) {

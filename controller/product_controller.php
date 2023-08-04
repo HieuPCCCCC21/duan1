@@ -2,18 +2,25 @@
 function product_ctr() {
     $all_categories = all_category();
     $all_product = all_product();
-
     if (isset($_POST['listok'])) {
         $selected_category = $_POST['id_cate'];
         $all_product = all_product($selected_category);
     }
-
-    render("admin/list_product", ['all_product' => $all_product, 'all_category' => $all_categories]);
+    if (isset($_SESSION['user'])) {
+        render("admin/list_product", ['all_product' => $all_product, 'all_category' => $all_categories]);
+    }else{
+        render('admin/404');
+    }
 }
 
 function add_product_ctr(){
     $all_categories = all_category();
-    render('admin/add_product',['all_categories'=>$all_categories]);
+    if (isset($_SESSION['user'])) {
+        render('admin/add_product',['all_categories'=>$all_categories]);
+    }else{
+        render('admin/404');
+    }
+   
 }
 
 function insert_product_ctr() {
@@ -89,7 +96,11 @@ function update_product_ctr(){
     $all_categories = all_category();
     $product_id = $_GET['id'];
     $product = product_one($product_id);
-    render("admin/edit_product",["product"=>$product,'all_categories'=>$all_categories]);
+    if (isset($_SESSION['user'])) {
+        render("admin/edit_product",["product"=>$product,'all_categories'=>$all_categories]);
+    }else {
+        render('admin/404');
+    }
 }
 function delete_product_ctr(){
     // Kiểm tra xem người dùng đã gửi yêu cầu xóa sản phẩm hay chưa

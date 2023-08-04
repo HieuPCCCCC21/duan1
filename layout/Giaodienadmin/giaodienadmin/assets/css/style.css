@@ -89,7 +89,15 @@ h6 {
   color: #fff;
   line-height: 0;
 }
+.success-message {
+  color: green;
+  font-weight: bold;
+}
 
+.error-message {
+  color: red;
+  font-weight: bold;
+}
 .back-to-top:hover {
   background: #6776f4;
   color: #fff;

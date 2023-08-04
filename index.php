@@ -59,6 +59,12 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'home_admin':
             home_admin();
             break;
+        case 'setting_account_update':
+            update_user_ctr();
+            break;
+        case 'setting_account':
+            setting_acount();
+            break;
         case 'result_search_products':
             results_search();
             break;
@@ -71,8 +77,11 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'register':
             register();
             break;
+        case 'login_admin_account':
+            login_admin_ctr();
+            break;
         case 'login_admin':
-            # code...
+            login_admin();
             break;
         case 'delete_staff':
             delete_staff_ctr();
@@ -86,11 +95,20 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_user_admin':
             show_customers_ctr();
             break;
+        case 'change_pass_staff':
+            change_password_staff();
+            break;
         case 'login':
             login();
             break;
+        case 'lienhe':
+            feed_back();
+            break;
         case 'login_account':
             login__user_ctr();
+            break;
+        case 'exits_account':
+            logout_admin();
             break;
         case '1':
             unset($_SESSION['email']);
@@ -114,11 +132,17 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_category_admin':
             category_ctr();
             break;
+        case 'edit_customer':
+            edit_customer_ctr();
+            break;
         case 'edit_staff':
             edit_staff_ctr();
             break;
         case 'edit_product':
             edit_product_ctr();
+            break;
+        case 'update_customer':
+            update_customer_ctr();
             break;
         case 'update_staff':
             update_staff_ctr();

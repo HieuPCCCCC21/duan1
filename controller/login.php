@@ -4,6 +4,24 @@ function login()
 {
     render("login");
 }
+function login_admin(){
+    render("admin/login_admin");
+}
+function login_admin_ctr(){
+    if (isset($_POST['btn_login_admin'])) {
+        $email = $_POST['username'];
+        $password = $_POST['password'];
+        $user = check_email_admin($email, $password);
+        if (is_array($user)) {
+            $_SESSION['user'] = $user;
+            header('location:?act=home_admin');
+        }      
+    }
+}
+function logout_admin(){
+    unset($_SESSION['user']);
+    header("Location: index.php?act=login_admin");
+}
 function login__user_ctr()
 {
     $error = [];

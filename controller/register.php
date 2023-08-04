@@ -26,6 +26,7 @@ function register_user_ctr()
                 $error['email'] = "Định dạng email không hợp lệ";
             }
         }
+        if(check_exists_email($_POST['email'])) $error['email'] = 'Email đã tồn tại vui lòng nhập email khác để tiếp tục';
 
         if (empty($_POST['phone'])) {
             $error['phone'] = "Số điện thoại không được để trống";
