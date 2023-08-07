@@ -11,7 +11,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-description"></p>
-                                <form action="?act=save_add_product" class="forms-sample" method="post" enctype="multipart/form-data">
+                                <form action="?act=save_add_product" class="forms-sample" id="addsppp" method="post" enctype="multipart/form-data">
                                     <div class="col-md-4 mb-3">
                                         <label for="inputState" class="form-label">Danh mục</label>
                                         <select id="inputState" name="id_cate" class="form-select">
@@ -76,7 +76,82 @@
                                     <button type="reset" class="btn btn-gradient-primary me-2">Reset</button>
                                     <button class="btn btn-secondary">Quay lại</button>
                                 </form>
+                                <script>
+                                document.addEventListener("DOMContentLoaded", function () {
+                                    const form = document.querySelector("addsppp");
 
+                                    form.addEventListener("submit", function (event) {
+                                        event.preventDefault();
+                                        let isValid = true;
+
+                                        // Reset previous error styles
+                                        const formInputs = form.querySelectorAll("input, select, textarea");
+                                        formInputs.forEach((input) => {
+                                            input.classList.remove("invalid");
+                                            const errorMessage = input.parentElement.querySelector(".error-message");
+                                            if (errorMessage) {
+                                                errorMessage.remove();
+                                            }
+                                        });
+
+                                        // Validate danh mục
+                                        const categorySelect = document.querySelector("#inputState");
+                                        if (categorySelect.value === "") {
+                                            isValid = false;
+                                            categorySelect.classList.add("invalid");
+                                            categorySelect.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng chọn danh mục</div>');
+                                        }
+
+                                        // Validate tên sản phẩm
+                                        const productNameInput = document.querySelector("#exampleInputName1");
+                                        if (productNameInput.value.trim() === "") {
+                                            isValid = false;
+                                            productNameInput.classList.add("invalid");
+                                            productNameInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập tên sản phẩm</div>');
+                                        }
+
+                                        // Validate số lượng
+                                        const quantityInput = document.querySelector("[name='quantity']");
+                                        if (quantityInput.value.trim() === "") {
+                                            isValid = false;
+                                            quantityInput.classList.add("invalid");
+                                            quantityInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập số lượng</div>');
+                                        }
+
+                                        // Validate giá
+                                        const priceInput = document.querySelector("[name='price']");
+                                        if (priceInput.value.trim() === "") {
+                                            isValid = false;
+                                            priceInput.classList.add("invalid");
+                                            priceInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập giá</div>');
+                                        }
+
+                                        // Validate ảnh (chỉ hỗ trợ jpg và png)
+                                        const imageInput = document.querySelector("[name='img']");
+                                        const allowedExtensions = ["jpg", "png"];
+                                        const imageExtension = imageInput.value.split(".").pop().toLowerCase();
+                                        if (!allowedExtensions.includes(imageExtension)) {
+                                            isValid = false;
+                                            imageInput.classList.add("invalid");
+                                            imageInput.insertAdjacentHTML("afterend", '<div class="error-message">Ảnh phải có định dạng jpg hoặc png</div>');
+                                        }
+
+                                        // Validate size
+                                        const selectedSizesInput = document.querySelector("#selected-sizes-input");
+                                        if (selectedSizesInput.value === "") {
+                                            isValid = false;
+                                            const sizeContainer = document.querySelector("#size-container");
+                                            sizeContainer.classList.add("invalid");
+                                            sizeContainer.insertAdjacentHTML("beforeend", '<div class="error-message">Vui lòng chọn ít nhất một size</div>');
+                                        }
+
+                                        // Submit form if valid
+                                        if (isValid) {
+                                            form.submit();
+                                        }
+                                    });
+                                });
+                            </script>
                             </div>
                         </div>
                     </div>

@@ -26,12 +26,12 @@ function setting_acount(){
         render('admin/setting_account',['user'=>$user]);
     }
 }
-function change_password_staff(){
+function change_password_user(){
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["change_password"])) {
         $id_users = $_SESSION['user']['id'];
         $password_new = $_POST['renewpassword'];
-        $pass_old = $_POST['old_pass'];
-        if ($pass_old==$_SESSION['user']['password']) {
+        $pass_old = $_POST['old_password'];
+        if ($pass_old!==$_SESSION['user']['password']) {
             change_password($id_users,$password_new);
             header('Location: ?act=exits_account');
         }else{
@@ -45,8 +45,7 @@ function update_staff_ctr(){
         render('admin/user_profile',['staff'=>$staff]);
     }else{
         render('admin/404');
-    }
-    
+    }  
 }
 function update_customer_ctr(){
     $id_users = $_GET['id_user'];

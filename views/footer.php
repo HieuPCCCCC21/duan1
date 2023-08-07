@@ -42,40 +42,42 @@
     <div class="flex justify-between w-[340px] h-full px-4 uppercase pt-5 bg-slate-100">
         <div class="text-black h-[50px]">
             <p class="uppercase text-[15px]">Giỏ Hàng</p>
-            <div class="flex items-center space-x-4 mt-4 px-4">
-                <img class="w-[70px] h-[70px] rounded" src="layout/giaodiennguoidung/image/z4535010599483_1e7cd11756e512e4ac96dae048c2c3c9.jpg" alt="Product Image">
-                <div class="">
-                    <a href="" class="text-black font-medium">Bộ quần áo thể thao nam</a>
-                    <div>
-                    <button class="text-[11px] text-red:500 font-bold rounded " onclick="removeProduct()">
-                    Bỏ sản phẩm 
-                    </button>
+            <?php if (isset($_SESSION['mycart']) && $_SESSION['mycart'] > 0) {
+                foreach ($_SESSION['mycart'] as $value) {
+            ?>
+                    <div id="id_item<?php echo $value[0]; ?>" class="flex items-center space-x-4 mt-4 px-4">
+                        <img class="w-[70px] h-[70px] rounded" src="layout/images/products/<?php echo $value[1]; ?>" alt="Product Image">
+                        <div class="">
+                            <a id="id_product<?php echo $value[0]; ?>" href="<?php echo $value[0]; ?>" class="text-black font-medium">"<?php echo $value[2]; ?>"</a>
+                            <div>
+                                <button class="text-[11px] text-red:500 font-bold rounded" onclick="removeProduct(<?php echo $value[0]; ?>)">Bỏ sản phẩm </button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="flex pl-[92px]">
-            <button class="cursor-pointer minus-btn" onclick="handleMinuss()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
-                </svg>
-            </button>
-            <input class="w-[50px] text-center border" type="number" name="quantity" id="quantity" min="1" max="5" value="1">
-            <button class="cursor-pointer plus-btn" onclick="handlePluss()">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                </svg>
-            </button>
-                <p class="text-red-700 font-bold pl-[5px]">560.000 đ</p>
+                    <script>
+                        function removeProduct(p_id) {
+                            v_id = '#id_item' + p_id;
+                            $(v_id).remove();
+                            <?php
+                            // Delete $_SESSION
+                            $_SESSION['mycart'];
+                            ?>
+                        }
+                    </script>
+            <?php }
+            } ?>
+            <div id="cart-item">
+                <?php
+                if (isset($_SESSION['mycart'])) {
+                }
+                ?>
             </div>
             <div class="bg-white w-full p-2 mt-5">
-            <div class="flex justify-between">
-                <p class="font-bold">Tổng tiền :</p>
-                <p class="font-bold">560.000 đ</p> <!-- Replace with actual total amount value -->
+
+                <button class="w-full mt-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600">
+                    Thanh toán
+                </button>
             </div>
-            <button class="w-full mt-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600">
-                Thanh toán
-            </button>
-        </div>
         </div>
         <div>
             <button onclick="closegioHang()">
@@ -85,7 +87,7 @@
             </button>
         </div>
         <!-- Total Amount and Checkout Button -->
-        
+
         <!-- End of Total Amount and Checkout Button -->
     </div>
 </div>
@@ -177,27 +179,48 @@
 <!--End footer-->
 </div>
 <script>
+     // }
+     function handleInputChange() {
+      
+    const priceElement = document.getElementById("price");
+    const unitPrice = parseFloat(priceElement.textContent); 
+    const amountInput = document.getElementById("quantity");
+    const amountValue = parseInt(amountInput.value); // Chuyển đổi giá trị thành số nguyên
+    // Kiểm tra nếu giá trị số lượng là số hợp lệ (lớn hơn 0)
+    if (!isNaN(amountValue) && amountValue > 0) {
+        // Tính tổng tiền dựa trên số lượng và giá tiền của sản phẩm
+        const totalPrice = amountValue * unitPrice;
+
+        // Hiển thị tổng tiền trên giao diện
+        const totalPriceElement = document.getElementById("totalPrice");
+        totalPriceElement.textContent = totalPrice;
+        console.log(totalPrice);
+    }
+    }
     let handlePluss = () => {
-    const quantityInput = document.getElementById('quantity');
-    let currentQuantity = parseInt(quantityInput.value);
-    const maxQuantity = parseInt(quantityInput.max);
+        const quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+        const maxQuantity = parseInt(quantityInput.max);
 
-    if (currentQuantity < maxQuantity) {
-        currentQuantity++;
-        quantityInput.value = currentQuantity;
+        if (currentQuantity < maxQuantity) {
+            currentQuantity++;
+            quantityInput.value = currentQuantity;
+            handleInputChange();
+        }
     }
-}
 
-let handleMinuss = () => {
-    const quantityInput = document.getElementById('quantity');
-    let currentQuantity = parseInt(quantityInput.value);
-    const minQuantity = parseInt(quantityInput.min);
+    let handleMinuss = () => {
+        const quantityInput = document.getElementById('quantity');
+        let currentQuantity = parseInt(quantityInput.value);
+        const minQuantity = parseInt(quantityInput.min);
 
-    if (currentQuantity > minQuantity) {
-        currentQuantity--;
-        quantityInput.value = currentQuantity;
+        if (currentQuantity > minQuantity) {
+            currentQuantity--;
+            quantityInput.value = currentQuantity;
+            handleInputChange();
+        }
     }
-}
+    
 </script>
 <script>
     const menuhidden = document.querySelector('.gio-hang');
@@ -242,17 +265,17 @@ let handleMinuss = () => {
         }
     };
     //cônjg số lượng
-    let cart = document.querySelector('.cart');
-    let cartfield = document.querySelector('.cart-field');
-    let add = document.getElementsByClassName('addd');
-    for (let but of add) {
-        but.onclick = e => {
-            let item = Number(cart.getAttribute('data-count') || 0);
-            cart.setAttribute('data-count', item + 1);
-            cart.classList.add('on');
-        }
+    // let cart = document.querySelector('.cart');
+    // let cartfield = document.querySelector('.cart-field');
+    // let add = document.getElementsByClassName('addd');
+    // for (let but of add) {
+    //     but.onclick = e => {
+    //         let item = Number(cart.getAttribute('data-count') || 0);
+    //         cart.setAttribute('data-count', item + 1);
+    //         cart.classList.add('on');
+    //     }
 
-    }
+    // }
 
     function addHoverClass() {
         document.getElementById("animated-icon").classList.add("hovered");
@@ -279,21 +302,19 @@ let handleMinuss = () => {
     let amount = 1; // Initial value
 
     // Function to handle changes in the input field
-    let handleInputChange = () => {
-        const inputElement = document.getElementById('amount');
-        let newValue = parseInt(inputElement.value);
+    // let handleInputChange = () => {
+    //     const inputElement = document.getElementById('amount');
+    //     let newValue = parseInt(inputElement.value);
 
-        if (isNaN(newValue) || newValue < parseInt(inputElement.min)) {
-            newValue = parseInt(inputElement.min);
-        } else if (newValue > parseInt(inputElement.max)) {
-            newValue = parseInt(inputElement.max);
-        }
+    //     if (isNaN(newValue) || newValue < parseInt(inputElement.min)) {
+    //         newValue = parseInt(inputElement.min);
+    //     } else if (newValue > parseInt(inputElement.max)) {
+    //         newValue = parseInt(inputElement.max);
+    //     }
 
-        amount = newValue;
-        render(amount);
-    }
-
-    // Function to handle addition
+    //     amount = newValue;
+    //     render(amount);
+// Function to handle addition
     let handlePlus = () => {
         const inputElement = document.getElementById('amount');
         amount = Math.min(parseInt(inputElement.max), amount + 1);
@@ -312,6 +333,51 @@ let handleMinuss = () => {
         const inputElement = document.getElementById('amount');
         inputElement.value = value;
     }
+</script>
+<script>
+    //              const sizeInputs = document.querySelectorAll('.size-input');
+    //                 const selectedSizeElement = document.getElementById('selected-size');
+                    
+    //                 sizeInputs.forEach(input => {
+    //                     input.addEventListener('change', function() {
+    //                         if (this.checked) {
+    //                             const selectedSize = this.value;
+    //                             console.log('Kích thước bạn đã chọn là: ' + selectedSize);
+    //                             // selectedSizeElement.textContent = "/" + selectedSize;
+    //                         }
+    //                     });
+    //                 });
+    // const unitPrice = document.getElementById('price');
+
+// Số lượng sản phẩm ban đầu
+let amount1 = 1; 
+
+// Function to handle addition
+let handlePlus1 = () => {
+  const inputElement = document.getElementById('amount');
+  amount = Math.min(parseInt(inputElement.max), amount1 + 1);
+  render(amount);
+}
+
+// Function to handle subtraction
+let handleMinus1 = () => {
+  const inputElement = document.getElementById('amount');
+  amount = Math.max(parseInt(inputElement.min), amount1 - 1);
+  render(amount);
+}
+
+// Function to update the view
+let render1 = (value) => {
+  const inputElement = document.getElementById('amount');
+  inputElement.value = value;
+
+  // Tính tổng tiền dựa trên số lượng và giá tiền của sản phẩm
+  const totalPrice = value * unitPrice;
+
+  // Hiển thị tổng tiền trên giao diện
+  const totalPriceElement = document.getElementById("totalPrice");
+  totalPriceElement.textContent = totalPrice;
+}
 </script>
 <script>
     // JavaScript code to continuously change the placeholder text with slower effect
@@ -371,33 +437,6 @@ let handleMinuss = () => {
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    // JavaScript function to handle the search
-    function searchProduct() {
-        // Get the search query from the input field
-        var searchQuery = document.getElementById("searchInput").value;
-        localStorage.setItem("searchQuery", searchQuery);
-        // Create a new XMLHttpRequest object
-        var xhttp = new XMLHttpRequest();
-
-        // Configure the AJAX request
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // On successful response, update the search results
-                document.getElementById("searchResults").innerHTML = this.responseText;
-            }
-        };
-
-        // Open the AJAX request
-        xhttp.open("POST", "model/search_product.php", true);
-
-        // Set the request header
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        // Send the AJAX request with the search query as data
-        xhttp.send("query=" + encodeURIComponent(searchQuery));
-    }
-</script>
 </body>
 
 </html>

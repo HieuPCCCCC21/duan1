@@ -5,7 +5,11 @@ require_once "model/pdo.php";
 require_once "model/taikhoan.php";
 require_once "model/category.php";
 require_once "model/product.php";
+require_once "model/order.php";
+require_once "model/statistical.php";
 // Controller
+require_once "controller/order_controller.php";
+require_once 'controller/add_to_cart.php';
 require_once "controller/account_controller.php";
 require_once "controller/404_controler.php";
 require_once "controller/register.php"; 
@@ -47,6 +51,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
                 list_nam($id);
             }
             break;
+        case 'addtocart':
+            addtocart();
+            break;
         case 'yeuthich':
             yeuthich();
             break;
@@ -56,6 +63,7 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_yt':
             show_yt();
             break;
+       
         case 'home_admin':
             home_admin();
             break;
@@ -89,6 +97,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'delete_user':
             delete_user_ctr();
             break;
+        case 'show_order_admin':
+            order_ctr();
+            break;
         case 'show_staffs_admin':
             show_staffs_ctr();
             break;
@@ -96,7 +107,7 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             show_customers_ctr();
             break;
         case 'change_pass_staff':
-            change_password_staff();
+            change_password_user();
             break;
         case 'login':
             login();

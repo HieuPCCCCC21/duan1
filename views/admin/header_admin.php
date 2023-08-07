@@ -298,7 +298,7 @@ if (isset($_SESSION['user'])) {
         </a>
         <ul id="bill-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="list_order.html">
+            <a href="?act=show_order_admin">
               <i class="bi bi-circle"></i><span>Danh sách đơn hàng</span>
             </a>
           </li>
@@ -340,12 +340,12 @@ if (isset($_SESSION['user'])) {
       </li><!-- End Forms Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#comment" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-chat-square-dots"></i><span>Quản lý bình luận</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-chat-square-dots"></i><span>Quản lý phản hồi</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="comment" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="#">
-              <i class="bi bi-circle"></i><span>Danh sách bình luận</span>
+              <i class="bi bi-circle"></i><span>Danh sách phản hồi</span>
             </a>
           </li>
         </ul>

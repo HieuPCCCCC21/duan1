@@ -30,6 +30,7 @@ function  change_password($staff_id, $password,){
     $stmt = $conn->prepare($sql);
     $stmt->execute([$password,$staff_id]);
 }
+
 function check_exists_email($email)
 {
     $sql = "SELECT email FROM user where email= ?";

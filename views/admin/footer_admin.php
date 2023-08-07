@@ -63,14 +63,13 @@
     });
 </script>
 <script>
-    document.getElementById("passwordChangeForm").addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
-      let pass_old = "<?=$_SESSION['user']['password']?>"; 
+  function change_password(){
+    let pass_old = "<?=$_SESSION['user']['password']?>"; 
       // Lấy giá trị từ các trường input
       const currentPassword = document.getElementById("currentPassword").value;
       const newPassword = document.getElementById("newPassword").value;
       const renewPassword = document.getElementById("renewPassword").value;
-      
+      const id_user = document.getElementById("id_user").value;
       // Kiểm tra nếu các trường đã được điền đầy đủ
       if (currentPassword === '' || newPassword === '' || renewPassword === '') {
         showErrorMessage("Vui lòng điền đầy đủ thông tin.");
@@ -85,15 +84,34 @@
       if (currentPassword !== pass_old) {                                         
       showErrorMessage("Mật khẩu cũ không đúng");
       return;
-    }  
-      // Thực hiện các xử lý thay đổi mật khẩu tại đây.
-      // Ví dụ: gửi dữ liệu thông qua Ajax hoặc chuyển hướng trang.
-      
-      // Hiển thị thành công và reset form
-      showSuccessMessage("Đổi mật khẩu thành công!");
-      document.getElementById("passwordChangeForm").reset();
-    });
-
+     }  
+        // Gửi dữ liệu đến server qua Ajax
+    const xhr = new XMLHttpRequest();
+    xhr.open("post", "model/change_pass.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.success) {
+            showSuccessMessage("Đổi mật khẩu thành công!");
+            document.getElementById("passwordChangeForm").reset();
+          } else {
+            showErrorMessage(response.message);
+          }
+        } else {
+          showErrorMessage("Đã xảy ra lỗi khi gửi yêu cầu.");
+        }
+      }
+    };
+     // Dữ liệu gửi lên server
+    const formData = new FormData();
+    formData.append("change_password", true);
+    formData.append("renewpassword", newPassword);
+    formData.append("old_password", currentPassword);
+    formData.append("id_user", id_user);
+    xhr.send(formData);
+    }
     function showErrorMessage(message) {
       const errorMessageElement = document.createElement("div");
       errorMessageElement.textContent = message;
@@ -112,12 +130,12 @@
       successMessageElement.classList.add("success-message", "animate__animated", "animate__fadeInDown");
       const form = document.getElementById("passwordChangeForm");
       form.appendChild(successMessageElement);
-
       setTimeout(function () {
-        successMessageElement.remove();
-      }, 3000);
+      successMessageElement.remove();
+     }, 3000);
     }
 </script>
+
 
 </body>
 

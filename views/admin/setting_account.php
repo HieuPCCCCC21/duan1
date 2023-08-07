@@ -196,7 +196,7 @@
                   </div>
 
                   <div class="text-center">
-                    <input type="submit" name ="update_user" class="btn btn-primary" onclick="return confirm('Bạn sẽ phải đăng nhập lại để tiếp tục phiên làm việc');" value="Cập nhật tài khoản">
+                    <input type="submit" name ="update_user"  class="btn btn-primary" onclick="return confirm('Bạn sẽ phải đăng nhập lại để tiếp tục phiên làm việc');" value="Cập nhật tài khoản">
                   </div>
                 </form><!-- End Profile Edit Form -->
 
@@ -238,7 +238,7 @@
                   </div>
 
                   <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="submit" name="change_password" class="btn btn-primary">Save Changes</button>
                   </div>
                 </form><!-- End settings Form -->
 
@@ -246,29 +246,31 @@
 
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <!-- Change Password Form -->
-                <form id="passwordChangeForm" class="animate__animated animate__bounceInDown" method="post" action="?act=change_pass_staff">
-                <div class="row mb-3">
-                  <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="password" type="password" name="old_pass" class="form-control" id="currentPassword">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="newpassword" type="password" class="form-control" id="newPassword">
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                  <div class="col-md-8 col-lg-9">
-                    <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" name="change_password" onclick="return confirm('Bạn sẽ phải đăng nhập lại để tiếp tục phiên làm việc')" class="btn btn-primary">Change Password</button>
-                </div>
-              </form>
+                <form  id="passwordChangeForm" >
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" name="old_password" class="form-control" id="currentPassword">
+                        <input type="hidden" id="id_user" value="<?=$user['id']?>">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                      </div>
+                    </div>
+                    <div id="successMessage" class="success-message animate__animated animate__fadeInDown" style="display: none;"></div>
+                    <div class="text-center">
+                      <button type="button" onclick="change_password()" class="btn btn-primary" >Change Password</button>
+                    </div>
+               </form>
               </div>
 
             </div><!-- End Bordered Tabs -->
