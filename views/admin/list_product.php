@@ -71,7 +71,7 @@
          <!-- Display the sizes for the product -->
         <td>
              <a href="'.$edit_pr.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
-             <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
+             <a href="'.$delete_pr.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
         </td>
     </tr>';
     $ordinalNumber++;

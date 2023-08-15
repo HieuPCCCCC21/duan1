@@ -35,7 +35,8 @@
     foreach ($all_order as $order) {
     $note = strlen($order['note']) > 10 ? substr($order['note'], 0, 10) . '...' : $order['note'];
     $email = strlen($order['email']) > 10 ? substr($order['email'], 0, 10) . '...' : $order['email'];
-    $delete_pr = "index.php?act=delete_order&id=" . $order['id'];
+    $older_detail = "index.php?act=order_detail&id=" . $order['id'];
+    $delete_order = "index.php?act=delete_order&id=" . $order['id'];
     $status_label = isset($status_labels[$order['status']]) ? $status_labels[$order['status']] : 'Không xác định';
     echo '<tr>
         <td>' . $ordinalNumber. '</td>
@@ -48,7 +49,8 @@
         <td>' . $status_label . '</td>
          <!-- Display the sizes for the order -->
         <td>
-             <a href="'.$delete_pr.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-ticket-detailed"></i></a>
+             <a href="'.$older_detail.'"  class="text-info" title="Show Detail " data-toggle="tooltip"><i class="bi bi-ticket-detailed"></i></a>
+             <a href="'.$delete_order.'"  class="delete" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
         </td>
     </tr>';
     $ordinalNumber++;

@@ -437,6 +437,33 @@ let render1 = (value) => {
     });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    // JavaScript function to handle the search
+    function searchProduct() {
+        // Get the search query from the input field
+        var searchQuery = document.getElementById("searchInput").value;
+        localStorage.setItem("searchQuery", searchQuery);
+        // Create a new XMLHttpRequest object
+        var xhttp = new XMLHttpRequest();
+
+        // Configure the AJAX request
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // On successful response, update the search results
+                document.getElementById("searchResults").innerHTML = this.responseText;
+            }
+        };
+
+        // Open the AJAX request
+        xhttp.open("POST", "model/search_product.php", true);
+
+        // Set the request header
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        // Send the AJAX request with the search query as data
+        xhttp.send("query=" + encodeURIComponent(searchQuery));
+    }
+</script>
 </body>
 
 </html>

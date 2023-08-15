@@ -1,7 +1,7 @@
 <?php
 function inser_register($fullname,$email,$phone,$password){
-    $sql="INSERT INTO `user`( `fullname`, `email`, `phone`,`password`) 
-    VALUES ('{$fullname}','{$email}','{$phone}','{$password}')";
+    $sql="INSERT INTO `user`( `fullname`, `email`, `phone`,`password`,`role`,`deleted`) 
+    VALUES ('{$fullname}','{$email}','{$phone}','{$password}',0,0)";
     pdo_execute($sql);
 }
 // function inser_register($data = [])
@@ -57,7 +57,7 @@ function insert_user_admin($name, $username, $password) {
 function show_user() {
     try {
         $conn = pdo_get_connection();
-        $sql = "SELECT * FROM user WHERE role = 0";
+        $sql = "SELECT * FROM user WHERE role = 0 AND deleted = 0";
         $result = pdo_query($sql);
         unset($conn);
         return $result;
@@ -79,8 +79,8 @@ function show_staffs_admin() {
 function delete_user($user_id) {
     try {
         $conn = pdo_get_connection();
-        // Prepare and execute the SQL query to delete the user
-        $sql = "DELETE FROM user WHERE id = ?";
+        // Prepare and execute the SQL query to update the deleted status of the user
+        $sql = "UPDATE user SET deleted = 1 WHERE id = ?";
         pdo_execute($sql, $user_id);
         unset($conn);
     } catch (PDOException $e) {

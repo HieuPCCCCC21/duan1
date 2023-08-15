@@ -41,7 +41,7 @@
                                 <td>'.$category['name'].'</td>
                                 <td>
                                     <a href="'.$edit.'" class="edit" title="Edit" data-toggle="tooltip"><i class="bi bi-pencil"></i></a>
-                                    <a href="'.$delete.'"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
+                                    <a href="'.$delete.'" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')"  class="delete" title="Delete" data-toggle="tooltip"><i class="bi bi-trash3"></i></a>
                                 </td>
                                 </tr>
                             ';

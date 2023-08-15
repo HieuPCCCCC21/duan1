@@ -2,24 +2,26 @@
 function recent_order() {
     $conn = pdo_get_connection();
     $sql = "SELECT 
-                o.id AS order_id,
-                u.fullname AS customer_name,
-                p.title AS product_title,
-                SUM(od.price * od.quantity) AS order_price,
-                o.status
-            FROM
-                `order` o
-            INNER JOIN
-                `user` u ON o.user_id = u.id
-            INNER JOIN
-                `order_detail` od ON o.id = od.order_id
-            INNER JOIN
-                `products` p ON od.product_id = p.id
-            GROUP BY
-                o.id, u.fullname, p.title, o.status
-            ORDER BY
-                o.order_date DESC
-            LIMIT 20"; // Lấy 20 đơn hàng gần đây
+    o.id AS order_id,
+    u.fullname AS customer_name,
+    p.title AS product_title,
+    SUM(od.total_product * od.quantity) AS order_price,
+    o.status
+    FROM
+        `order` o
+    INNER JOIN
+        `user` u ON o.user_id = u.id
+    INNER JOIN
+        `order_detail` od ON o.id = od.order_id
+    INNER JOIN
+        `products` p ON od.product_id = p.id
+    WHERE
+        o.deleted = 0
+    GROUP BY
+        o.id, u.fullname, p.title, o.status
+    ORDER BY
+        o.order_date DESC
+    LIMIT 20"; // Lấy 20 đơn hàng gần đây
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -76,7 +78,7 @@ function revenue() {
     $start_of_month = date("Y-m-01");
     $end_of_month = date("Y-m-t");
 
-    $sql = "SELECT SUM(od.price * od.quantity) AS total_revenue
+    $sql = "SELECT SUM(od.total_product * od.quantity) AS total_revenue
             FROM `order` o
             INNER JOIN `order_detail` od ON o.id = od.order_id
             WHERE o.order_date >= :start_of_month AND o.order_date <= :end_of_month AND o.status = 2";

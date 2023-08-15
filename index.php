@@ -1,6 +1,7 @@
 <?php 
 // Model 
 // session_start();
+require_once "model/cart.php";
 require_once "model/pdo.php";
 require_once "model/taikhoan.php";
 require_once "model/category.php";
@@ -8,8 +9,10 @@ require_once "model/product.php";
 require_once "model/order.php";
 require_once "model/statistical.php";
 // Controller
+require_once "controller/thanhtoan.php";
+require_once "controller/bill.php";
 require_once "controller/order_controller.php";
-require_once 'controller/add_to_cart.php';
+require_once 'controller/addtocart.php';
 require_once "controller/account_controller.php";
 require_once "controller/404_controler.php";
 require_once "controller/register.php"; 
@@ -54,6 +57,15 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'addtocart':
             addtocart();
             break;
+        case 'bill':
+            bill();
+            break;
+        case 'bill_cart':
+            bill_cart();
+            break;
+        case 'show_gh':
+            show_gh();
+        break;
         case 'yeuthich':
             yeuthich();
             break;
@@ -63,7 +75,6 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_yt':
             show_yt();
             break;
-       
         case 'home_admin':
             home_admin();
             break;
@@ -75,6 +86,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'result_search_products':
             results_search();
+            break;
+        case 'edit_stt_order':
+            update_stt_order();
             break;
         case 'register_admin':
             register_admin();
@@ -96,6 +110,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'delete_user':
             delete_user_ctr();
+            break;
+        case 'order_detail':
+            order_detail_ctr();
             break;
         case 'show_order_admin':
             order_ctr();
@@ -169,6 +186,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'add_category':
             add_category_ctr();
+            break;
+        case 'delete_order':
+            delete_order_ctr();
             break;
         case 'delete_category':
             delete_category_ctr();
