@@ -20,35 +20,30 @@
 
 <body style="font-family: 'Segoe UI', sans-serif; 
 ">
-    <form action="?act=bill_cart" method="post">
-        <div class="container w-[1280px]  m-auto">
-            <img class="w-1/3 flex flex-col ml-[500px]  my-5" src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/logo.png?1681911001649" alt="">
-            <div class=" grid grid-cols-3 gap-10 ">
+    <main>
+        </div>
+        </div>
+        <div class="container w-[1470px]  m-auto">
+            <img class="w-[200px] flex flex-col ml-[600px]  my-5" src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/logo.png?1681911001649" alt="">
+            <form action="?act=bill_cart" method="post" class=" flex gap-5 mt-10 ">
                 <?php
-                // if (isset($_SESSION['email'])) {
-                //     $fullname =     $_SESSION['email']['fullname'];
-                //     $email =      $_SESSION['email']['email'];
-                //     $phone =    $_SESSION['email']['phone'];
-                //     $address =    $_SESSION['email']['address'];
-                //     $id_users = $_SESSION['email']['id'];
-                // } 
-                // else {
-                //     $fullname = "";
-                //     $email = "";
-                //     $phone = "";
-                //     $address = "";
-                //     $id_users = 1;
-                // }
-                $fullname =    isset($_SESSION['email']['fullname']) ? $_SESSION['email']['fullname'] : "";
-                $email =    isset($_SESSION['email']['email']) ? $_SESSION['email']['email'] : "";
-                $phone =    isset($_SESSION['email']['phone']) ? $_SESSION['email']['phone'] : "";
-                $address =    isset($_SESSION['email']['address']) ? $_SESSION['email']['address'] : "";
-                $id =    isset($_SESSION['email']['id']) ? $_SESSION['email']['id'] : 1;
+                $fullname = isset($_SESSION['email']['fullname']) ? $_SESSION['email']['fullname'] : "";
+                $email = isset($_SESSION['email']['email']) ? $_SESSION['email']['email'] : "";
+                $phone = isset($_SESSION['email']['phone']) ? $_SESSION['email']['phone'] : "";
+                $address = isset($_SESSION['email']['address']) ? $_SESSION['email']['address'] : "";
+                $id = isset($_SESSION['email']['id']) ? $_SESSION['email']['id'] : 2;
                 ?>
                 <input type="hidden" name="id" value="<?= $id ?>">
                 <div>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between ml-[5px]">
                         <p class="text-2xl ">Thông tin nhận hàng</p>
+                        <div>
+                            <?php if (isset($_SESSION['email']) && empty($_SESSION['email'])) : ?>
+                                <a href="?act=login" class="text-[16px] text-blue-400 mt-1 font-semibold cursor-pointer">
+                                    <i class="fa-solid mt-1 fa-right-from-bracket pr-2" style="color: #23a8e1;"></i>Đăng Nhập
+                                </a>
+                            <?php endif; ?>
+                        </div>
                     </div>
                     <div class=" grid grid-cols-1 ">
                         <p></p>
@@ -62,17 +57,29 @@
                         <p></p>
                         <textarea class="border h-[55px] w-[470px] pl-5 rounded-md my-2" name="note" id="" cols="25" rows="10" placeholder="Ghi chú"></textarea>
                     </div>
+                    <div>
+                    </div>
                 </div>
                 <div>
+                    <p class="text-2xl mb-2 ">Vận chuyển</p>
+                    <p class="bg-blue-200 h-[55px] w-[350px] rounded-md text-blue-500  pt-4 pl-5">Vui lòng nhập thông tin giao hàng</p>
                     <p class="text-2xl mt-10 mb-2">Thanh Toán</p>
-                    <input class="mt-[40px]" type="radio" value="2" name="pttt" id="a" required /> Thanh toán khi giao hàng (COD) <i class="fa-solid  fa-money-bill " style="color: #0e8ac8;"></i>
+                    <div class=" border-2 py-4 px-2 text-[18px] cursor-pointer rounded-md h-[60px] w-[350px]">
+                        <input class="mr-3" type="radio" value="1" name="pttt" id="a" required>
+                        Thanh toán khi giao hàng (COD)
+                        <i class="fas fa-money-bill ml-3 text-blue-500"></i>
+                    </div>
+                    <div class="border-2 text-[18px] py-4 px-2 cursor-pointer mt-[20px] rounded-md h-[60px] w-[350px]">
+                        <input class="mr-3" type="radio" value="2" name="pttt" id="b" required>
+                        Chuyển khoản ngân hàng
+                        <i class="fas fa-university ml-3 text-blue-500"></i>
+                    </div>
                 </div>
-                <div class="bg-gray-100 h-[730px] border-1  pl-5 w-[650px]">
-                    <p class="border-b-2 text-3xl flex items-center h-[80px]">Đơn hàng (<?= count($_SESSION['mycart']) ?> sản phẩm)</p>
+                <div class="bg-gray-100 h-max border-1 mr-[30px] pl-5 w-[600px]">
+                    <p class="border-b-2 text-xl flex items-center h-[80px]">Đơn hàng (<?= count($_SESSION['mycart']) ?> sản phẩm)</p>
                     <tbody>
-                        <?php $tong = 40000;
-                        ?>
                         <?php
+                        $tong = 40000;
                         foreach ($_SESSION['mycart'] as  $cart) :
                         ?>
                             <div class="flex content-stretch w-[550px] my-3 gap-5">
@@ -94,35 +101,15 @@
                             ?>
                             <input type="hidden" value="<?= $cart[3] ?>" name="sl" />
                             <input type="hidden" value="<?= $cart[4] ?>" name="size" />
-                            <!-- <input type="hidden" value="<?= $item[8] ?>" name="tre_em" />
-                            <input type="hidden" value="<?= $item[10] ?>" name="ngay_dat_hang" />
-                            <input type="hidden" value="<?= $tong + 40000 ?>" name="tong_tien" /> -->
-
                         <?php
                         endforeach;
                         ?>
-
                     </tbody>
-
-
-                    <!-- <div class="flex content-stretch w-[550px] my-3 gap-5">
-            <div class="">
-                <img class="w-[70px] rounded-xl" src="https://bizweb.dktcdn.net/thumb/medium/100/428/250/products/sg-11134201-23010-wwmzgn1raylvd3-1678845287927.jpg" alt="">
-            </div>
-            <div class="w-[420px]">
-                <p class="text-black ">Quần Dài Thể Thao Unisex Ống Xuông Adidas Firebird Track Pants Navy - GF0214 - Lẻ Quần / L </p>
-                <p class="text-stone-500">Bộ Xanh / S</p>
-            </div>
-            <div class="flex items-center">
-                <p class="text-xl">360.000₫</p>
-            </div>
-        </div> -->
-
                     <div class="border-t-2">
                         <p>Phí ship:40,000đ</p>
                         <div class="flex  my-3">
-                            <p class="text-xl">Tổng cộng</p>
-                            <p id="tongdonhang" class="text-3xl pl-[340px] text-[#4c9aef]">
+                            <p class=" w-[100px] text-xl">Tổng cộng</p>
+                            <p id="tongdonhang" class="text-3xl pl-[300px] text-[#4c9aef]">
                                 <?php
                                 if ($_SESSION['mycart'] != []) :
                                 ?>
@@ -136,65 +123,14 @@
                         </div>
                     </div>
                     <div class="flex mt-7">
-                        <a href="#" class="cursor-pointer text-[#4991ee;] text-xl"><i class="fa-solid fa-angle-left" style="color: #4688fb;"></i> Quay về giỏ hàng</a>
+                        <a href="?act=show_gh" class="cursor-pointer text-[#4991ee;] text-xl"><i class="fa-solid fa-angle-left" style="color: #4688fb;"></i> Quay về giỏ hàng</a>
                         <button class="bg-[#4c9aef] text-white w-[130px] ml-[250px] h-[55px] rounded-md text-xl" name="btn_dh">ĐẶT HÀNG</button>
                     </div>
                     <div>
-
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
-    </form>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
-        var citis = document.getElementById("city");
-        var districts = document.getElementById("district");
-        var wards = document.getElementById("ward");
-        var Parameter = {
-            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-            method: "GET",
-            responseType: "application/json",
-        };
-        var promise = axios(Parameter);
-        promise.then(function(result) {
-            renderCity(result.data);
-        });
-
-        function renderCity(data) {
-            for (const x of data) {
-                citis.options[citis.options.length] = new Option(x.Name, x.Id);
-            }
-            citis.onchange = function() {
-                district.length = 1;
-                ward.length = 1;
-                if (this.value != "") {
-                    const result = data.filter(n => n.Id === this.value);
-
-                    for (const k of result[0].Districts) {
-                        district.options[district.options.length] = new Option(k.Name, k.Id);
-                    }
-                }
-            };
-            district.onchange = function() {
-                ward.length = 1;
-                const dataCity = data.filter((n) => n.Id === citis.value);
-                if (this.value != "") {
-                    const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
-
-                    for (const w of dataWards) {
-                        wards.options[wards.options.length] = new Option(w.Name, w.Id);
-                    }
-                }
-            };
-        }
-        tongdonhang();
-
-        function tongdonhang() {
-            var giohang = document.getElementById("");
-        }
-    </script>
 </body>
 
 </html>

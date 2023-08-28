@@ -31,17 +31,31 @@ function insert_product_ctr() {
         $quantity = $_POST["quantity"];
         $price = $_POST["price"];
         $sizes = $_POST["sizes"];
+        $brand = $_POST['brand'];
+
+        $thumbnail = ''; // Biến chứa tên ảnh của sản phẩm
         if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
             $target_dir = "layout/images/products/";
             $target_file = $target_dir . basename($_FILES['img']['name']);
             $thumbnail = $_FILES['img']['name'];
             move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-        } else {
-            // Xử lý nếu không có hình ảnh được tải lên
-            $thumbnail = '';
         }
+
+        // Xử lý ảnh nhỏ
+        $image_paths = [];
+        if (isset($_FILES['img_small']) && is_array($_FILES['img_small']['name'])) {
+            $target_dir_small = "layout/images/products/";
+
+            for ($i = 0; $i < count($_FILES['img_small']['name']); $i++) {
+                $target_file_small = $target_dir_small . basename($_FILES['img_small']['name'][$i]);
+                $thumbnail_small = $_FILES['img_small']['name'][$i];
+                move_uploaded_file($_FILES['img_small']['tmp_name'][$i], $target_file_small);
+                $image_paths[] = $thumbnail_small;
+            }
+        }
+
         try {
-            $product_id = insert_product($category_id, $title, $thumbnail, $description, $quantity, $price, $sizes);
+            insert_product($category_id, $title,$thumbnail, $description,$brand,$quantity, $price, $sizes, $image_paths);
             header("location:?act=show_product_admin"); 
             // ...
 
@@ -50,6 +64,18 @@ function insert_product_ctr() {
             // ...
         }
     }
+}
+function list_products(){
+    $all_brand = getProductBrands();
+    render("product_list",['brands'=>$all_brand]);
+}
+function man_list(){
+    $all_brand = getProductBrands();
+    render("product_list_man",['brands'=>$all_brand]);
+}
+function woman_list(){
+    $all_brand = getProductBrands();
+    render("woman_product_list",['brands'=>$all_brand]);
 }
 function results_search(){
         $searchQuery = $_POST['results'];

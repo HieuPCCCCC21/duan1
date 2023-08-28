@@ -18,16 +18,17 @@ function all_product($selected_category = null) {
     $result = pdo_query($sql);
     return $result;
 }
-function insert_product($category_id, $title, $thumbnail, $description, $quantity, $price, $sizes) {
+function insert_product($category_id, $title, $thumbnail, $description,$brand, $quantity, $price, $sizes, $image_paths) {
     try {
         $conn = pdo_get_connection();
 
         // Thêm dữ liệu vào bảng products
-        $sql = "INSERT INTO products (category_id, title, thumbnail, desciption, quantity, price,created_at,updated_at,deleted) VALUES (?, ?, ?, ?, ?, ?,NOW(),NOW(),0)";
-        pdo_execute($sql, [$category_id, $title, $thumbnail, $description, $quantity, $price]);
+        $sql = "INSERT INTO products (category_id,title,product_brand, thumbnail, desciption, quantity, price, created_at, updated_at, deleted) VALUES (?, ?, ?,?, ?, ?, ?, NOW(), NOW(), 0)";
+        pdo_execute($sql, [$category_id, $title, $brand , $thumbnail, $description, $quantity, $price]);
 
         // Lấy ID của sản phẩm vừa thêm
         $product_id = pdo_execute_return_lastInsertId("SELECT id FROM products ORDER BY id DESC LIMIT 1");
+
         // Thêm các size vào bảng sizes nếu chưa tồn tại và lưu lại các id của size
         $size_ids = [];
         $size_names = explode(',', $sizes);
@@ -51,6 +52,12 @@ function insert_product($category_id, $title, $thumbnail, $description, $quantit
         $sql = "INSERT INTO product_sizes (product_id, size_id) VALUES (?, ?)";
         foreach ($size_ids as $size_id) {
             pdo_execute($sql, [$product_id, $size_id]);
+        }
+
+        // Thêm các ảnh nhỏ vào bảng gallery
+        $sql = "INSERT INTO gallery (product_id, thumbnail) VALUES (?, ?)";
+        foreach ($image_paths as $image_path) {
+            pdo_execute($sql, [$product_id, $image_path]);
         }
 
         unset($conn);
@@ -185,6 +192,23 @@ function loadall_nam($category_id)
         throw $e;
     }
 }
+function getProductBrands() {
+    $conn = pdo_get_connection();
+    $stmt = $conn->prepare("SELECT DISTINCT product_brand FROM products");
+    $stmt->execute();
+    $brands = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    return $brands;
+}
+function product_gallery($product_id) {
+        $conn = pdo_get_connection();
+        $sql = "SELECT thumbnail FROM gallery WHERE product_id = :product_id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        unset($conn);
+        return $result;
+}
 function loadall_nu($category_id)
 {
     try {
@@ -214,6 +238,4 @@ function load_yeuthich($id){
     $yeuthich = pdo_query($sql);
     return $yeuthich;
 }
-
-
 ?>

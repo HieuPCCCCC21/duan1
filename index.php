@@ -1,6 +1,7 @@
 <?php 
 // Model 
 // session_start();
+require_once "model/feedback.php";
 require_once "model/cart.php";
 require_once "model/pdo.php";
 require_once "model/taikhoan.php";
@@ -9,6 +10,8 @@ require_once "model/product.php";
 require_once "model/order.php";
 require_once "model/statistical.php";
 // Controller
+require_once "controller/collaborators_controller.php";
+require_once "controller/policy_controller.php";
 require_once "controller/thanhtoan.php";
 require_once "controller/bill.php";
 require_once "controller/order_controller.php";
@@ -21,11 +24,11 @@ require_once "controller/home_controller.php";
 require_once "controller/product_controller.php";
 require_once "controller/controller.php";
 require_once "controller/register.php";
+include_once "controller/feedback_controller.php";
 require_once "controller/category_controller.php";
 require_once "controller/main.php";
+require_once "controller/introduce_controller.php";
 require_once "controller/sanpham_ct.php";
-require_once "controller/list_nam.php";
-require_once "controller/list_nu.php";
 require_once "controller/yeuthich.php";
 if(!isset($_SESSION['email'])){
     $_SESSION['email']=[];
@@ -42,17 +45,14 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
                 new_sanphamct($id);
             }
             break;
-        case 'list_nam':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                list_nam($id);
-            }
+        case 'all_products':
+        list_products();
+        break;
+        case 'man_clothes':
+            man_list();
             break;
-        case 'list_nu':
-            if (isset($_GET['id'])) {
-                $id = $_GET['id'];
-                list_nam($id);
-            }
+        case 'woman_clothes':
+            woman_list();
             break;
         case 'addtocart':
             addtocart();
@@ -99,6 +99,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'register':
             register();
             break;
+        case 'feedback':
+            feedback();
+            break;
         case 'login_admin_account':
             login_admin_ctr();
             break;
@@ -119,6 +122,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'show_staffs_admin':
             show_staffs_ctr();
+            break;
+        case 'show_feedback_admin':
+            list_feedback();
             break;
         case 'show_user_admin':
             show_customers_ctr();
@@ -160,6 +166,12 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'show_category_admin':
             category_ctr();
             break;
+        case 'chinh_sach':
+            policy();
+            break;
+        case 'gioi_thieu':
+            introduce();
+            break;
         case 'edit_customer':
             edit_customer_ctr();
             break;
@@ -195,6 +207,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'save_add_category':
             insert_category_ctr();
+            break;
+        case 'cong_tac_vien':
+            collaborators();
             break;
         default:
             show_404();

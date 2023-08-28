@@ -3,25 +3,23 @@ function recent_order() {
     $conn = pdo_get_connection();
     $sql = "SELECT 
     o.id AS order_id,
-    u.fullname AS customer_name,
+    o.full_name AS customer_name,
     p.title AS product_title,
-    SUM(od.total_product * od.quantity) AS order_price,
+    od.total_product AS order_price,
     o.status
-    FROM
-        `order` o
-    INNER JOIN
-        `user` u ON o.user_id = u.id
-    INNER JOIN
-        `order_detail` od ON o.id = od.order_id
-    INNER JOIN
-        `products` p ON od.product_id = p.id
-    WHERE
-        o.deleted = 0
-    GROUP BY
-        o.id, u.fullname, p.title, o.status
-    ORDER BY
-        o.order_date DESC
-    LIMIT 20"; // Lấy 20 đơn hàng gần đây
+FROM
+    `order` o
+INNER JOIN
+    `order_detail` od ON o.id = od.order_id
+INNER JOIN
+    `products` p ON od.product_id = p.id
+WHERE
+    o.deleted = 0
+GROUP BY
+    o.id, o.full_name, p.title, od.total_product, o.status
+ORDER BY
+    o.order_date DESC
+LIMIT 20;;"; // Lấy 20 đơn hàng gần đây
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -46,7 +44,32 @@ function top_selling() {
                 od.product_id
             ORDER BY
                 total_quantity DESC
-            LIMIT 5"; // Lấy 10 sản phẩm bán chạy nhất
+            LIMIT 5"; // Lấy 5 sản phẩm bán chạy nhất
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}
+function top10_selling() {
+    $conn = pdo_get_connection();
+
+    $sql = "SELECT 
+                p.id AS product_id,
+                p.thumbnail AS product_image,
+                p.title AS product_name,
+                p.price AS product_price,
+                SUM(od.quantity) AS total_quantity     
+            FROM
+                `order_detail` od
+            INNER JOIN
+                `products` p ON od.product_id = p.id
+            GROUP BY
+                od.product_id
+            ORDER BY
+                total_quantity DESC
+            LIMIT 10"; // Lấy 10 sản phẩm bán chạy nhất
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();
@@ -78,7 +101,7 @@ function revenue() {
     $start_of_month = date("Y-m-01");
     $end_of_month = date("Y-m-t");
 
-    $sql = "SELECT SUM(od.total_product * od.quantity) AS total_revenue
+    $sql = "SELECT SUM(od.total_product) AS total_revenue
             FROM `order` o
             INNER JOIN `order_detail` od ON o.id = od.order_id
             WHERE o.order_date >= :start_of_month AND o.order_date <= :end_of_month AND o.status = 2";
@@ -140,4 +163,3 @@ function product_catalog() {
     // Trả về mảng chứa thông tin số lượng sản phẩm trong mỗi danh mục
     return $result;
 }
-?>

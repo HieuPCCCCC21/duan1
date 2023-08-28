@@ -30,6 +30,14 @@ function  change_password($staff_id, $password,){
     $stmt = $conn->prepare($sql);
     $stmt->execute([$password,$staff_id]);
 }
+function user_orders($user_id) {
+    $sql = "SELECT id, code_order, order_date, address, total, status FROM `order` WHERE user_id = ?";
+    $conn = pdo_get_connection(); 
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$user_id]);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $results;
+}
 
 function check_exists_email($email)
 {

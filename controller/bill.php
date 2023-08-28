@@ -12,7 +12,7 @@ function bill()
 function bill_cart()
 {
     if (isset($_POST['btn_dh'])) {
-        $fullname    = $_POST['fullname'];
+        $fullname = $_POST['fullname'];
         $phone = $_POST['phone'];
         $email = $_POST['email'];
         $address = $_POST['address'];
@@ -48,12 +48,10 @@ function bill_cart()
             $note,
             $order_date,
             $ma_hd
-        ];
+        ];  
         $_SESSION['data'][] =$data;
-        add_bill($phone, $email, $address, $id_user,  $tong_tien, $pttt, $note ,$ma_hd);
+        $id = add_bill($phone,$email,$fullname, $address, $id_user, $tong_tien, $pttt, $note ,$ma_hd);
         // lấy id của order dòng 51-52
-        $result = list_oder();
-        $id = $result['id'];
         foreach ($_SESSION['mycart'] as $cart) {
             insert_oder_detail($id, $cart[7],$cart[3],$cart[5],$cart['4']);
         }

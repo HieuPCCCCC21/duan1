@@ -37,7 +37,45 @@ if (isset($_SESSION['user'])) {
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  
+  <style>
+.image-previews {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-preview {
+    position: relative;
+    width: 100px; /* Điều chỉnh kích thước ảnh nhỏ tại đây */
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.remove-image-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.remove-image-btn:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    color: white;
+}
+</style>
   <!-- Template Main CSS File -->
   <link href="views/admin/assets/css/style.css" rel="stylesheet">
 

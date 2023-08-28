@@ -60,7 +60,7 @@
 <body style="font-family: 'Segoe UI', sans-serif;  
 ">
   <div class="container w-[1380px]  bg-gray-100 m-auto">
-    <img class="w-[20%] ml-[450px] " src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/logo.png?1681911001649" alt="">
+    <img class="w-[200px] ml-[550px] " src="https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/logo.png?1681911001649" alt="">
     <div class="grid grid-cols-2 gap-24 mt-10">
       <div class="ml-10">
         <div class="flex ">
@@ -71,41 +71,34 @@
             <p class="text-xl font-medium ">Cảm ơn bạn đã đặt hàng</p>
           </div>
         </div>
-
         <div class="grid grid-cols-2 border-2 px-5">
           <div>
             <p class="text-xl font-normal ">Thông tin mua hàng</p>
             <p class="my-3"></p>
-            <p class="my-3"><?= $bill[0] ?></p>
-            <p class="my-3"><?= $bill[2] ?></p>
+            <p class="my-3">Họ Và Tên: <?= $bill[0] ?></p>
+            <p class="my-3">Email: <?= $bill[2] ?></p>
           </div>
           <div>
             <p class="text-xl font-normal ">Địa chỉ nhận hàng</p>
-            <p class="my-3"><?= $bill[3] ?></p>
-            <p class="my-3"><?= $bill[1] ?></p>
+            <p class="my-3">Địa chỉ nhận hàng: <?= $bill[3] ?></p>
+            <p class="my-3">Sdt: <?= $bill[1] ?></p>
           </div>
           <div>
             <p class="text-xl font-normal ">Phương thức vận chuyển</p>
-            <p class="my-3"><?= $bill[8] ?></p>
+            <p class="my-3">Vận chuyển nhanh </p>
           </div>
           <div>
             <p class="text-xl font-normal ">Phương thức thanh toán</p>
-            <p class="my-3">Thanh toán khi giao hàng (COD)</p>
+            <p class="my-3"><?= $bill[8] ?></p>
           </div>
         </div>
       </div>
       <div class="bg-white  border-1  pl-5 w-[500px]">
         <p class="border-b-2 text-xl flex items-center h-[50px]">Đơn hàng #<?=$bill[11]?></p>
-
-
         <tbody>
-
-
-
           <?php
           $tong = 0;
           foreach ($_SESSION['mycart'] as $cart) :
-
           ?>
             <div class="flex content-stretch w-[450px] my-3 gap-5">
               <tr>
@@ -122,24 +115,7 @@
             $tong += $tong_tien;
             ?>
           <?php endforeach ?>
-
-
-
         </tbody>
-
-
-        <!-- <div class="flex content-stretch w-[500px] my-3 gap-5">
-                <div class="">
-                    <img class="w-[70px] rounded-xl" src="https://bizweb.dktcdn.net/thumb/medium/100/428/250/products/sg-11134201-23010-wwmzgn1raylvd3-1678845287927.jpg" alt="">
-                </div>
-                <div class="w-[420px]">
-                    <p class="text-black text-sm ">Quần Dài Thể Thao Unisex Ống Xuông Adidas Firebird Track Pants Navy - GF0214 - Lẻ Quần / L </p>
-                    <p class="text-stone-500">Bộ Xanh / S</p>
-                </div>
-                <div class="flex items-center">
-                    <p class="text-sm">360.000₫</p>
-                </div>
-            </div> -->
         <?php
         if ($_SESSION['mycart'] != []) :
         ?>
@@ -151,16 +127,12 @@
         <?php
         endif
         ?>
-
       </div>
-
     </div>
     <div>
-      <button class=" bg-[#4d9ef9] rounded-md  ml-[460px]  "><a href="?act=main">Tiếp tục mua hàng</a></button>
+      <button class=" bg-[#4d9ef9] rounded-md  ml-[630px] mt-[30px]  "><a href="?act=main">Tiếp tục mua hàng</a></button>
     </div>
   </div>
-
-
 </body>
 
 </html>

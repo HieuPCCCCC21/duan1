@@ -2,13 +2,13 @@
 function all_order() {
     $conn = pdo_get_connection();
     $sql = "SELECT 
-    u.fullname,
-        o.*
-    FROM
-        `order` o
-    INNER JOIN
-        `user` u ON o.user_id = u.id
-    WHERE o.deleted = 0 AND u.deleted = 0";
+    CASE WHEN o.user_id = 2 THEN 'Customer is not logged in' ELSE u.fullname END AS fullname,
+    o.*
+FROM
+    `order` o
+LEFT JOIN
+    `user` u ON o.user_id = u.id
+WHERE o.deleted = 0 AND (o.user_id = 2 OR u.deleted = 0);";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -45,6 +45,7 @@ function order_detail($order_id) {
                 od.product_id,
                 od.total_product,
                 od.quantity,
+                od.product_size,
                 p.title AS product_title,
                 p.thumbnail AS product_thumbnail
             FROM
@@ -108,4 +109,3 @@ function insert_order($user_id, $phone_number, $address, $note, $order_date, $st
         throw $e;
     }
 }
-?>

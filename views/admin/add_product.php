@@ -25,10 +25,6 @@
                                         <label for="exampleInputName1">Tên sản phẩm</label>
                                         <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label for="exampleInputPassword4">Phân loại</label>
-                                        <input type="text" class="form-control" id="exampleInputPassword4" placeholder="" name="classify">
-                                    </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputName1">Số lượng</label>
                                         <input type="text" class="form-control" id="exampleInputName1" name="quantity">
@@ -36,6 +32,10 @@
                                     <div class="form-group">
                                         <label for="exampleInputName1">Giá</label>
                                         <input type="number" class="form-control" id="exampleInputName1" name="price">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputName1">Thương hiệu</label>
+                                        <input type="text" class="form-control" id="exampleInputName1" name="brand">
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
@@ -51,7 +51,20 @@
                                         <label for="exampleTextarea1">Mô tả</label>
                                         <textarea class="form-control" id="exampleTextarea1" name="mota" rows="4"></textarea>
                                     </div>
-
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group" id="image-gallery">
+                                                    <label>Ảnh nhỏ</label>
+                                                    <div class="input-group">
+                                                        <button class="btn btn-gradient-primary add-image-btn" type="button">Thêm ảnh</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row image-previews "></div>
+                                    </div>
+                                    <div class="image-previews"></div>
                                     <div class="form-group row" id="size-container">
                                         <label for="size-select" class="col-sm-2 col-form-label">Size</label>
                                         <div class="col-sm-6">
@@ -76,82 +89,6 @@
                                     <button type="reset" class="btn btn-gradient-primary me-2">Reset</button>
                                     <button class="btn btn-secondary">Quay lại</button>
                                 </form>
-                                <script>
-                                document.addEventListener("DOMContentLoaded", function () {
-                                    const form = document.querySelector("addsppp");
-
-                                    form.addEventListener("submit", function (event) {
-                                        event.preventDefault();
-                                        let isValid = true;
-
-                                        // Reset previous error styles
-                                        const formInputs = form.querySelectorAll("input, select, textarea");
-                                        formInputs.forEach((input) => {
-                                            input.classList.remove("invalid");
-                                            const errorMessage = input.parentElement.querySelector(".error-message");
-                                            if (errorMessage) {
-                                                errorMessage.remove();
-                                            }
-                                        });
-
-                                        // Validate danh mục
-                                        const categorySelect = document.querySelector("#inputState");
-                                        if (categorySelect.value === "") {
-                                            isValid = false;
-                                            categorySelect.classList.add("invalid");
-                                            categorySelect.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng chọn danh mục</div>');
-                                        }
-
-                                        // Validate tên sản phẩm
-                                        const productNameInput = document.querySelector("#exampleInputName1");
-                                        if (productNameInput.value.trim() === "") {
-                                            isValid = false;
-                                            productNameInput.classList.add("invalid");
-                                            productNameInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập tên sản phẩm</div>');
-                                        }
-
-                                        // Validate số lượng
-                                        const quantityInput = document.querySelector("[name='quantity']");
-                                        if (quantityInput.value.trim() === "") {
-                                            isValid = false;
-                                            quantityInput.classList.add("invalid");
-                                            quantityInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập số lượng</div>');
-                                        }
-
-                                        // Validate giá
-                                        const priceInput = document.querySelector("[name='price']");
-                                        if (priceInput.value.trim() === "") {
-                                            isValid = false;
-                                            priceInput.classList.add("invalid");
-                                            priceInput.insertAdjacentHTML("afterend", '<div class="error-message">Vui lòng nhập giá</div>');
-                                        }
-
-                                        // Validate ảnh (chỉ hỗ trợ jpg và png)
-                                        const imageInput = document.querySelector("[name='img']");
-                                        const allowedExtensions = ["jpg", "png"];
-                                        const imageExtension = imageInput.value.split(".").pop().toLowerCase();
-                                        if (!allowedExtensions.includes(imageExtension)) {
-                                            isValid = false;
-                                            imageInput.classList.add("invalid");
-                                            imageInput.insertAdjacentHTML("afterend", '<div class="error-message">Ảnh phải có định dạng jpg hoặc png</div>');
-                                        }
-
-                                        // Validate size
-                                        const selectedSizesInput = document.querySelector("#selected-sizes-input");
-                                        if (selectedSizesInput.value === "") {
-                                            isValid = false;
-                                            const sizeContainer = document.querySelector("#size-container");
-                                            sizeContainer.classList.add("invalid");
-                                            sizeContainer.insertAdjacentHTML("beforeend", '<div class="error-message">Vui lòng chọn ít nhất một size</div>');
-                                        }
-
-                                        // Submit form if valid
-                                        if (isValid) {
-                                            form.submit();
-                                        }
-                                    });
-                                });
-                            </script>
                             </div>
                         </div>
                     </div>
@@ -161,73 +98,121 @@
         </div>
     </section>
 </main><!-- End #main -->
- <!-- ======= Footer ======= -->
- <footer id="footer" class="footer">
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
-  </footer><!-- End Footer -->
+</footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="views/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="views/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/admin/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="views/admin/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="views/admin/assets/vendor/quill/quill.min.js"></script>
-  <script src="views/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="views/admin/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="views/admin/assets/vendor/php-email-form/validate.js"></script>
+<!-- Vendor JS Files -->
+<script src="views/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="views/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="views/admin/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="views/admin/assets/vendor/echarts/echarts.min.js"></script>
+<script src="views/admin/assets/vendor/quill/quill.min.js"></script>
+<script src="views/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="views/admin/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="views/admin/assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="views/admin/assets/js/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
+<!-- Template Main JS File -->
+<script src="views/admin/assets/js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
         var fileInput = document.querySelector('input[type=file]');
         var uploadButton = document.querySelector('.file-upload-browse');
 
-        uploadButton.addEventListener('click', function () {
+        uploadButton.addEventListener('click', function() {
             fileInput.click();
         });
     });
-  </script>
-   <!-- ======= Footer ======= -->
- <footer id="footer" class="footer">
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const imageGallery = document.getElementById("image-gallery");
+    const addImageButton = imageGallery.querySelector(".add-image-btn");
+    const imagePreviews = document.querySelector(".image-previews");
+    let imageCount = 0; // Số lượng ảnh đã thêm
+
+    addImageButton.addEventListener("click", function() {
+        if (imageCount < 4) {
+            const newInput = document.createElement("input");
+            newInput.type = "file";
+            newInput.className = "file-upload-default";
+            newInput.name = "img_small[]";
+            newInput.style.display = "none";
+            
+            const previewContainer = document.createElement('div');
+            previewContainer.classList.add('col-3', 'mb-3', 'image-preview');
+
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("remove-image-btn");
+            removeButton.textContent = "Xóa";
+            
+            removeButton.addEventListener("click", function() {
+                previewContainer.remove();
+                newInput.remove();
+                imageCount--;
+            });
+
+            newInput.addEventListener("change", function() {
+                const file = this.files[0];
+                const image = document.createElement('img');
+                image.src = URL.createObjectURL(file);
+                image.classList.add('img-thumbnail');
+                previewContainer.appendChild(image);
+                imageCount++;
+            });
+
+            previewContainer.appendChild(removeButton); // Thêm nút xóa vào previewContainer
+            imagePreviews.appendChild(previewContainer);
+            imageGallery.appendChild(newInput);
+            newInput.click();
+        }
+        else {
+            alert("Bạn đã thêm đủ số lượng ảnh tối đa (4 ảnh).");
+        }
+    });
+});
+</script>
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
     </div>
-  </footer><!-- End Footer -->
+</footer><!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="views/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="views/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/admin/assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="views/admin/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="views/admin/assets/vendor/quill/quill.min.js"></script>
-  <script src="views/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="views/admin/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="views/admin/assets/vendor/php-email-form/validate.js"></script>
+<!-- Vendor JS Files -->
+<script src="views/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="views/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="views/admin/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="views/admin/assets/vendor/echarts/echarts.min.js"></script>
+<script src="views/admin/assets/vendor/quill/quill.min.js"></script>
+<script src="views/admin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="views/admin/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="views/admin/assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="views/admin/assets/js/main.js"></script>
-  <script>
+<!-- Template Main JS File -->
+<script src="views/admin/assets/js/main.js"></script>
+<script>
     // Script để thêm và xóa size
     document.getElementById('add-size-btn').addEventListener('click', function() {
         const selectedSize = document.getElementById('size-select').value;

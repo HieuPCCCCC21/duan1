@@ -1,5 +1,7 @@
 <?php include_once "header.php"?>
-<main class="text-center my-10">
+</div>
+</div>
+<main class=" mx-auto w-[1280px] text-center my-10">
     <div class="header">
         <div class="mt-3">
             <div class="parallax bg-[url(https://bizweb.dktcdn.net/100/428/250/themes/822996/assets/cat-banner-1.jpg?1681911001649)] my-10 h-[700px]  float-left bg-cover bg-no-repeat bg-center bg-fixed 

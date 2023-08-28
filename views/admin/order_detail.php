@@ -14,7 +14,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h4 class="mb-4 text-primary">Thông tin khách hàng</h4>
-                                            <p class="mb-2"><strong>Tên khách hàng:</strong> <?=$one_order['fullname']?></p>
+                                            <p class="mb-2"><strong>Tên khách hàng:</strong> <?=$one_order['full_name']?></p>
                                             <p class="mb-2"><strong>Email:</strong> <?=$one_order['email']?></p>
                                             <p class="mb-2"><strong>Địa chỉ:</strong> <?=$one_order['address']?></p>
                                         </div>
@@ -29,6 +29,7 @@
                                                     <h5 class="card-title"><?=$order_product['product_title']?></h5>
                                                     <p class="card-text text-danger">Giá  : <?=number_format($order_product['total_product'],0,',')?>đ</p>
                                                     <p class="card-text">Số lượng: <?=$order_product['quantity']?></p>
+                                                    <p class="card-text">Size <?=$order_product['product_size']?></p>
                                                 </div>
                                             </div>
                                         </div>

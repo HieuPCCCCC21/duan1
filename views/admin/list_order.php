@@ -1,10 +1,8 @@
 <?php include_once 'header_admin.php'?>
 <main id="main" class="main">
-    
     <div class="pagetitle">
       <h1>Quản lý đơn hàng</h1>
     </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
@@ -38,6 +36,11 @@
     $older_detail = "index.php?act=order_detail&id=" . $order['id'];
     $delete_order = "index.php?act=delete_order&id=" . $order['id'];
     $status_label = isset($status_labels[$order['status']]) ? $status_labels[$order['status']] : 'Không xác định';
+    // Kiểm tra trạng thái của đơn hàng
+    $show_detail_link = '';
+    if ($order['status'] != 2 && $order['status'] != 3) {
+        $show_detail_link = '<a href="'.$older_detail.'" class="text-info" title="Show Detail" data-toggle="tooltip"><i class="bi bi-ticket-detailed"></i></a>';
+    }
     echo '<tr>
         <td>' . $ordinalNumber. '</td>
         <td>' . $order['fullname']. '</td>
@@ -49,7 +52,7 @@
         <td>' . $status_label . '</td>
          <!-- Display the sizes for the order -->
         <td>
-             <a href="'.$older_detail.'"  class="text-info" title="Show Detail " data-toggle="tooltip"><i class="bi bi-ticket-detailed"></i></a>
+             ' . $show_detail_link . '
              <a href="'.$delete_order.'"  class="delete" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
         </td>
     </tr>';
@@ -57,9 +60,7 @@
     }?>
     </tbody>
     </table>
-
               <!-- End Table with stripped rows -->
- 
             </div>
           </div>
        
@@ -101,8 +102,5 @@
       $('#example').DataTable();
     })
   </script>
-
-  
-
 </body>
 </html>
