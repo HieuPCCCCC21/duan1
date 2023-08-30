@@ -38,11 +38,11 @@
                     <p>Mật khẩu<span class="text-red-500">*</span> </p>
                     <input type="password" placeholder="Mật khẩu" name="password" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full">
                   </div>
-                  <?php 
+                    <?php 
                       if(!empty($error['error']))
-                      echo "<p class='error'>{$error['error']}</p>"
+                      echo "<p class='text-red-500'>{$error['error']}</p>"
                     ?>
-                 <a href="" class="float-right text-red-500 my-5">Quên mật khẩu?</a>
+                 <a href="?act=quen_mk" class="float-right text-red-500 my-5">Quên mật khẩu?</a>
                   <div class="mt-5">
                     <button class="w-full bg-red-600  rounded-md h-[40px] text-white py-2 hover:scale-105 duration-100" name="btn_login">Đăng nhập</button>
                   </div>

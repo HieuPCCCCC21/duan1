@@ -21,7 +21,7 @@
                 $formatted_price = number_format($listspct['price'], 0, ',');
             }
             ?>
-            <p class="font-[600] text-[22px] my-3"><?= $listspct['product_brand'] ?></p>
+            <p class="font-[600] text-[22px] "><?= $listspct['product_brand'] ?></p>
             <p class="my-1 text-[18px]"><?= $listspct['title'] ?></p>
             <p class="font-bold text-[16px] my-1"><?= $formatted_price ?> đ</p>
             <p class="my-1">Kích cỡ</p>

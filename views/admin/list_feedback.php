@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Danh sách phản hồi </h5>
-                        <div class="table-wrapper">
+                        <form method="POST" action="?act=update_status" class="table-wrapper">
                             <table class="table table-sm datatable">
                                 <thead>
                                     <tr>
@@ -18,9 +18,12 @@
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone</th>
                                         <th scope="col">Nội dung</th>
-                                        <th scope="col">Ngày phản hồi</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Thao tác</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                      
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,90 +36,40 @@
                                     foreach ($list_feedback as $fb) {
                                         $delete_feedback = "?act=delete_feedback&id=" . $fb['id'];
                                         $status_label = isset($status_labels[$fb['status']]) ? $status_labels[$fb['status']] : 'Không xác định';
+
                                         echo '<tr>
-                                                <th scope="row">' . $ordinalNumber . '</th>
-                                                <td>' . $fb['fullname'] . '</td>
-                                                <td>' . $fb['email'] . '</td>
-                                                <td class="fw-bold">' . $fb['phone_number'] . '</td>
-                                                <td>' . $fb['note'] . '</td>
-                                                <td class="fw-bold">' . $fb['created_at'] . '</td>
-                                                <td class="fw-bold">' . $status_label . '</td>
-                                                <td>
-                                                <a href="#" class="text-info" title="Show Detail" data-toggle="tooltip" onclick="showUpdateModal(<?php echo '.$fb['id'].' ?>)"><i class="bi bi-pencil-square"></i></a>                                                                                                       
-                                                    <a href="' . $delete_feedback . '" class="delete" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
-                                                </td>
-                                            </tr>';
+                                                    <th scope="row">' . $ordinalNumber . '</th>
+                                                    <td>' . $fb['fullname'] . '</td>
+                                                    <td>' . $fb['email'] . '</td>
+                                                    <td class="fw-bold">' . $fb['phone_number'] . '</td>
+                                                    <td>' . $fb['note'] . '</td>
+                                                    <td class="fw-bold">' . $fb['created_at'] . '</td>
+                                                    <td class="fw-bold">' . $status_label . '</td>               
+                                                    <td class="text-center">
+                                                        <a href="' . $delete_feedback . '" class="delete text-center" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
+                                                    </td>
+                                                    <td>
+                                                    <select class="form-select" name="feedback_status[' . $fb['id'] . ']">
+                                                        <option value="0" ' . ($fb['status'] == 0 ? 'selected' : '') . '>Chưa phản hồi</option>
+                                                        <option value="1" ' . ($fb['status'] == 1 ? 'selected' : '') . '>Đã phản hồi</option>
+                                                    </select>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" class="btn btn-primary" name="update_feedback" value="' . $fb['id'] . '">Cập nhật</button>
+                                                    </td>
+                                                </tr>';
                                         $ordinalNumber++;
-                                    }?>
+                                    }
+                                    ?>
 
                                 </tbody>
                             </table>
-                        </div>
+                        </form method="POST">
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="updateStatusModalLabel">Cập Nhật Trạng Thái</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="feedbackStatus">Trạng thái:</label>
-                    <select class="form-select" id="feedbackStatus">
-                        <option value="0">Chưa phản hồi</option>
-                        <option value="1">Đã phản hồi</option>
-                    </select>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-primary" onclick="updateFeedbackStatus()">Cập nhật</button>
-                </div>
-                </div>
-            </div>
-            </div>
-
     </section>
 </main><!-- End #main -->
-<script>
-    function showUpdateModal(feedbackId) {
-    // Lấy trạng thái hiện tại của phản hồi và cài đặt cho Select Option
-    var currentStatus = /* lấy trạng thái từ dữ liệu */ // 0 hoặc 1
-    document.getElementById('feedbackStatus').value = currentStatus;
-
-    // Mở modal
-    var modal = new bootstrap.Modal(document.getElementById('updateStatusModal'));
-    modal.show();
-
-    // Lưu feedbackId vào biến toàn cục để sử dụng trong hàm updateFeedbackStatus()
-    selectedFeedbackId = feedbackId;
-}
-
-function updateFeedbackStatus() {
-    var newStatus = document.getElementById('feedbackStatus').value;
-
-    // Thực hiện AJAX request để cập nhật trạng thái
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'update_feedback_status.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                // Cập nhật trạng thái thành công, có thể thực hiện các thay đổi trên giao diện nếu cần
-                alert('Cập nhật trạng thái thành công');
-                // Đóng modal
-                var modal = new bootstrap.Modal(document.getElementById('updateStatusModal'));
-                modal.hide();
-                // Cập nhật lại giao diện nếu cần
-            } else {
-                alert('Có lỗi xảy ra khi cập nhật trạng thái');
-            }
-        }
-    };
-    xhr.send('feedbackId=' + selectedFeedbackId + '&newStatus=' + newStatus);
-}
-</script>
 <?php include_once "footer_admin.php" ?>

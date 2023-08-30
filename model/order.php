@@ -1,5 +1,6 @@
 <?php
-function all_order() {
+function all_order()
+{
     $conn = pdo_get_connection();
     $sql = "SELECT 
     CASE WHEN o.user_id = 2 THEN 'Customer is not logged in' ELSE u.fullname END AS fullname,
@@ -8,13 +9,15 @@ FROM
     `order` o
 LEFT JOIN
     `user` u ON o.user_id = u.id
-WHERE o.deleted = 0 AND (o.user_id = 2 OR u.deleted = 0);";
+WHERE o.deleted = 0 AND (o.user_id = 2 OR u.deleted = 0)
+ORDER BY o.order_date DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-function one_order($order_id) {
+function one_order($order_id)
+{
     $conn = pdo_get_connection();
     $sql = "SELECT
                 o.*,
@@ -32,14 +35,16 @@ function one_order($order_id) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }
-function delete_order($order_id) {
+function delete_order($order_id)
+{
     $conn = pdo_get_connection();
     $sql = "UPDATE `order` SET deleted = 1 WHERE id = :order_id";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':order_id', $order_id, PDO::PARAM_INT);
     $stmt->execute();
 }
-function order_detail($order_id) {
+function order_detail($order_id)
+{
     $conn = pdo_get_connection();
     $sql = "SELECT
                 od.product_id,
@@ -62,7 +67,8 @@ function order_detail($order_id) {
 
     return $result;
 }
-function insert_order($user_id, $phone_number, $address, $note, $order_date, $status, $order_details) {
+function insert_order($user_id, $phone_number, $address, $note, $order_date, $status, $order_details)
+{
     try {
         $conn = pdo_get_connection();
 

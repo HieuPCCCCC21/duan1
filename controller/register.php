@@ -70,6 +70,7 @@ function register_user_admin_ctr() {
 
         try {
             insert_user_admin($name, $username, $password);
+            header("location:?act=show_staffs_admin");
             // Redirect to a success page or perform other actions upon successful registration
             // For example:
             // header("Location: registration_success.php");

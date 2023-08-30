@@ -35,8 +35,8 @@ function login__user_ctr()
          else {
             if (is_array($check_email)) {
                 $_SESSION['email'] = $check_email;
-                $thongbao = "tài khoản đăng nhập thành công";
-                header('location:?act=main');
+                $error['error'] = "Đăng nhập thành công bạn sẽ được chuyển hướng sau 2s";
+                header('refresh:2 ?act=main');
             }
         }
     }

@@ -85,7 +85,7 @@
           </div>
           <div>
             <p class="text-xl font-normal ">Phương thức vận chuyển</p>
-            <p class="my-3">Vận chuyển nhanh </p>
+            <p class="my-3">Giao hàng tận nơi </p>
           </div>
           <div>
             <p class="text-xl font-normal ">Phương thức thanh toán</p>

@@ -35,7 +35,7 @@
                       echo "<p class='error text-rose-600'>{$error['fullname']}</p>"
                     ?>
                   <div class="mt-5">
-                    <p>SỐ ĐIỆN THOẠI <span class="text-red-500">*</span> </p>
+                    <p>Số điện thoại <span class="text-red-500">*</span> </p>
                     <input type="number" placeholder="Nhập Số điện thoại" name="phone" class="border border-gray-400 py-1 px-2  rounded-md h-[40px] w-full"
                     value="<?=isset($_POST['phone'])?$_POST['phone']:''?>"
                     >

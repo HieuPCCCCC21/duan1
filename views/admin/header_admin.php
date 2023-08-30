@@ -382,7 +382,7 @@ if (isset($_SESSION['user'])) {
         </a>
         <ul id="comment" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="?act=show_feedback_admin">
               <i class="bi bi-circle"></i><span>Danh sách phản hồi</span>
             </a>
           </li>

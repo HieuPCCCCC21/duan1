@@ -97,6 +97,14 @@
                     <a class="hover:text-red-800 text-[13px]" href="?act=register">ĐĂNG KÝ</a>
                 <?php } ?>
             </li>
+            <?php
+            if (!empty($_SESSION['email'])) {
+                echo '<li class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
+                after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
+                <a class="hover:text-red-800 text-[13px]" href="?act=info_customer">TÀI KHOẢN</a>
+            </li>';
+            }
+            ?>
             <li class="cursor-pointer h-[60px] text-2xl  relative after:absolute after:bottom-0 after:left-0
                 after:bg-white after:h-0.5 after:w-0 hover:after:w-full after:transition-all after:ease-in-out after:duration-300">
                 <a class="hover:text-red-800 text-[13px]" href="?act=yeuthich">YÊU THÍCH (<?= count($_SESSION['love'])?>)</a>

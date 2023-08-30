@@ -12,7 +12,7 @@ function inser_register($fullname,$email,$phone,$password){
 //   $stmt->execute($data);
 // }
 function check_email_admin($email,$password){
-    $sql="SELECT * FROM `user` where `email`='".$email."' AND `password`='".$password."' AND `role` = 1";
+    $sql="SELECT * FROM `user` WHERE `email` = '".$email."' AND `password` = '".$password."' AND `role` IN (1, 2)";
     $login=pdo_query_one($sql);
     // echo $sql;
     return $login;
@@ -123,5 +123,19 @@ function update_customer($user_id, $fullName, $address, $phone, $email, $thumbna
     $conn = pdo_get_connection();
     $stmt = $conn->prepare($sql);
     $stmt->execute([$fullName, $address, $phone, $email, $thumbnail, $user_id]);
+}
+function check_mail($email){
+    $sql="SELECT * FROM `user` where `email`='".$email."'";
+    $login=pdo_query_one($sql);
+    // echo $sql;
+    return $login;
+}
+function update_pass($email, $pass){
+    $conn = pdo_get_connection();
+    $sql = "UPDATE `user` SET `password` = :pass WHERE `email` = :email";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':pass', $pass, PDO::PARAM_STR);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
 }
 ?>

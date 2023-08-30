@@ -1,6 +1,5 @@
 <?php 
 // Model 
-// session_start();
 require_once "model/feedback.php";
 require_once "model/cart.php";
 require_once "model/pdo.php";
@@ -30,6 +29,8 @@ require_once "controller/main.php";
 require_once "controller/introduce_controller.php";
 require_once "controller/sanpham_ct.php";
 require_once "controller/yeuthich.php";
+require_once "controller/customer_account_controller.php";
+require_once "controller/doi_mk.php";
 if(!isset($_SESSION['email'])){
     $_SESSION['email']=[];
 }
@@ -68,6 +69,24 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         break;
         case 'yeuthich':
             yeuthich();
+            break;
+        case 'quen_mk':
+            quen_mk();
+            break;
+        case 'xacnhan_mk':
+            xacnhan_mk();
+            break;
+        case 'doi_mk':
+            doi_mk();
+            break;
+        case "sendmail":
+            sendmail();
+            break;
+        case "Confirm_password":
+            Confirm_password();
+            break;
+        case "update_password":
+            update_password();
             break;
         case 'yeu_thich_del':
             yeu_thich_del();
@@ -135,6 +154,12 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'login':
             login();
             break;
+        case 'info_customer':
+            info_customer_ctr();
+            break;
+        case 'your_order':
+            customer_info_order_ctr();
+            break;
         case 'lienhe':
             feed_back();
             break;
@@ -184,6 +209,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'update_customer':
             update_customer_ctr();
             break;
+        case 'update_status':
+            update_status_feedback();
+            break;
         case 'update_staff':
             update_staff_ctr();
             break;
@@ -201,6 +229,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'delete_order':
             delete_order_ctr();
+            break;
+        case 'delete_feedback':
+            delete_feedback_ctr();
             break;
         case 'delete_category':
             delete_category_ctr();
