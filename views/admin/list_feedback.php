@@ -21,9 +21,6 @@
                                         <th scope="col">Date</th>
                                         <th scope="col">Trạng thái</th>
                                         <th scope="col">Thao tác</th>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                      
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,6 +31,8 @@
                                     );
                                     $ordinalNumber = 1;
                                     foreach ($list_feedback as $fb) {
+                                        $message = strlen($fb['note']) > 20 ? substr($fb['note'], 0, 20) . '...' : $fb['note'];
+                                        $send_feedback = "?act=send_feedback_customer&id=" . $fb['id'];
                                         $delete_feedback = "?act=delete_feedback&id=" . $fb['id'];
                                         $status_label = isset($status_labels[$fb['status']]) ? $status_labels[$fb['status']] : 'Không xác định';
 
@@ -42,22 +41,17 @@
                                                     <td>' . $fb['fullname'] . '</td>
                                                     <td>' . $fb['email'] . '</td>
                                                     <td class="fw-bold">' . $fb['phone_number'] . '</td>
-                                                    <td>' . $fb['note'] . '</td>
+                                                    <td>' . $message . '</td>
                                                     <td class="fw-bold">' . $fb['created_at'] . '</td>
                                                     <td class="fw-bold">' . $status_label . '</td>               
-                                                    <td class="text-center">
-                                                        <a href="' . $delete_feedback . '" class="delete text-center" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
-                                                    </td>
-                                                    <td>
-                                                    <select class="form-select" name="feedback_status[' . $fb['id'] . ']">
-                                                        <option value="0" ' . ($fb['status'] == 0 ? 'selected' : '') . '>Chưa phản hồi</option>
-                                                        <option value="1" ' . ($fb['status'] == 1 ? 'selected' : '') . '>Đã phản hồi</option>
-                                                    </select>
-                                                    </td>
-                                                    <td>
-                                                        <button type="submit" class="btn btn-primary" name="update_feedback" value="' . $fb['id'] . '">Cập nhật</button>
-                                                    </td>
-                                                </tr>';
+                                                    <td class="text-center">';
+                                                    if ($fb['status'] == 0) {
+                                                        echo '<a href="' . $send_feedback . '" class="edit" title="Reply" data-toggle="tooltip"><i class="bi bi-send"></i></a>';
+                                                    }
+                                            
+                                                    echo '<a href="' . $delete_feedback . '" class="delete text-center" title="Delete" onclick="return confirm(\'Bạn có chắc chắn muốn xóa không ?\')" data-toggle="tooltip"><i class="bi bi-trash"></i></a>
+                                                            </td>
+                                                        </tr>';
                                         $ordinalNumber++;
                                     }
                                     ?>

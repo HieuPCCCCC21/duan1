@@ -121,6 +121,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'feedback':
             feedback();
             break;
+        case 'send_feedback':
+            send_feedback_ctr();
+            break;
         case 'login_admin_account':
             login_admin_ctr();
             break;
@@ -162,6 +165,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
             break;
         case 'lienhe':
             feed_back();
+            break;
+        case 'send_feedback_customer':
+            send_feedback();
             break;
         case 'login_account':
             login__user_ctr();

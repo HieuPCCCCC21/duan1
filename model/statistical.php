@@ -1,5 +1,6 @@
-<?php 
-function recent_order() {
+<?php
+function recent_order()
+{
     $conn = pdo_get_connection();
     $sql = "SELECT 
     o.id AS order_id,
@@ -27,7 +28,8 @@ LIMIT 20;;"; // Lấy 20 đơn hàng gần đây
 
     return $result;
 }
-function top_selling() {
+function top_selling()
+{
     $conn = pdo_get_connection();
 
     $sql = "SELECT 
@@ -52,7 +54,8 @@ function top_selling() {
 
     return $result;
 }
-function top10_selling() {
+function top10_selling()
+{
     $conn = pdo_get_connection();
 
     $sql = "SELECT 
@@ -77,7 +80,8 @@ function top10_selling() {
 
     return $result;
 }
-function sale_today() {
+function sale_today()
+{
     $conn = pdo_get_connection();
 
     // Lấy ngày hiện tại
@@ -95,7 +99,8 @@ function sale_today() {
     // Trả về số lượng đơn hàng trong ngày hiện tại
     return $result['order_count'];
 }
-function revenue() {
+function revenue()
+{
     $conn = pdo_get_connection();
     // Lấy ngày đầu tiên và ngày cuối cùng của tháng hiện tại
     $start_of_month = date("Y-m-01");
@@ -115,7 +120,8 @@ function revenue() {
     // Trả về tổng doanh thu trong tháng hiện tại
     return $result['total_revenue'];
 }
-function sale_yesterday() {
+function sale_yesterday()
+{
     $conn = pdo_get_connection();
 
     // Lấy ngày hôm qua
@@ -133,7 +139,8 @@ function sale_yesterday() {
     // Trả về số lượng đơn hàng ngày hôm qua
     return $result['order_count'];
 }
-function all_customers() {
+function all_customers()
+{
     $conn = pdo_get_connection();
 
     $sql = "SELECT COUNT(*) AS customer_count
@@ -147,14 +154,15 @@ function all_customers() {
     // Trả về số lượng khách hàng có trường role = 0
     return $result['customer_count'];
 }
-function product_catalog() {
+function product_catalog()
+{
     $conn = pdo_get_connection();
 
     $sql = "SELECT c.id AS category_id, c.name AS category_name, COUNT(p.id) AS product_count
-            FROM `category` c
-            LEFT JOIN `products` p ON c.id = p.category_id
-            WHERE c.deleted = 0
-            GROUP BY c.id, c.name";
+    FROM `category` c
+    LEFT JOIN `products` p ON c.id = p.category_id
+    WHERE c.deleted = 0 AND p.deleted =0 
+    GROUP BY c.id, c.name";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute();

@@ -23,19 +23,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Tên sản phẩm</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name" name="name">
+                                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Name"  required name="name">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Số lượng</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" name="quantity">
+                                        <input type="text" class="form-control" id="exampleInputName1" required name="quantity">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Giá</label>
-                                        <input type="number" class="form-control" id="exampleInputName1" name="price">
+                                        <input type="number" class="form-control" id="exampleInputName1" required name="price">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputName1">Thương hiệu</label>
-                                        <input type="text" class="form-control" id="exampleInputName1" name="brand">
+                                        <input type="text" class="form-control" id="exampleInputName1" required name="brand">
                                     </div>
                                     <div class="form-group">
                                         <label>Ảnh</label>
@@ -46,10 +46,15 @@
                                                 <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                                             </span>
                                         </div>
+                                        <?php
+                                        if (isset($error_message)) {
+                                            echo '<div class="text-danger">' . $error_message . '</div>';
+                                        }
+                                        ?>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleTextarea1">Mô tả</label>
-                                        <textarea class="form-control" id="exampleTextarea1" name="mota" rows="4"></textarea>
+                                        <textarea class="form-control" id="exampleTextarea1" required name="mota" rows="4"></textarea>
                                     </div>
                                     <div class="container">
                                         <div class="row">
@@ -68,7 +73,7 @@
                                     <div class="form-group row" id="size-container">
                                         <label for="size-select" class="col-sm-2 col-form-label">Size</label>
                                         <div class="col-sm-6">
-                                            <select class="form-control" id="size-select">
+                                            <select class="form-control" id="size-select" required >
                                                 <option value="s">Size S</option>
                                                 <option value="m">Size M</option>
                                                 <option value="l">Size L</option>

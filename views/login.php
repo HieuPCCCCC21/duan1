@@ -48,8 +48,7 @@
                   </div>
                   <p class="text-xs mt-3">Chúng tôi Cam kết bảo mật và sẽ không bao giờ đăng
                     hay chia sẻ thông tin mà chưa có được sự đồng ý của bạn.</p>
-                </form>
-             
+                </form>    
               </div>
             </div>
           </div>

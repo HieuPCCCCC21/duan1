@@ -2,33 +2,28 @@
 function all_feedback()
 {
     $conn = pdo_get_connection();
-    $sql = "SELECT * FROM feedback";
+    $sql = "SELECT * FROM feedback ORDER BY feedback.id DESC";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $results;
 }
-function update_status($feedbackId, $newStatus) {
+function update_status($feedbackId) {
     $conn = pdo_get_connection();
-    $sql = "UPDATE feedback SET status = :newStatus WHERE id = :feedbackId";
+    $sql = "UPDATE feedback SET status = 1 WHERE id = :feedbackId";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':newStatus', $newStatus, PDO::PARAM_INT);
     $stmt->bindParam(':feedbackId', $feedbackId, PDO::PARAM_INT);
     $stmt->execute(); 
+}
+function feedback_one($fbid){
+    $sql = "SELECT * FROM feedback WHERE id = :feedback_id";
+    return pdo_query_one($sql, [':feedback_id' => $fbid]);
 }
 function delete_feedback($feedbackId) {
     $conn = pdo_get_connection();
     $sql = "DELETE FROM feedback WHERE id = :feedbackId";
     $stmt = $conn->prepare($sql);
     $stmt->bindParam(':feedbackId', $feedbackId, PDO::PARAM_INT);
-    $stmt->execute();
-}
-function check_pass($email, $pass){
-    $conn = pdo_get_connection();
-    $sql = "UPDATE `user` SET `password` = :pass WHERE `email` = :email";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':pass', $pass, PDO::PARAM_STR);
-    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
     $stmt->execute();
 }
 ?>

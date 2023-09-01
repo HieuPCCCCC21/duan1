@@ -7,15 +7,19 @@ function login()
 function login_admin(){
     render("admin/login_admin");
 }
-function login_admin_ctr(){
+function login_admin_ctr() {
     if (isset($_POST['btn_login_admin'])) {
         $email = $_POST['username'];
         $password = $_POST['password'];
         $user = check_email_admin($email, $password);
-        if (is_array($user)) {
+
+        if ($user === false) {
+            $error_message = "Tài khoản hoặc mật khẩu không đúng.";
+            render('admin/login_admin',['error_message'=>$error_message]);
+        } else {
             $_SESSION['user'] = $user;
             header('location:?act=home_admin');
-        }      
+        }
     }
 }
 function logout_admin(){

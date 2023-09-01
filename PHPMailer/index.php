@@ -21,7 +21,7 @@
         $mail->Port = 465; // or 587
         $mail->IsHTML(true);
         $mail->Username = "hieuntph44053@fpt.edu.vn";
-        $mail->Password = "qihqmpqnwgbyoztw";
+        $mail->Password = "lpcdjkxjtoufrkor";
         $mail->SetFrom("hieuntph44053@fpt.edu.vn");
         $subject = "HieuNT Send Mail reset password";
         $mail->Subject = $subject;
