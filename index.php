@@ -236,6 +236,9 @@ $act = isset($_GET['act']) ? $_GET['act'] : '/';
         case 'delete_order':
             delete_order_ctr();
             break;
+        case 'delete_or':
+            delete_order_ctr();
+            break;
         case 'delete_feedback':
             delete_feedback_ctr();
             break;
